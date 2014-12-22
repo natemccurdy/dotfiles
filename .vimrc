@@ -74,6 +74,12 @@ set nowritebackup
 " Auto Complete Menu
 set completeopt=longest,menu
 
+" Enable indentation matching for =>'s
+filetype plugin indent on
+
+" Show me a ruler
+set ruler
+
 " Tabbing and Spaces
 " ------------------
 
