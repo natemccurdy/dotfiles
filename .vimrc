@@ -1,20 +1,19 @@
-" ============================================================================
+" =============================================================================
 "  Initialization
-" ============================================================================
+" =============================================================================
+
+" Start Pathogen
+execute pathogen#infect()
 
 " Use Vim settings instead of Vi settings.
 set nocompatible
 
-" Let Vim look for settings in a file
-set modeline
-set modelines=5
-
 " If vimrc has been modified, re-source it for fast modifications
 autocmd! BufWritePost *vimrc source %
 
-" =========================================================================
+" =============================================================================
 "  Filetype Association
-" =========================================================================
+" =============================================================================
 
 au BufRead,BufNewFile *vimrc
 \ set foldmethod=marker
@@ -37,9 +36,9 @@ augroup PatchDiffHighlight
     autocmd BufEnter *.patch,*.rej,*.diff syntax enable
 augroup end
 
-" =========================================================================
+" =============================================================================
 "  Look and Feel
-" ============================================================================
+" =============================================================================
 " Used for saving git and hg commits
 filetype on
 filetype off
@@ -54,8 +53,10 @@ set mouse=
 set history=100
 
 " Enable relative number in the left column
-set number
 "set relativenumber
+
+"Enable line numbers
+set number
 
 " Give context to where the cursor is positioned in a file
 set scrolloff=14
