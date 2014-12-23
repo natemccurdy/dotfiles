@@ -2,11 +2,25 @@
 "  Initialization
 " =============================================================================
 
-" Start Pathogen
-execute pathogen#infect()
-
-" Use Vim settings instead of Vi settings.
+" Vundle requirements
 set nocompatible
+filetype off
+
+" Setup Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+" plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" " plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" " Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " If vimrc has been modified, re-source it for fast modifications
 autocmd! BufWritePost *vimrc source %
@@ -39,9 +53,6 @@ augroup end
 " =============================================================================
 "  Look and Feel
 " =============================================================================
-" Used for saving git and hg commits
-filetype on
-filetype off
 
 " Set to allow you to backspace while back past insert mode
 set backspace=2
@@ -74,9 +85,6 @@ set nowritebackup
 
 " Auto Complete Menu
 set completeopt=longest,menu
-
-" Enable indentation matching for =>'s
-filetype plugin indent on
 
 " Show me a ruler
 set ruler
