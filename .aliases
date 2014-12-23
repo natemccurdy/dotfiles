@@ -25,6 +25,9 @@ alias dt="cd ~/Desktop"
 alias g="git"
 alias h="history"
 
+# Puppet aliases
+alias izgood="puppet parser validate"
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
