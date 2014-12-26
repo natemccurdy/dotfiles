@@ -9,14 +9,13 @@ filetype off
 " Setup Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
+" Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" " plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" " Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
+" My Plugins
+Plugin 'scrooloose/syntastic'
+Plugin 'Lokaltog/powerline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
