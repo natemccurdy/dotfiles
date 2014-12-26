@@ -9,7 +9,7 @@ yellow="$(tput setaf 3)"
 nc="$(tput sgr0)"
 
 # Install Vundle
-if [[ -e ~/.vim/bundle/Vundle.vim ]]; then
+if [[ ! -e ~/.vim/bundle/Vundle.vim ]]; then
 
     prompt="$(printf "\n%s" "${yellow}Vundle not found. Would you like to install it? y/n: ${nc}")"
     read -ep "$prompt" ans
