@@ -38,6 +38,7 @@ augroup RubySyntaxFiles " Ruby syntax
     autocmd! BufRead,BufEnter *.rb,*.rake set tabstop=2 sts=2 shiftwidth=2 filetype=ruby
     autocmd! BufEnter Rakefile set filetype=ruby
     autocmd! BufEnter Gemfile set filetype=ruby
+    autocmd! BufEnter Vagrantfile set filetype=ruby
 augroup end
 augroup MarkdownFiles " Instead of this Modulo file bullshit
     autocmd! BufEnter *.md set filetype=markdown
