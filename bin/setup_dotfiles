@@ -1,0 +1,22 @@
+#!/bin/bash
+# Create symbolic link for dotfiles.
+# These are statically set for now so as to keep things under control.
+
+dotfiles="aliases gitconfig gitmodules hushlogin vimrc zshrc bin"
+dir="$(git rev-parse --show-toplevel)"
+
+green="$(tput setaf 2)"
+red="$(tput setaf 1)"
+nc="$(tput sgr0)"
+
+cd "$HOME"
+for file in $dotfiles; do
+    printf "%s" "Linking $file to \"${HOME}/.${file}\": "
+    if [[ -e ${dir}/${file} ]]; then
+        if ln -fFs "${dir}/${file}" ".${file}"; then
+            printf "%s\n" "${green}OK${nc}"
+        fi
+    else
+        printf "%s\n" "${red}FAIL -- Source file doesn't exist${nc}"
+    fi
+done
