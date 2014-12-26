@@ -15,7 +15,8 @@ Plugin 'gmarik/Vundle.vim'
 
 " My Plugins
 Plugin 'scrooloose/syntastic'
-Plugin 'Lokaltog/powerline'
+Plugin 'rodjek/vim-puppet'
+Plugin 'godlygeek/tabular'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
