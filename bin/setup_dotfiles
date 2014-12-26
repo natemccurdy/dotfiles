@@ -15,8 +15,11 @@ for file in $dotfiles; do
     if [[ -e ${dir}/${file} ]]; then
         if ln -fFs "${dir}/${file}" ".${file}"; then
             printf "%s\n" "${green}OK${nc}"
+        else
+            printf "%s\n" "${red}FAIL - 'ln' error${nc}"
         fi
     else
-        printf "%s\n" "${red}FAIL -- Source file doesn't exist${nc}"
+        printf "%s\n" "${red}FAIL -- Can't find source file${nc}"
     fi
 done
+
