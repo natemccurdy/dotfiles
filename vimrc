@@ -17,6 +17,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'rodjek/vim-puppet'
 Plugin 'godlygeek/tabular'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -43,7 +45,6 @@ augroup end
 augroup MarkdownFiles " Instead of this Modulo file bullshit
     autocmd! BufEnter *.md set filetype=markdown
 augroup end
-au BufWritePost ~/.bashrc !source %
 au BufRead,BufNewFile *_spec.rb
     \ nmap <F8> :!rspec --color %<CR>
 augroup PatchDiffHighlight
@@ -54,6 +55,18 @@ augroup end
 " =============================================================================
 "  Look and Feel
 " =============================================================================
+
+" Enable syntax highlighting
+syntax enable
+
+"Set colorscheme to Solarized
+"let g:solarized_termtrans=1
+"let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+
+" Set colorscheme to Molokai
+"colorscheme molokai
 
 " Set to allow you to backspace while back past insert mode
 set backspace=2
@@ -113,9 +126,6 @@ set ignorecase
 set smartcase
 set showmatch
 set gdefault
-
-" Enable syntax highlighting
-syntax enable
 
 " Highlight column 80
 if exists('+colorcolumn')
