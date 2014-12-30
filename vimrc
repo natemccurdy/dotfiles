@@ -18,7 +18,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'rodjek/vim-puppet'
 Plugin 'godlygeek/tabular'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
+Plugin 'bling/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -65,8 +65,10 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" Set colorscheme to Molokai
-"colorscheme molokai
+"vim-airline options
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Set to allow you to backspace while back past insert mode
 set backspace=2
