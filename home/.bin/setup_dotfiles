@@ -1,8 +1,5 @@
 #!/bin/bash
 
-dotfiles="aliases gitconfig gitmodules hushlogin vimrc zshrc bin"
-dir="$(git rev-parse --show-toplevel)"
-
 green="$(tput setaf 2)"
 red="$(tput setaf 1)"
 yellow="$(tput setaf 3)"
@@ -26,21 +23,6 @@ if [[ ! -e ~/.vim/bundle/Vundle.vim ]]; then
 
 fi
 
-# Create symbolic link for dotfiles.
-# These are statically set for now so as to keep things under control.
-cd "$HOME"
-for file in $dotfiles; do
-    printf "%s" "Linking $file to \"${HOME}/.${file}\": "
-    if [[ -e ${dir}/${file} ]]; then
-        if ln -fFs "${dir}/${file}" ".${file}"; then
-            printf "%s\n" "${green}OK${nc}"
-        else
-            printf "%s\n" "${red}FAIL - 'ln' error${nc}"
-        fi
-    else
-        printf "%s\n" "${red}FAIL -- Can't find source file${nc}"
-    fi
-done
 
 # Setup Vundle plugins
 if [[ $vundle == 1 ]]; then
