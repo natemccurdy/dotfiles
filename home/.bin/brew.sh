@@ -40,6 +40,8 @@ brew install ack
 brew install git
 brew install speedtest_cli
 brew install tree
+brew install nmap
+brew install xz
 
 # Remove outdated versions from the cellar.
 brew cleanup
