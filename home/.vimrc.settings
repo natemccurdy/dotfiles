@@ -38,7 +38,8 @@ colorscheme solarized
 
 "vim-airline options
 set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Set to allow you to backspace while back past insert mode
@@ -60,7 +61,7 @@ set number
 set scrolloff=14
 
 " Use UTF-8 encoding
-set encoding=utf-8 nobomb
+"set encoding=utf-8 nobomb
 
 " Hide buffers after they are abandoned
 set hidden
@@ -74,7 +75,7 @@ set nowritebackup
 set completeopt=longest,menu
 
 " Show me a ruler
-set ruler
+"set ruler
 
 " Tabbing and Spaces
 " ------------------
