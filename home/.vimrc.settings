@@ -38,8 +38,8 @@ colorscheme solarized
 
 "vim-airline options
 set laststatus=2
-"let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Set to allow you to backspace while back past insert mode
