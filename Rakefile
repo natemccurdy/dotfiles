@@ -11,14 +11,14 @@ end
 desc "Install all the things"
 task :install => ["setup_zsh"] do
     puts
-    puts "Installing all the things!"
+    puts "All done!"
     puts
 end
 
 desc "Install Oh-My-Zsh and switch to ZSH"
 task :setup_zsh do
   if File.exist?(File.join(ENV['HOME'], ".oh-my-zsh"))
-    puts "found ~/.oh-my-zsh"
+    puts "Looks like oh-my-zsh is already installed, so let's skip that part."
   else
     print "install oh-my-zsh? [ynq] "
     case $stdin.gets.chomp
