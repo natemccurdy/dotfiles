@@ -9,8 +9,9 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 3. Create the symlinks with `homesick symlink dotfiles`
 
 ### To setup my enviornment:
-1. `bundle`
-2. `rake install`
+1. `homesick cd dotfiles`
+2. `bundle`
+3. `rake install`
 
 ### To setup vim-airline fonts:
 1. Clone the pre-patched powerline fonts and install them:
