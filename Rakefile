@@ -1,4 +1,5 @@
 require 'rake'
+require 'mkmf'
 
 desc "Display usage"
 task :default do
@@ -9,10 +10,28 @@ task :default do
 end
 
 desc "Install all the things"
-task :install => ["setup_zsh", "setup_vundle"] do
+task :install => ["setup_homebrew", "setup_zsh", "setup_vundle"] do
     puts
     puts "All done!"
     puts
+end
+
+desc "Install Homebrew"
+task :setup_homebrew do
+    if find_executable 'brew'
+       puts "Looks like brew is already installed: skipping"
+    else
+       puts "Install brew? [ynq]"
+       case $stdin.gets.chomp
+       when 'y'
+           puts "installing brew"
+           system %Q{ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"}
+       when 'q'
+           exit
+       else
+           puts "Skipping brew"
+       end
+    end
 end
 
 desc "Install Oh-My-Zsh and switch to ZSH"
