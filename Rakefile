@@ -8,17 +8,17 @@ task :default do
   puts
 end
 
-private
-def run(cmd)
-  puts "[Running] #{cmd}"
-  `#{cmd}` unless ENV['DEBUG']
-end
-
 desc "Install all the things"
 task :install => ["setup_homebrew", "setup_zsh", "setup_vundle"] do
   puts
   puts "All done!"
   puts
+end
+
+private
+def run(cmd)
+  puts "[Running] #{cmd}"
+  `#{cmd}` unless ENV['DEBUG']
 end
 
 desc "Install Homebrew"
