@@ -10,9 +10,11 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 
 ### To automatically setup my enviornment (e.g. on a new computer (OSX)):
 1. Make sure the xcode command line tools are installed:
-  `xcode-select --install`
+   `xcode-select --install`
 2. Run the installer script straight from the web:
-  `sh -c "`curl -fsSL https://raw.githubusercontent.com/natemccurdy/dotfiles/master/install.sh`"
+  ```bash
+  sh -c "`curl -fsSL https://raw.githubusercontent.com/natemccurdy/dotfiles/master/install.sh`"
+  ```
 
 ### To setup vim-airline fonts:
 1. Clone the pre-patched powerline fonts and install them:
