@@ -9,6 +9,12 @@ task :default do
     puts
 end
 
+private
+def run(cmd)
+  puts "[Running] #{cmd}"
+  `#{cmd}` unless ENV['DEBUG']
+end
+
 desc "Install all the things"
 task :install => ["setup_homebrew", "setup_zsh", "setup_vundle"] do
     puts
@@ -18,19 +24,27 @@ end
 
 desc "Install Homebrew"
 task :setup_homebrew do
-    if find_executable 'brew'
-       puts "Looks like brew is already installed: skipping"
-    else
-       puts "Install brew? [ynq]"
-       case $stdin.gets.chomp
-       when 'y'
-           puts "installing brew"
-           system %Q{ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"}
-       when 'q'
-           exit
-       else
-           puts "Skipping brew"
-       end
+    run %{which brew}
+    unless $?.success?
+        puts "======================================================"
+        puts "Installing Homebrew, the OSX package manager...If it's"
+        puts "already installed, this will do nothing."
+        puts "======================================================"
+        run %{ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"}
+        puts
+        puts
+        puts "======================================================"
+        puts "Updating Homebrew"
+        puts "======================================================"
+        run %{brew update}
+        puts
+        puts
+        puts "======================================================"
+        puts "Installing Homebrew packages"
+        puts "======================================================"
+        run %{brew install zsh git hub}
+        puts
+        puts
     end
 end
 
@@ -43,7 +57,7 @@ task :setup_zsh do
         case $stdin.gets.chomp
         when 'y'
             puts "installing oh-my-zsh"
-            system %Q{curl -L http://install.ohmyz.sh | sh}
+            run %Q{curl -L http://install.ohmyz.sh | sh}
         when 'q'
             exit
         else
@@ -61,9 +75,9 @@ task :setup_vundle do
         case $stdin.gets.chomp
         when 'y'
             puts "Installing Vundle"
-            system %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle}
+            run %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle}
             puts "Activating Vundle plugins"
-            system %Q{vim +PluginInstall +qall}
+            run %Q{vim +PluginInstall +qall}
         when 'q'
             exit
         else
