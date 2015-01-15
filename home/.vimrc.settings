@@ -75,16 +75,24 @@ set nowritebackup
 set completeopt=longest,menu
 
 " Show me a ruler
+" Included w/ vim-airline, so no need to add it here.
 "set ruler
+"
+" turn off auto adding comments on next line
+" so you can cut and paste reliably
+" http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
+set fo=tcq
 
 " Tabbing and Spaces
 " ------------------
 
 " Use 4 spaces instead of tabs
-set ts=4
-set sts=4
-set shiftwidth=4
+set tabstop=4
 set expandtab
+set shiftwidth=4
+set softtabstop=4
+" Use 2 spaces for puppet files
+autocmd FileType puppet setlocal sw=2 ts=2 sts=2
 
 " Auto indent
 set autoindent
