@@ -1,5 +1,4 @@
 require 'rake'
-require 'mkmf'
 
 desc "Display usage"
 task :default do
