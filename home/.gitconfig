@@ -16,3 +16,5 @@
     default = simple
 [color]
 	ui = always
+[core]
+	whitespace = trailing-space,space-before-tab
