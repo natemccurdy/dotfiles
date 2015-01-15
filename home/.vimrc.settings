@@ -91,8 +91,9 @@ set tabstop=4
 set expandtab
 set shiftwidth=4
 set softtabstop=4
-" Use 2 spaces for puppet files
+" Use 2 spaces for puppet and ruby files
 autocmd FileType puppet setlocal sw=2 ts=2 sts=2
+autocmd FileType ruby setlocal sw=2 ts=2 sts=2
 
 " Auto indent
 set autoindent
