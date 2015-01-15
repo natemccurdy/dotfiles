@@ -43,8 +43,7 @@ if ! which homesick >/dev/null 2>&1; then
     exit 1
 fi
 if [[ $(homesick list) =~ $castle ]]; then
-    bot "$castle already exists. Probably already installed"
-    bot  "Let's just update it then..."
+    bot "$castle already exists. Let's just update it then..."
     homesick pull dotfiles
     homesick symlink dotfiles
 else
