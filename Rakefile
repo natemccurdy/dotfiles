@@ -124,8 +124,9 @@ task :setup_zsh do
   case $stdin.gets.chomp
   when 'y'
     info "Running the Oh-My-Zsh installer"
-    run %Q{curl -L http://install.ohmyz.sh | sh}
-    #IO.popen("curl -L http://install.ohmyz.sh | sh") { |f| puts f.gets }
+    run %Q{curl -L http://install.ohmyz.sh | bash}
+    info "Redo the Homesick symlinks just in case something changes."
+    run %Q{homesick symlink dotfiles}
   when 'q'
     exit
   else
@@ -137,7 +138,7 @@ desc "Install Vundle for VIM and activate plugins"
 task :setup_vundle do
   puts
   info "======================================================"
-  info "Installing Vunde"
+  info "Installing Vundle"
   info "======================================================"
   puts
   print "install Vundle? [ynq] "
@@ -145,9 +146,8 @@ task :setup_vundle do
   when 'y'
     info "Installing Vundle"
     run %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim}
-    info "Activating Vundle plugins"
+    info "Activating Vundle plugins -- THIS MIGHT TAKE A LONG TIME"
     run %Q{vim +PluginInstall +qall}
-    #IO.popen("vim +PluginInstall +qall") { |f| puts f.gets }
   when 'q'
     exit
   else
