@@ -124,9 +124,11 @@ task :setup_zsh do
   case $stdin.gets.chomp
   when 'y'
     info "Doing a manual install of ZSH"
-    run %Q{git clone -f git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh}
+    #This is a dirty hack. How can I clone into an existing dir?
+    run %Q{rm -rf ~/.oh-my-zsh}
+    run %Q{git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh}
     run %Q{[[ $SHELL =~ zsh ]] || chsh -s /bin/zsh}
-    info "Redo the Homesick symlinks just in case something changes."
+    info "Redo the Homesick symlinks just in case something changed"
     run %Q{homesick symlink dotfiles}
   when 'q'
     exit
