@@ -150,7 +150,7 @@ task :setup_vundle do
     info "Installing Vundle"
     run %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim}
     info "Activating Vundle plugins -- THIS MIGHT TAKE A LONG TIME"
-    run %Q{vim +PluginInstall +qall}
+    run %Q{vim +PluginInstall +qall; clear}
   when 'q'
     exit
   else
