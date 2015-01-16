@@ -9,6 +9,7 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 3. Create the symlinks with `homesick symlink dotfiles`
 
 ### To automatically setup my environnment (e.g. on a new computer (OSX)):
+#### DISCLAIMER: THIS PROBABLY WON"T WORK LIKE YOU WANT IT TO
 1. Make sure the xcode command line tools are installed:
    `xcode-select --install`
 2. Run the installer script straight from the web:
