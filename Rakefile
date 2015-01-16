@@ -144,7 +144,7 @@ task :setup_vundle do
   case $stdin.gets.chomp
   when 'y'
     info "Installing Vundle"
-    run %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle}
+    run %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim}
     info "Activating Vundle plugins"
     run %Q{vim +PluginInstall +qall}
     #IO.popen("vim +PluginInstall +qall") { |f| puts f.gets }
