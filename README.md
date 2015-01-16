@@ -13,7 +13,7 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
    `xcode-select --install`
 2. Run the installer script straight from the web:
 
-        sh -c "`curl -fsSL https://raw.githubusercontent.com/natemccurdy/dotfiles/master/install.sh`"
+        bash -c "`curl -fsSL https://raw.githubusercontent.com/natemccurdy/dotfiles/master/install.sh`"
 
 ### To setup vim-airline fonts:
 1. Clone the pre-patched powerline fonts and install them:
