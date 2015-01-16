@@ -15,7 +15,8 @@ end
 private
 def run(cmd)
   puts "[RUNNING] #{cmd}".yellow
-  `#{cmd}` unless ENV['DEBUG']
+  #`#{cmd}` unless ENV['DEBUG']
+  IO.popen("#{cmd}") { |f| puts f.gets }
 end
 #================================
 # End of helper functions
@@ -122,8 +123,9 @@ task :setup_zsh do
   print "install oh-my-zsh? [ynq] "
   case $stdin.gets.chomp
   when 'y'
-    info "installing oh-my-zsh"
-    run %Q{bash -c "`curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh`"}
+    info "Running the Oh-My-Zsh installer"
+    run %Q{curl -L http://install.ohmyz.sh | sh}
+    #IO.popen("curl -L http://install.ohmyz.sh | sh") { |f| puts f.gets }
   when 'q'
     exit
   else
@@ -145,6 +147,7 @@ task :setup_vundle do
     run %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle}
     info "Activating Vundle plugins"
     run %Q{vim +PluginInstall +qall}
+    #IO.popen("vim +PluginInstall +qall") { |f| puts f.gets }
   when 'q'
     exit
   else
