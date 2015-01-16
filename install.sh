@@ -60,7 +60,10 @@ fi
 
 # Install gems from the Gemfile using bundler.
 gemfile="$(homesick show_path dotfiles)/Gemfile"
-info "Attempting to install all of our gems now"
+info "Attempting to install all of our gems now using Bundler"
+info "Wait... Do we have Bundler? Let's install it"
+sudo gem install bundler
+
 if [[ -f $gemfile ]]; then
     info "Gemfile found. Installing Ruby Gems from $gemfile"
     cd $(homesick show_path)
