@@ -37,6 +37,7 @@ sudo gem update --system
 # Setup Homesick and pull down the dotfiles repo
 # so that we have access to the Rakefile.
 castle="natemccurdy/dotfiles"
+bot "Install Homesick and pull down $castle"
 sudo gem install homesick
 if ! which homesick >/dev/null 2>&1; then
     error "Uh oh, it looks like Homesick didn't install."
