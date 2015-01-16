@@ -30,7 +30,8 @@ task :default do
 end
 
 desc "Install all the things"
-task :install => ["setup_homebrew", "setup_zsh", "setup_vundle"] do
+task :install => ["setup_homebrew", "setup_homebrew_native", "setup_zsh",
+                  "setup_vundle"] do
   puts
   info "======================================================"
   info "                    WE ARE DONE!"
@@ -76,37 +77,41 @@ task :setup_homebrew do
     run %{brew install hub ssh-copy-id}
     puts
     puts
-    print "Would you like to install Homebrew OSX Native Apps?"
-    case $stdin.gets.chomp
-    when 'y'
-      puts
-      info "======================================================"
-      info "Installing Homebrew OSX Native Apps"
-      info "======================================================"
-      puts
-      info "===================== Tools =========================="
-      run %{brew cask install box-sync}
-      run %{brew cask install iterm2}
-      run %{brew cask install lastpass-universal}
-      run %{brew cask install the-unarchiver}
-      run %{brew cask install vlc}
-      puts
-      info "===================== Browsers ======================="
-      run %{brew cask install google-chrome}
-      puts
-      info "===================== Virtual Machines ==============="
-      run %{brew cask install virtualbox}
-      run %{brew cask install vagrant}
-      puts
-    else
-      info "Skipping native Homebrew apps"
-    end
     puts
     info "======================================================"
     info "Cleaning up Homebrew"
     info "======================================================"
     run %{brew cleanup}
     puts
+  end
+end
+
+desc "Install Homebrew OSX Native Apps"
+task :setup_homebrew_native do
+  print "Would you like to install Homebrew OSX Native Apps? [ynq] "
+  case $stdin.gets.chomp
+  when 'y'
+    puts
+    info "======================================================"
+    info "Installing Homebrew OSX Native Apps"
+    info "======================================================"
+    puts
+    info "===================== Tools =========================="
+    run %{brew cask install box-sync}
+    run %{brew cask install iterm2}
+    run %{brew cask install lastpass-universal}
+    run %{brew cask install the-unarchiver}
+    run %{brew cask install vlc}
+    puts
+    info "===================== Browsers ======================="
+    run %{brew cask install google-chrome}
+    puts
+    info "===================== Virtual Machines ==============="
+    run %{brew cask install virtualbox}
+    run %{brew cask install vagrant}
+    puts
+  else
+    info "Skipping native Homebrew apps"
   end
 end
 
