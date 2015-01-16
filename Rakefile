@@ -114,6 +114,7 @@ end
 
 desc "Install Oh-My-Zsh and switch to ZSH"
 task :setup_zsh do
+  puts
   info "======================================================"
   info "Installing Oh-My-Zsh"
   info "======================================================"
@@ -122,7 +123,7 @@ task :setup_zsh do
   case $stdin.gets.chomp
   when 'y'
     info "installing oh-my-zsh"
-    run %Q{curl -L http://install.ohmyz.sh | sh}
+    run %Q{bash -c "`curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh`"}
   when 'q'
     exit
   else
@@ -132,8 +133,9 @@ end
 
 desc "Install Vundle for VIM and activate plugins"
 task :setup_vundle do
+  puts
   info "======================================================"
-  info "Installing Oh-My-Zsh"
+  info "Installing Vunde"
   info "======================================================"
   puts
   print "install Vundle? [ynq] "
