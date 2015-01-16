@@ -118,40 +118,35 @@ task :setup_zsh do
   info "Installing Oh-My-Zsh"
   info "======================================================"
   puts
-
-  if File.exist?(File.join(ENV['HOME'], ".oh-my-zsh"))
-    info "Looks like oh-my-zsh is already installed: skipping"
+  print "install oh-my-zsh? [ynq] "
+  case $stdin.gets.chomp
+  when 'y'
+    info "installing oh-my-zsh"
+    run %Q{curl -L http://install.ohmyz.sh | sh}
+  when 'q'
+    exit
   else
-    print "install oh-my-zsh? [ynq] "
-    case $stdin.gets.chomp
-    when 'y'
-      info "installing oh-my-zsh"
-      run %Q{curl -L http://install.ohmyz.sh | sh}
-    when 'q'
-      exit
-    else
-      info "skipping oh-my-zsh"
-    end
+    info "skipping oh-my-zsh"
   end
 end
 
 desc "Install Vundle for VIM and activate plugins"
 task :setup_vundle do
-  if File.exist?(File.join(ENV['HOME'], ".vim/bundle/Vundle.vim"))
-    info "Looks like Vundle is already installed: skipping"
+  info "======================================================"
+  info "Installing Oh-My-Zsh"
+  info "======================================================"
+  puts
+  print "install Vundle? [ynq] "
+  case $stdin.gets.chomp
+  when 'y'
+    info "Installing Vundle"
+    run %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle}
+    info "Activating Vundle plugins"
+    run %Q{vim +PluginInstall +qall}
+  when 'q'
+    exit
   else
-    print "install Vundle? [ynq] "
-    case $stdin.gets.chomp
-    when 'y'
-      info "Installing Vundle"
-      run %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle}
-      info "Activating Vundle plugins"
-      run %Q{vim +PluginInstall +qall}
-    when 'q'
-      exit
-    else
-      info "skipping Vundle"
-    end
+    info "skipping Vundle"
   end
 end
 
