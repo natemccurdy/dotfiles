@@ -1,10 +1,11 @@
 require 'rake'
+require 'colored'
 
 desc "Display usage"
 task :default do
   system("rake -T")
   puts
-  puts "This script will setup all the things to make this house a home."
+  puts "This script will setup all the things to make this house a home.".green
   puts
 end
 
