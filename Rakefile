@@ -123,8 +123,9 @@ task :setup_zsh do
   print "install oh-my-zsh? [ynq] "
   case $stdin.gets.chomp
   when 'y'
-    info "Running the Oh-My-Zsh installer"
-    run %Q{curl -L http://install.ohmyz.sh | bash}
+    info "Doing a manual install of ZSH"
+    run %Q{git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh}
+    run %Q{[[ $SHELL =~ zsh ]] || chsh -s /bin/zsh}
     info "Redo the Homesick symlinks just in case something changes."
     run %Q{homesick symlink dotfiles}
   when 'q'
