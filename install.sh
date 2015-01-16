@@ -18,6 +18,14 @@ function error() {
 # End of helper functions. Carry on.
 #===================================================
 
+# Check that XCode Command Lines Tools are installed
+xcode-select -p >/dev/nul 2>&1
+retval="$?"
+if [[ $retval -ne 0 ]]; then
+    error "XCode Command Line Tools are not installed"
+    error "Install them with 'xcode-select --install' first"
+    exit 1
+fi
 
 # Ask for the administrator password upfront
 info "I need you to enter your sudo password so I can install some things:"
