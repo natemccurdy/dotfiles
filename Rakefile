@@ -47,43 +47,40 @@ end
 
 desc "Install Homebrew"
 task :setup_homebrew do
-  run %{which brew}
-  unless $?.success?
-    info "======================================================"
-    info "Installing Homebrew, the OSX package manager...If it's"
-    info "already installed, this will do nothing."
-    info "======================================================"
-    run %{ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"}
-    puts
-    puts
-    info "Installing brew-cask"
-    run %{brew install caskroom/cask/brew-cask}
-    puts
-    info "Updating Homebrew"
-    run %{brew update}
-    run %{brew upgrade}
-    puts
-    puts
-    info "======================================================"
-    info "Installing Homebrew command line tools"
-    info "======================================================"
-    run %{brew install coreutils moreutils findutils}
-    run %{brew install gnu-sed --with-default-names}
-    run %{brew install wget --with-iri}
-    run %{brew install autoconf automake}
-    run %{brew install vim --with-python --override-system-vi}
-    run %{brew install homebrew/dupes/grep homebrew/dupes/screen}
-    run %{brew install git ack tree xz nmap speedtest_cli cowsay}
-    run %{brew install hub ssh-copy-id}
-    puts
-    puts
-    puts
-    info "======================================================"
-    info "Cleaning up Homebrew"
-    info "======================================================"
-    run %{brew cleanup}
-    puts
-  end
+  info "======================================================"
+  info "Installing Homebrew, the OSX package manager...If it's"
+  info "already installed, this will do nothing."
+  info "======================================================"
+  run %{ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"}
+  puts
+  puts
+  info "Installing brew-cask"
+  run %{brew install caskroom/cask/brew-cask}
+  puts
+  info "Updating Homebrew"
+  run %{brew update}
+  run %{brew upgrade}
+  puts
+  puts
+  info "======================================================"
+  info "Installing Homebrew command line tools"
+  info "======================================================"
+  run %{brew install coreutils moreutils findutils}
+  run %{brew install gnu-sed --with-default-names}
+  run %{brew install wget --with-iri}
+  run %{brew install autoconf automake}
+  run %{brew install vim --with-python --override-system-vi}
+  run %{brew install homebrew/dupes/grep homebrew/dupes/screen}
+  run %{brew install git ack tree xz nmap speedtest_cli cowsay}
+  run %{brew install hub ssh-copy-id}
+  puts
+  puts
+  puts
+  info "======================================================"
+  info "Cleaning up Homebrew"
+  info "======================================================"
+  run %{brew cleanup}
+  puts
 end
 
 desc "Install Homebrew OSX Native Apps"
