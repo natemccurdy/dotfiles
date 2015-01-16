@@ -19,7 +19,7 @@ function error() {
 #===================================================
 
 # Check that XCode Command Lines Tools are installed
-xcode-select -p >/dev/nul 2>&1
+xcode-select -p >/dev/null 2>&1
 retval="$?"
 if [[ $retval -ne 0 ]]; then
     error "XCode Command Line Tools are not installed"
