@@ -14,11 +14,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'rodjek/vim-puppet'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-fugitive'
+" Colorschemes
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
