@@ -1,22 +1,14 @@
-dotfiles
-========
+# My dotfiles repo
 
 I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotfiles.
 
-### To manually get just the dotfiles:
+## To install the dotfiles:
 1. Install Homesick with `gem install homesick`
 2. Clone this castle with `homesick clone natemccurdy/dotfiles`
 3. Create the symlinks with `homesick symlink dotfiles`
 
-### To automatically setup my environnment (e.g. on a new computer (OSX)):
-#### DISCLAIMER: THIS PROBABLY WON'T WORK
-1. Make sure the xcode command line tools are installed:
-   `xcode-select --install`
-2. Run the installer script straight from the web:
 
-        bash -c "`curl -fsSL https://raw.githubusercontent.com/natemccurdy/dotfiles/master/install.sh`"
-
-### To setup vim-airline fonts:
+### Vim-airline will look all wonky unless the fonts are fixed, so...
 1. Clone the pre-patched powerline fonts and install them:
   1. `git clone git@github.com:powerline/fonts.git`
   2. `cd fonts; ./install.sh`
