@@ -18,6 +18,11 @@ alias gca='git commit -a'
 alias gcam='git commit -a -m'
 alias gmerge='git merge --no-edit'
 
+# Vagrant aliases
+alias v='vagrant'
+alias vs='vagrant status'
+alias vhl='vagrant hosts list'
+
 # Shortcuts
 alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
