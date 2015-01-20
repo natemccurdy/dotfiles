@@ -8,7 +8,7 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 3. Create the symlinks with `homesick symlink dotfiles`
 
 
-### Vim-airline will look all wonky unless the fonts are fixed, so...
+** Vim-airline will look all wonky unless the fonts are fixed, so **
 1. Clone the pre-patched powerline fonts and install them:
   1. `git clone git@github.com:powerline/fonts.git`
   2. `cd fonts; ./install.sh`
