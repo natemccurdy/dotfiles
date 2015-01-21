@@ -23,6 +23,9 @@ alias v='vagrant'
 alias vs='vagrant status'
 alias vhl='vagrant hosts list'
 
+# Tmux aliases
+alias tma='tmux attach -d -t'
+
 # Shortcuts
 alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
