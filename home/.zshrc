@@ -27,8 +27,6 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git osx ruby brew gem screen vagrant history history-substring-search)
 
 # User configuration
-# Put '/usr/local/bin' first to use Brew apps over system apps.
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -46,3 +44,9 @@ source $ZSH/oh-my-zsh.sh
 # Source my external alias config
 source $HOME/.aliases
 
+# Fix $PATH for homebrew
+homebrew=/usr/local/bin:/usr/local/sbin
+export PATH=$homebrew:$PATH
+
+# Initialize rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
