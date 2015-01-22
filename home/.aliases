@@ -1,22 +1,8 @@
-# Easier navigation: .., ..., ...., ....., ~ and -
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
-alias l1='ls -1'
-
 alias tree='tree -C'
-
 alias path='echo -e ${PATH//:/\\n}'
 
-# Git aliases
-alias g='git'
-alias gs='git status'
-alias gca='git commit -a'
-alias gcam='git commit -a -m'
-alias gmerge='git merge --no-edit'
+# Puppet aliases
+alias izgood="puppet parser validate"
 
 # Vagrant aliases
 alias v='vagrant'
@@ -30,11 +16,7 @@ alias tma='tmux attach -d -t'
 alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias g="git"
 alias h="history"
-
-# Puppet aliases
-alias izgood="puppet parser validate"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
