@@ -44,9 +44,14 @@ source $ZSH/oh-my-zsh.sh
 # Source my external alias config
 source $HOME/.aliases
 
-# Fix $PATH for homebrew
+## Fix $PATH for homebrew
 homebrew=/usr/local/bin:/usr/local/sbin
 export PATH=$homebrew:$PATH
 
-# Initialize rbenv
+## Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+## Setup envpuppet
+export ENVPUPPET_BASEDIR="${HOME}/src/puppetlabs"
+eval $($ENVPUPPET_BASEDIR/puppet/ext/envpuppet)
+
