@@ -1,13 +1,14 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+DEFAULT_USER='nate'
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="avit"
-ZSH_THEME="flazz-custom"
+#ZSH_THEME="flazz-custom"
+ZSH_THEME="agnoster"
+#ZSH_THEME="random"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -24,7 +25,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx ruby brew gem screen vagrant history history-substring-search)
+plugins=(git osx ruby brew gem vagrant)
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
