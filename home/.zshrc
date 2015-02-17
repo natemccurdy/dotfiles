@@ -53,6 +53,8 @@ export PATH=$homebrew:$PATH
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 ## Setup envpuppet
-export ENVPUPPET_BASEDIR="${HOME}/src/puppetlabs"
-eval $($ENVPUPPET_BASEDIR/puppet/ext/envpuppet)
+## Disabled because I want the native package on my mac to automate my mac.
+## This should only be used for testing in vm's and such.
+#export ENVPUPPET_BASEDIR="${HOME}/src/puppetlabs"
+#eval $($ENVPUPPET_BASEDIR/puppet/ext/envpuppet)
 
