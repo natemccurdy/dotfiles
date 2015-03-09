@@ -3,6 +3,7 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Puppet aliases
 alias izgood="puppet parser validate"
+alias izpretty="puppet-lint --no-class_inherits_from_params_class-check"
 
 # Vagrant aliases
 alias v='vagrant'
