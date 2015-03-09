@@ -17,7 +17,7 @@ def bash_check(file)
 end
 
 def puppet_lint(file)
-        system('puppet-lint --no-class_inherits_from_params_class-check' + file)
+        system('puppet-lint --no-class_inherits_from_params_class-check ' + file)
 end
 
 def puppet_erb_check(file)
