@@ -26,7 +26,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git osx ruby brew gem vagrant ssh-agent)
 
 # Load SSH identities
-zstyle :omz:plugins:ssh-agent identities id_rsa bitbucket_personal gitlab_personal
+zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
