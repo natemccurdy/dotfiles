@@ -17,7 +17,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'rodjek/vim-puppet'
 Plugin 'tpope/vim-fugitive'
-Plugin 'shime/vim-livedown'
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
