@@ -1,47 +1,28 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# Set my default user so that the agnoster theme doesn't show the hostname.
 DEFAULT_USER='nate'
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx ruby brew gem vagrant ssh-agent)
+if [[ -f $HOME/.antigen/antigen.zsh ]]; then
+    # Source Antigen
+    source $HOME/.antigen/antigen.zsh
+    # Loaad oh-my-zsh library
+    antigen use oh-my-zsh
+    # Use some plugins
+    antigen bundle git
+    antigen bundle osx
+    antigen bundle ruby
+    antigen bundle brew
+    antigen bundle gem
+    antigen bundle vagrant
+    antigen bundle ssh-agent
+    antigen bundle zsh-users/zsh-syntax-highlighting
+    # Set the theme
+    antigen theme agnoster
+    # Compelte the Antigen run
+    antigen apply
+fi
 
 # Load SSH identities
 zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal
-
-# User configuration
-# export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Source my external alias config
 source $HOME/.aliases
@@ -53,7 +34,7 @@ export PATH=$homebrew:$PATH
 ## Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-## Add PE bins to $PATH
+## Add PE bins to the end of $PATH
 puppet=/opt/puppet/bin
 export PATH=$PATH:$puppet
 
