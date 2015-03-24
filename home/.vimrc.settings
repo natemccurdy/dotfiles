@@ -159,9 +159,6 @@ autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
 " }}}
 " SHORTCUTS {{{
 
-" NERTTree binding
-map <C-n> :NERDTreeToggle<CR>
-
 " }}}
 " BACKUPS & HISTORY {{{
 
