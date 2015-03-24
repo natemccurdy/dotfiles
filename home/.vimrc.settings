@@ -1,31 +1,20 @@
- "=============================================================================
-"  Filetype Association
+"  AUTOGROUPS {{{
 " =============================================================================
 
-au BufRead,BufNewFile *vimrc
-\ set foldmethod=marker
-augroup Puppet
-    autocmd! BufEnter *.pp set filetype=puppet
-augroup end
-augroup RubySyntaxFiles " Ruby syntax
-    autocmd! BufRead,BufEnter *.rb,*.rake set tabstop=2 sts=2 shiftwidth=2 filetype=ruby
-    autocmd! BufEnter Rakefile set filetype=ruby
-    autocmd! BufEnter Gemfile set filetype=ruby
-    autocmd! BufEnter Vagrantfile set filetype=ruby
-augroup end
-augroup MarkdownFiles " Instead of this Modulo file bullshit
-    autocmd! BufEnter *.md set filetype=markdown
-augroup end
-au BufRead,BufNewFile *_spec.rb
-    \ nmap <F8> :!rspec --color %<CR>
-augroup PatchDiffHighlight
-    autocmd!
-    autocmd BufEnter *.patch,*.rej,*.diff syntax enable
+augroup configgroup
+  autocmd!
+  autocmd VimEnter * highlight clear SignColumn
+  autocmd BufWritePre *.pp,*.sh,*.py,*.rb,*.md,*.txt,*.markdown
+            \:call <SID>StripTrailingWhitespaces()
+  autocmd BufEnter Rakefile set filetype=ruby
+  autocmd BufEnter Gemfile set filetype=ruby
+  autocmd BufEnter Vagrantfile set filetype=ruby
+  autocmd BufEnter *.md set filetype=markdown
+  autocmd BufEnter *.patch,*.rej,*.diff syntax enable
 augroup end
 
-" =============================================================================
-"  Look and Feel
-" =============================================================================
+" }}}
+" COLORS {{{
 
 " Enable syntax highlighting
 syntax enable
@@ -38,14 +27,50 @@ syntax enable
 "Set colorscheme to Molokai
 colorscheme molokai
 
+"}}}
+" PLUGIN OPTIONS {{{
+"
 "vim-airline options
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#fnamemod = ':t'
 
-" Set to allow you to backspace while back past insert mode
-set backspace=2
+" CtrlP settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" }}}
+" {{{ SPACES & TABS
+"
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
+" Auto indent
+set autoindent
+set smartindent
+
+ " }}}
+" UI CONFIG {{{
+
+" Enable line numbers
+set number
+
+"  Highlight current line
+set cursorline
 
 " Disable mouse
 set mouse=
@@ -53,64 +78,18 @@ set mouse=
 " Increase History
 set history=100
 
-" Enable relative number in the left column
-"set relativenumber
-
-"Enable line numbers
-set number
-
 " Give context to where the cursor is positioned in a file
 set scrolloff=14
 
-" Use UTF-8 encoding
-"set encoding=utf-8 nobomb
+" Visual autocomplete for command menu
+set wildmenu
 
-" Hide buffers after they are abandoned
-set hidden
+" Redraw only when we ned to
+set lazyredraw
 
-" Disable files that don't need to be created
-set noswapfile
-set nobackup
-set nowritebackup
 
-" Auto Complete Menu
-set completeopt=longest,menu
-
-" Show me a ruler
-" Included w/ vim-airline, so no need to add it here.
-"set ruler
-"
-" turn off auto adding comments on next line
-" so you can cut and paste reliably
-" http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
-set fo=tcq
-
-" Tabbing and Spaces
-" ------------------
-
-" Use 4 spaces instead of tabs
-set tabstop=4
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-" Use 2 spaces for puppet and ruby files
-autocmd FileType puppet setlocal sw=2 ts=2 sts=2
-autocmd FileType ruby setlocal sw=2 ts=2 sts=2
-
-" Auto indent
-set autoindent
-set smartindent
-
-" Color Settings
-" --------------
-
-" Enable highlight search and highlight when searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
+" highlight matching brackets
 set showmatch
-set gdefault
 
 " Highlight column 80
 if exists('+colorcolumn')
@@ -119,9 +98,77 @@ else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
+" Hide buffers after they are abandoned
+set hidden
+
 " Highlight Trailing Whitespace
 highlight ExtraWhitespace ctermbg=darkblue guibg=darkblue
 match ExtraWhitespace /\s\+$/
+
+" Auto Complete Menu
+set completeopt=longest,menu
+
+" }}}
+" SEARCHING {{{
+
+" Enable highlight search and highlight when searching
+set hlsearch
+set incsearch
+
+" Ignore case when searching
+set ignorecase
+set smartcase
+
+" Turn off search highlight with <leader><space>
+nnoremap <leader><space> :nohlsearch<CR>
+
+" }}}
+" FOLDING {{{
+
+" enable folding
+set foldenable
+
+" Open up to 10 folds by default
+set foldlevelstart=10
+
+" Max nested folds
+set foldnestmax=10
+
+" space opens/closes folds
+nnoremap <space> za
+
+
+"}}}
+" MOVEMENT {{{
+
+" Set to allow you to backspace while back past insert mode
+set backspace=2
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
+" Open file and goto previous location
+autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
+    \|     exe "normal! g`\""
+    \|  endif
+
+" }}}
+" SHORTCUTS {{{
+
+" NERTTree binding
+map <C-n> :NERDTreeToggle<CR>
+
+" }}}
+" BACKUPS & HISTORY {{{
+
+" Disable files that don't need to be created
+set noswapfile
+set nobackup
+set nowritebackup
 
 " Persistent Undo
 if v:version >= 703
@@ -129,17 +176,41 @@ if v:version >= 703
     set undodir=~/.vim/tmp,~/.tmp,~/tmp,~/var/tmp,/tmp
 endif
 
+" }}}
+" FUNCTIONS {{{
+
+" toggle between number and relativenumber
+function! ToggleNumber()
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+" strips trailing whitespace at the end of files. this
+" is called on buffer write in the autogroup above.
+function! <SID>StripTrailingWhitespaces()
+    " save last search & cursor position
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+" }}}
+" VARIOUS REMAPS {{{
+
 " Spelling / Typos
 :command! WQ wq
 :command! Wq wq
 :command! W w
 :command! Q q
 
-" Open file and goto previous location
-autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
-    \|     exe "normal! g`\""
-    \|  endif
+" }}}
 
-" NERTTree binding
-map <C-n> :NERDTreeToggle<CR>
-
+set modelines=1
+" vim:foldmethod=marker:foldlevel=0
