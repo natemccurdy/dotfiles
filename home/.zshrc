@@ -14,7 +14,6 @@ if [[ -f $HOME/.antigen/antigen.zsh ]]; then
     antigen bundle gem
     antigen bundle vagrant
     antigen bundle ssh-agent
-    antigen bundle zsh-users/zsh-syntax-highlighting
     # Set the theme
     antigen theme agnoster
     # Compelte the Antigen run
