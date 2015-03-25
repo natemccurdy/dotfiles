@@ -3,14 +3,9 @@
 
 augroup configgroup
   autocmd!
-  autocmd VimEnter * highlight clear SignColumn
-  autocmd BufWritePre *.pp,*.sh,*.py,*.rb,*.md,*.txt,*.markdown
-            \:call <SID>StripTrailingWhitespaces()
-  autocmd BufEnter Rakefile set filetype=ruby
-  autocmd BufEnter Gemfile set filetype=ruby
-  autocmd BufEnter Vagrantfile set filetype=ruby
+  autocmd BufEnter Rakefile Gemfile Vagrantfile set filetype=ruby
   autocmd BufEnter *.md set filetype=markdown
-  autocmd BufEnter *.patch,*.rej,*.diff syntax enable
+  autocmd BufWritePost *vimrc* source %
 augroup end
 
 " }}}
@@ -159,6 +154,9 @@ autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
 " }}}
 " SHORTCUTS {{{
 
+" Clear whitespace at end of line with '_$'
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+
 " }}}
 " BACKUPS & HISTORY {{{
 
@@ -186,16 +184,16 @@ function! ToggleNumber()
   endif
 endfunc
 
-" strips trailing whitespace at the end of files. this
-" is called on buffer write in the autogroup above.
-function! <SID>StripTrailingWhitespaces()
-    " save last search & cursor position
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
 endfunction
 
 " }}}

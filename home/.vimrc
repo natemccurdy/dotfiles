@@ -24,7 +24,4 @@ Plugin 'tomasr/molokai'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" If vimrc has been modified, re-source it for fast modifications
-autocmd! BufWritePost *vimrc* source %
-
 :so ~/.vimrc.settings
