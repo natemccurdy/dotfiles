@@ -3,9 +3,10 @@
 
 augroup configgroup
   autocmd!
-  autocmd BufEnter Rakefile Gemfile Vagrantfile set filetype=ruby
+  autocmd BufEnter Rakefile set filetype=ruby
+  autocmd BufEnter Vagrantfile set filetype=ruby
+  autocmd BufEnter Gemfile set filetype=ruby
   autocmd BufEnter *.md set filetype=markdown
-  autocmd BufWritePost *vimrc* source %
 augroup end
 
 " }}}
