@@ -4,7 +4,11 @@ DEFAULT_USER='nate'
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k"
+# PowerLevel9K options
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv git)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
