@@ -1,27 +1,23 @@
 # Set my default user so that the agnoster theme doesn't show the hostname.
 DEFAULT_USER='nate'
 
-if [[ -f $HOME/.antigen/antigen.zsh ]]; then
-    # Source Antigen
-    source $HOME/.antigen/antigen.zsh
-    # Loaad oh-my-zsh library
-    antigen use oh-my-zsh
-    # Use some plugins
-    antigen bundle git
-    antigen bundle osx
-    antigen bundle ruby
-    antigen bundle brew
-    antigen bundle gem
-    antigen bundle vagrant
-    antigen bundle ssh-agent
-    # Set the theme
-    antigen theme agnoster
-    # Compelte the Antigen run
-    antigen apply
-fi
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+ZSH_THEME="agnoster"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+plugins=(git osx ruby brew gem vagrant ssh-agent)
 
 # Load SSH identities
 zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal
+
+# Start oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
 # Source my external alias config
 source $HOME/.aliases
