@@ -6,8 +6,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.
 ZSH_THEME="powerlevel9k"
 # PowerLevel9K options
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv git)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir git)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv)
 
 
 # Uncomment the following line to display red dots whilst waiting for completion.
