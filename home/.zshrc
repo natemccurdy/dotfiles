@@ -6,7 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.
 ZSH_THEME="powerlevel9k"
 # PowerLevel9K options
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir git)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv)
 
 
