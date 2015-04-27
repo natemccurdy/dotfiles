@@ -9,7 +9,7 @@ def puppet_parser_validate(file)
 end
 
 def r10k_puppetfile_check(file)
-        system('r10k puppetfile check ' + file)
+        system('/opt/puppet/bin/r10k puppetfile check ' + file)
 end
 
 def bash_check(file)
