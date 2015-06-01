@@ -12,10 +12,12 @@ Plugin 'gmarik/Vundle.vim'
 " GitHub plugins
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
-Plugin 'kien/ctrlp.vim'
+"Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
-Plugin 'rodjek/vim-puppet'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'rodjek/vim-puppet'
+Plugin 'puppetlabs/pltraining-userprefs', {'rtp': 'files/vim/vim'}
+"Plugin 'tpope/vim-fugitive'
+Plugin 'Valloric/YouCompleteMe'
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
