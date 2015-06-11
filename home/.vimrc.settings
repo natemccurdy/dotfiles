@@ -42,11 +42,9 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
-" puppet-lint settings
-let s:puppet_lint_args = '--no-80chars-check'
-
 " Syntastic settings
 let g:syntastic_check_on_wq = 0
+let g:syntastic_puppet_puppetlint_args = '--no-class_inherits_from_params_class-check --no-80chars-check'
 
 " allows cursor change in tmux mode
 if exists('$TMUX')
