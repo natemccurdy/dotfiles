@@ -33,10 +33,6 @@ export PATH=$homebrew:$PATH
 ## Initialize rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-## Add PE bins to the end of $PATH
-puppet=/opt/puppet/bin
-export PATH=$PATH:$puppet
-
 ## Setup envpuppet
 ## Disabled because I want the native package on my mac to automate my mac.
 ## This should only be used for testing in vm's and such.
