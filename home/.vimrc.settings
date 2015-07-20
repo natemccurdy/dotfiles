@@ -214,6 +214,10 @@ endfunction
 :command! W w
 :command! Q q
 
+" Switch buffers with Tab & Shift-Tab
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
+
 " }}}
 
 set modelines=1
