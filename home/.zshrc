@@ -9,7 +9,6 @@ ZSH_THEME="powerlevel9k"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv)
 
-
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
@@ -22,6 +21,9 @@ zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal
 
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+
+# The Fuck
+eval "$(thefuck-alias)"
 
 # Source my external alias config
 source $HOME/.aliases
