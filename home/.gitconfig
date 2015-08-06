@@ -15,7 +15,7 @@
 [push]
     default = simple
 [color]
-	ui = always
+	ui = auto
 [core]
 	whitespace = trailing-space,space-before-tab
 [init]
