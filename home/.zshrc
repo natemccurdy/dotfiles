@@ -17,7 +17,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git osx ruby brew gem vagrant ssh-agent tmux)
 
 # Load SSH identities
-zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal
+zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal gitlab_work github_personal github_work
 
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
