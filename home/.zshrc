@@ -22,9 +22,6 @@ zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal gitlab_work gith
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# The Fuck
-eval "$(thefuck-alias)"
-
 # Source my external alias config
 source $HOME/.aliases
 

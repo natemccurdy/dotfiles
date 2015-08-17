@@ -114,3 +114,5 @@ alias pumpitup="osascript -e 'set volume 7'"
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
+# The Fuck alias
+eval "$(thefuck --alias)"
