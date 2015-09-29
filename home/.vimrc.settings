@@ -166,6 +166,11 @@ autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
 " Clear whitespace at end of line with '_$'
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 
+" Quote words and lines with \q', \q", \qd
+:nnoremap <Leader>q" ciw""<Esc>P
+:nnoremap <Leader>q' ciw''<Esc>P
+:nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
+
 " }}}
 " BACKUPS & HISTORY {{{
 
