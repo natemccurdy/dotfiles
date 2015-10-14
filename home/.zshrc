@@ -8,6 +8,9 @@ ZSH_THEME="powerlevel9k"
 # PowerLevel9K options
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv)
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
