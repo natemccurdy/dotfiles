@@ -19,6 +19,7 @@ Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rodjek/vim-puppet'
 Plugin 'puppetlabs/pltraining-userprefs', {'rtp': 'files/vim/vim'}
 Plugin 'PProvost/vim-ps1'
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
