@@ -15,6 +15,7 @@ Plugin 'vim-scripts/CycleColor'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rodjek/vim-puppet'
 Plugin 'puppetlabs/pltraining-userprefs', {'rtp': 'files/vim/vim'}
