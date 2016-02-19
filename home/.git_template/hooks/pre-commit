@@ -16,6 +16,10 @@ def bash_check(file)
   system('bash -n ' + file)
 end
 
+def shell_check(file)
+    system('shellcheck ' + file)
+end
+
 def puppet_lint(file)
   system('puppet-lint ' + File.absolute_path(file))
 end
@@ -52,6 +56,7 @@ IO.popen('git diff --cached --name-only --diff-filter=ACM').readlines.each { |fi
     exit 1 unless r10k_puppetfile_check file
   elsif file.match('.sh$')
     exit 1 unless bash_check file
+    exit 1 unless shell_check file
   elsif file.match(/(.yaml$|.yml$|.eyaml$)/)
     exit 1 unless yaml_check file
   elsif file.match('.json$')
