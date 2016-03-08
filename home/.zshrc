@@ -28,12 +28,17 @@ source $ZSH/oh-my-zsh.sh
 # Source my external alias config
 source $HOME/.aliases
 
-## Fix $PATH for homebrew
-homebrew=/usr/local/bin:/usr/local/sbin
-export PATH=$homebrew:$PATH
+# PATH modifications. Don't modify if we're in TMUX because path_helper does it for us.
+# I also modifed /etc/zprofile as shown here https://pgib.me/blog/2013/10/11/macosx-tmux-zsh-rbenv/
+if [[ -z $TMUX ]]; then
+  # Add homebrew's sbin dir to PATH
+  export PATH="/usr/local/sbin:$PATH"
 
-## Initialize rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+  # Initialize rbenv
+  if which rbenv >/dev/null ; then
+    [[ $PATH =~ 'rbenv/shims' ]] || eval "$(rbenv init -)"
+  fi
+fi
 
 ## Setup envpuppet
 ## Disabled because I want the native package on my mac to automate my mac.
