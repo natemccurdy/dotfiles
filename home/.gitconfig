@@ -4,7 +4,7 @@
 	smudge = git media smudge %f
 [user]
 	name = NateMcCurdy
-	email = nate.mccurdy@puppetlabs.com
+	email = nate.mccurdy@puppet.com
 [alias]
     co = checkout
     ci = commit
