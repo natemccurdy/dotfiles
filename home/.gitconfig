@@ -1,23 +1,24 @@
 [filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
 [user]
-	name = NateMcCurdy
-	email = nate.mccurdy@puppet.com
+  name = NateMcCurdy
+  email = nate.mccurdy@puppet.com
 [alias]
-    co = checkout
-    ci = commit
-    ec = config --global -e
-    cob = checkout -b
-    cm = !git add -A && git commit -m
-	hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
-	unstage = reset HEAD --
+  co = checkout
+  ci = commit
+  ec = config --global -e
+  cob = checkout -b
+  cm = !git add -A && git commit -m
+  hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
+  unstage = reset HEAD --
+  cp = cherry-pick
 [push]
-    default = simple
+  default = simple
 [color]
-	ui = auto
+  ui = auto
 [core]
-	whitespace = trailing-space,space-before-tab
+  whitespace = trailing-space,space-before-tab
 [init]
-	templatedir = ~/.git_template
+  templatedir = ~/.git_template
