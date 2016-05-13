@@ -70,6 +70,9 @@ set softtabstop=2
 set autoindent
 set smartindent
 
+" Tell VIM to honor two-spaces after a period
+set cpo+=J
+
  " }}}
 " UI CONFIG {{{
 
