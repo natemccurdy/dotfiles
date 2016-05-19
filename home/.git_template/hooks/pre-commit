@@ -21,7 +21,7 @@ def shell_check(file)
 end
 
 def puppet_lint(file)
-  system('puppet-lint ' + File.absolute_path(file))
+  system('puppet-lint --log-format="%{filename} - %{KIND}:%{check} - %{message} on line %{line}" ' + File.absolute_path(file))
 end
 
 def puppet_erb_check(file)
