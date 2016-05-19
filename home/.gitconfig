@@ -7,13 +7,13 @@
   email = nate.mccurdy@puppet.com
 [alias]
   co = checkout
-  ci = commit
   ec = config --global -e
   cob = checkout -b
   cm = !git add -A && git commit -m
   hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
   unstage = reset HEAD --
   cp = cherry-pick
+  update = pull --rebase
 [push]
   default = simple
 [color]
