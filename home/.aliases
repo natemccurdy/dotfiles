@@ -2,6 +2,7 @@ alias tree='tree -C'
 alias path='echo -e ${PATH//:/\\n}'
 
 # Puppet aliases
+alias puppet-lint='puppet-lint --log-format="%{path} - %{KIND}:%{check} - %{message} on line %{line}"'
 alias izgood="puppet parser validate"
 alias izpretty='puppet-lint'
 
