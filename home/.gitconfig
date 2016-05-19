@@ -3,7 +3,7 @@
   clean = git media clean %f
   smudge = git media smudge %f
 [user]
-  name = NateMcCurdy
+  name = Nate McCurdy
   email = nate.mccurdy@puppet.com
 [alias]
   co = checkout
