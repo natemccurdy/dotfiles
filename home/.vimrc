@@ -20,6 +20,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'voxpupuli/vim-puppet'
 Plugin 'PProvost/vim-ps1'
 Plugin 'tpope/vim-fugitive'
+Plugin 'gabrielelana/vim-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
