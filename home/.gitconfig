@@ -1,6 +1,8 @@
 [user]
   name = Nate McCurdy
   email = nate.mccurdy@puppet.com
+  signingkey = ECE358B2
+
 [alias]
   co = checkout
   ec = config --global -e
