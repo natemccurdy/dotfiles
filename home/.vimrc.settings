@@ -80,6 +80,7 @@ set cpo+=J
 " UI CONFIG {{{
 
 " Enable line numbers
+set relativenumber
 set number
 
 "  Highlight current line
