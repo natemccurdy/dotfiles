@@ -1,7 +1,3 @@
-[filter "media"]
-  required = true
-  clean = git media clean %f
-  smudge = git media smudge %f
 [user]
   name = Nate McCurdy
   email = nate.mccurdy@puppet.com
@@ -14,11 +10,17 @@
   unstage = reset HEAD --
   cp = cherry-pick
   update = pull --rebase
+
 [push]
   default = simple
+
 [color]
   ui = auto
+
 [core]
   whitespace = trailing-space,space-before-tab
+  editor = vim
+
 [init]
   templatedir = ~/.git_template
+
