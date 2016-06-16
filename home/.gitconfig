@@ -26,3 +26,5 @@
 [init]
   templatedir = ~/.git_template
 
+[commit]
+	verbose = true
