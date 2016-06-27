@@ -10,8 +10,6 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 
 **Install patched fonts to fix vim-airline wonkyness**
 
-1. Clone the pre-patched powerline fonts and install them:
-  1. `git clone https://github.com/powerline/fonts.git`
-  2. `cd fonts && ./install.sh`
-2. After install, set your iTerm profile preferences to have __both__ text
-   fonts be a 'powerline' enabled font.
+1. Download and install an Awesome patched font:
+  - https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/Inconsolata%2BAwesome.ttf
+2. Switch iTerm2 to use that font for both **Font** and **Non ASCII Font**
