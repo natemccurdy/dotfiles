@@ -28,9 +28,6 @@ fpath=(/usr/local/Homebrew/completions/zsh $fpath)
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# Source my external alias config
-source $HOME/.aliases
-
 # PATH modifications. Don't modify if we're in TMUX because path_helper does it for us.
 # I also modifed /etc/zprofile as shown here https://pgib.me/blog/2013/10/11/macosx-tmux-zsh-rbenv/
 if [[ -z $TMUX ]]; then
@@ -48,4 +45,9 @@ fi
 ## This should only be used for testing in vm's and such.
 #export ENVPUPPET_BASEDIR="${HOME}/src/puppetlabs"
 #eval $($ENVPUPPET_BASEDIR/puppet/ext/envpuppet)
+
+# Source my external alias config
+# NOTE about 'ls': If coreutils is installed, oh-my-zsh will alias ls to gls, but
+#                  something about it is broken which breaks ls. not sure...
+source $HOME/.aliases
 
