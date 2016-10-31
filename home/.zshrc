@@ -31,6 +31,9 @@ source $ZSH/oh-my-zsh.sh
 # PATH modifications. Don't modify if we're in TMUX because path_helper does it for us.
 # I also modifed /etc/zprofile as shown here https://pgib.me/blog/2013/10/11/macosx-tmux-zsh-rbenv/
 if [[ -z $TMUX ]]; then
+
+  # Add ~/.bin to PATH
+  export PATH="$PATH:$HOME/.bin"
   # Add homebrew's sbin dir to PATH
   export PATH="/usr/local/sbin:$PATH"
 
