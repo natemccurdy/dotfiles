@@ -17,7 +17,7 @@ COMPLETION_WAITING_DOTS=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git osx ruby rbenv gem vagrant ssh-agent tmux zsh-syntax-highlighting)
+plugins=(git osx ruby rbenv gem vagrant ssh-agent tmux zsh-syntax-highlighting docker)
 
 # Load SSH identities
 zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal gitlab_work github_personal github_work
