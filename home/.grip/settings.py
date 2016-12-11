@@ -8,4 +8,6 @@ def find_token():
     return re.sub('password: "(.*)"', '\\1', pwline)
 
 
+# username needs to be an empty string: https://github.com/joeyespo/grip/issues/221
+USERNAME = ''
 PASSWORD = find_token()
