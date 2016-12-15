@@ -27,4 +27,4 @@
   templatedir = ~/.git_template
 
 [commit]
-	verbose = true
+  verbose = true
