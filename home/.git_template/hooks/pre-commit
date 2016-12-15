@@ -24,6 +24,10 @@ def puppet_lint(file)
   system('puppet-lint --log-format="%{filename} - %{KIND}:%{check} - %{message} on line %{line}" ' + File.absolute_path(file))
 end
 
+def puppet_epp_check(file)
+  system('puppet epp validate ' + file)
+end
+
 def puppet_erb_check(file)
   system("erb -x -T '-' #{file} | ruby -c")
 end
@@ -50,6 +54,8 @@ IO.popen('git diff --cached --name-only --diff-filter=ACM').readlines.each { |fi
   if file.match('\.pp$')
     exit 1 unless puppet_parser_validate file
     exit 1 unless puppet_lint file
+  elsif file.match('\.epp$')
+    exit 1 unless puppet_epp_check file
   elsif file.match('\.erb$')
     exit 1 unless puppet_erb_check file
   elsif file.match('Puppetfile')
@@ -63,3 +69,4 @@ IO.popen('git diff --cached --name-only --diff-filter=ACM').readlines.each { |fi
     exit 1 unless json_check file
   end
 }
+
