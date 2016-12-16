@@ -17,7 +17,7 @@ def bash_check(file)
 end
 
 def shell_check(file)
-    system('shellcheck ' + file)
+  system('shellcheck ' + file)
 end
 
 def puppet_lint(file)
@@ -46,7 +46,7 @@ def json_check(file)
     false
 end
 
-# go through list of files, and call adequate checks
+# Go through list of files, and call an appropriate checker.
 IO.popen('git diff --cached --name-only --diff-filter=ACM').readlines.each { |file|
   file.sub!(/^\w (.*)\n/,'\1')
   file.chomp! unless file.nil?
