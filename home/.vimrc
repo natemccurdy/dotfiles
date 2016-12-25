@@ -10,19 +10,20 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " GitHub plugins
-Plugin 'flazz/vim-colorschemes'
-Plugin 'vim-scripts/CycleColor'
-Plugin 'scrooloose/syntastic'
-Plugin 'godlygeek/tabular'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'voxpupuli/vim-puppet'
+"Plugin 'gabrielelana/vim-markdown'
 Plugin 'PProvost/vim-ps1'
-Plugin 'tpope/vim-fugitive'
-Plugin 'gabrielelana/vim-markdown'
-Plugin 'elzr/vim-json'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
 Plugin 'dearrrfish/vim-applescript'
+Plugin 'elzr/vim-json'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'godlygeek/tabular'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-scripts/CycleColor'
+Plugin 'voxpupuli/vim-puppet'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

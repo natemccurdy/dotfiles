@@ -6,7 +6,6 @@ augroup configgroup
   autocmd BufEnter Rakefile set filetype=ruby
   autocmd BufEnter Vagrantfile set filetype=ruby
   autocmd BufEnter Gemfile set filetype=ruby
-  autocmd BufEnter *.md set filetype=markdown
 augroup end
 
 " }}}
@@ -121,6 +120,11 @@ match ExtraWhitespace /\s\+$/
 " Auto Complete Menu
 set completeopt=longest,menu
 
+" netrw settings
+let g:netrw_liststyle = 3 " Tree mode
+let g:netrw_banner = 0    " Disable banner
+let g:netrw_winsize = 25  " Only use 25% of screen
+
 " }}}
 " SEARCHING {{{
 
@@ -189,6 +193,9 @@ nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 :nnoremap <Leader>q" ciw""<Esc>P
 :nnoremap <Leader>q' ciw''<Esc>P
 :nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
+
+" Wrap words in backticks with:  \q`
+:nnoremap <Leader>q` ciw``<Esc>P
 
 " }}}
 " BACKUPS & HISTORY {{{
