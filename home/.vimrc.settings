@@ -41,14 +41,6 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
-" Syntastic settings
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_puppet_puppet_args = 'parser validate --storeconfigs'
-let g:syntastic_ruby_checkers = [ 'rubocop' ]
-
 " vim-markdown settings
 let g:markdown_include_jekyll_support = 0
 
@@ -197,6 +189,10 @@ nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 
 " Wrap words in backticks with:  \q`
 :nnoremap <Leader>q` ciw``<Esc>P
+
+" ALE Shortcuts
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " }}}
 " BACKUPS & HISTORY {{{

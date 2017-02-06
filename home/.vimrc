@@ -10,7 +10,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " GitHub plugins
-"Plugin 'gabrielelana/vim-markdown'
+Plugin 'gabrielelana/vim-markdown'
 Plugin 'PProvost/vim-ps1'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
@@ -18,7 +18,7 @@ Plugin 'bling/vim-airline'
 Plugin 'dearrrfish/vim-applescript'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'godlygeek/tabular'
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/CycleColor'
