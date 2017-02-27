@@ -14,11 +14,6 @@ augroup end
 " Enable syntax highlighting
 syntax enable
 
-"Set colorscheme to Solarized
-"let g:solarized_termtrans=1
-"set background=dark
-"colorscheme solarized
-
 "Set colorscheme to Molokai
 colorscheme molokai
 
