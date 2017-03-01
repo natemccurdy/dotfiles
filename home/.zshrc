@@ -5,9 +5,10 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 ZSH_THEME='powerlevel9k'
+
 # PowerLevel9K options
 POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv)
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
@@ -15,6 +16,7 @@ POWERLEVEL9K_HOME_ICON=''
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_VCS_GIT_ICON=''
+POWERLEVEL9K_VCS_BRANCH_ICON=''
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS=true
@@ -22,6 +24,10 @@ COMPLETION_WAITING_DOTS=true
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git osx ruby rbenv gem vagrant ssh-agent tmux zsh-syntax-highlighting docker docker-compose)
+
+# Color correct paths rather than underlining them.
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 # Load SSH identities
 zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal gitlab_work github_personal github_work
@@ -46,12 +52,6 @@ if [[ -z $TMUX ]]; then
     [[ $PATH =~ 'rbenv/shims' ]] || eval "$(rbenv init -)"
   fi
 fi
-
-## Setup envpuppet
-## Disabled because I want the native package on my mac to automate my mac.
-## This should only be used for testing in vm's and such.
-#export ENVPUPPET_BASEDIR="${HOME}/src/puppetlabs"
-#eval $($ENVPUPPET_BASEDIR/puppet/ext/envpuppet)
 
 # Source my external alias config
 # NOTE about 'ls': If coreutils is installed, oh-my-zsh will alias ls to gls, but
