@@ -1,5 +1,4 @@
 "  AUTOGROUPS {{{
-" =============================================================================
 
 augroup configgroup
   autocmd!
@@ -14,27 +13,25 @@ augroup end
 " Enable syntax highlighting
 syntax enable
 
-"Set colorscheme to Molokai
-colorscheme molokai
+"Set colorscheme
+set background=dark
+colorscheme gruvbox
 
 "}}}
 " PLUGIN OPTIONS {{{
-"
+
 "vim-airline options
 set laststatus=2
 let g:airline_powerline_fonts = 1
+" Show the list of buffers at the top
 let g:airline#extensions#tabline#enabled = 1
+" Show just the file name in the buffer tabs
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='molokai'
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
-"let g:airline_section_z=''
-
-" CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+"let g:airline_theme='gruvbox'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_section_z=''
+let g:airline_skip_empty_sections = 1
 
 " vim-markdown settings
 let g:markdown_include_jekyll_support = 0
@@ -48,9 +45,24 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" Git Gutter
+let g:gitgutter_sign_column_always = 1
+hi GitGutterAdd ctermbg=235 ctermfg=4
+hi GitGutterChange ctermbg=235 ctermfg=3
+hi GitGutterDelete ctermbg=235 ctermfg=1
+hi GitGutterChangeDelete ctermbg=235 ctermfg=5
+
+" ALE Options
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
 " }}}
 " {{{ SPACES & TABS
-"
+
 set tabstop=2
 set expandtab
 set shiftwidth=2
@@ -60,17 +72,11 @@ set softtabstop=2
 set autoindent
 set smartindent
 
-" Tell VIM to honor two-spaces after a period
-set cpo+=J
-
  " }}}
 " UI CONFIG {{{
 
 " Enable line numbers
 set number
-
-"  Highlight current line
-set cursorline
 
 " Disable mouse
 set mouse=
@@ -87,31 +93,31 @@ set wildmenu
 " Redraw only when we ned to
 set lazyredraw
 
-
 " highlight matching brackets
 set showmatch
-
-" Highlight column 140
-if exists('+colorcolumn')
-    set colorcolumn=140
-else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>140v.\+', -1)
-endif
 
 " Hide buffers after they are abandoned
 set hidden
 
 " Highlight Trailing Whitespace
-highlight ExtraWhitespace ctermbg=darkblue guibg=darkblue
+highlight ExtraWhitespace ctermbg=white guibg=white
 match ExtraWhitespace /\s\+$/
 
 " Auto Complete Menu
 set completeopt=longest,menu
 
-" netrw settings
-let g:netrw_liststyle = 3 " Tree mode
-let g:netrw_banner = 0    " Disable banner
-let g:netrw_winsize = 25  " Only use 25% of screen
+" paulrouget vim settings:
+hi vertsplit ctermfg=238 ctermbg=235
+hi LineNr ctermfg=237
+hi StatusLine ctermfg=235 ctermbg=245
+hi StatusLineNC ctermfg=235 ctermbg=237
+hi Search ctermbg=58 ctermfg=15
+hi Default ctermfg=1
+hi clear SignColumn
+hi SignColumn ctermbg=235
+hi EndOfBuffer ctermfg=237 ctermbg=235
+
+"set fillchars=vert:\ ,stl:\ ,stlnc:\
 
 " }}}
 " SEARCHING {{{
