@@ -1,5 +1,5 @@
 # Set my default user so that the ZSH theme doesn't show the hostname.
-DEFAULT_USER='nate'
+DEFAULT_USER=$USER
 
 export ZSH=$HOME/.oh-my-zsh
 
