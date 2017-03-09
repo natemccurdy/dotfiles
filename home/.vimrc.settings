@@ -23,15 +23,12 @@ colorscheme gruvbox
 "vim-airline options
 set laststatus=2
 let g:airline_powerline_fonts = 1
-" Show the list of buffers at the top
 let g:airline#extensions#tabline#enabled = 1
-" Show just the file name in the buffer tabs
 let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline_theme='gruvbox'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_z=''
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline_skip_empty_sections = 1
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 " vim-markdown settings
 let g:markdown_include_jekyll_support = 0
@@ -47,14 +44,14 @@ endif
 
 " Git Gutter
 let g:gitgutter_sign_column_always = 1
-hi GitGutterAdd ctermbg=235 ctermfg=4
-hi GitGutterChange ctermbg=235 ctermfg=3
-hi GitGutterDelete ctermbg=235 ctermfg=1
-hi GitGutterChangeDelete ctermbg=235 ctermfg=5
+highlight GitGutterAdd          ctermbg=235 ctermfg=10
+highlight GitGutterChange       ctermbg=235 ctermfg=208
+highlight GitGutterDelete       ctermbg=235 ctermfg=9
+highlight GitGutterChangeDelete ctermbg=235 ctermfg=175
 
 " ALE Options
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_save = 0
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
@@ -84,7 +81,7 @@ set mouse=
 " Increase History
 set history=100
 
-" Give context to where the cursor is positioned in a file
+" Minimum number of lines above and below cursor
 set scrolloff=14
 
 " Visual autocomplete for command menu
@@ -96,7 +93,8 @@ set lazyredraw
 " highlight matching brackets
 set showmatch
 
-" Hide buffers after they are abandoned
+" Hide buffers after they are abandoned. Also allows switching buffers without
+" saving them first.
 set hidden
 
 " Highlight Trailing Whitespace
@@ -107,17 +105,14 @@ match ExtraWhitespace /\s\+$/
 set completeopt=longest,menu
 
 " paulrouget vim settings:
-hi vertsplit ctermfg=238 ctermbg=235
-hi LineNr ctermfg=237
-hi StatusLine ctermfg=235 ctermbg=245
-hi StatusLineNC ctermfg=235 ctermbg=237
-hi Search ctermbg=58 ctermfg=15
-hi Default ctermfg=1
-hi clear SignColumn
-hi SignColumn ctermbg=235
-hi EndOfBuffer ctermfg=237 ctermbg=235
-
-"set fillchars=vert:\ ,stl:\ ,stlnc:\
+highlight vertsplit       ctermbg=235 ctermfg=239
+highlight LineNr                      ctermfg=239
+highlight StatusLine      ctermbg=245 ctermfg=235
+highlight StatusLineNC    ctermbg=237 ctermfg=235
+highlight Search          ctermbg=235 ctermfg=166
+highlight Default                     ctermfg=1
+highlight SignColumn      ctermbg=235
+highlight EndOfBuffer     ctermbg=235 ctermfg=235
 
 " }}}
 " SEARCHING {{{
@@ -167,16 +162,6 @@ autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
     \|     exe "normal! g`\""
     \|  endif
 
-" Disable arrows for movement, make them resize instead
-"nmap <Left> :vertical resize -5<CR>
-"nmap <Up> :resize -5<CR>
-"nmap <Right> :vertical resize +5<CR>
-"nmap <Down> :resize +5<CR>
-"imap <Left> <Esc><Esc>a
-"imap <Up> <Esc><Esc>a
-"imap <Right> <Esc><Esc>a
-"imap <Down> <Esc><Esc>a
-
 " }}}
 " SHORTCUTS {{{
 
@@ -211,16 +196,6 @@ endif
 
 " }}}
 " FUNCTIONS {{{
-
-" toggle between number and relativenumber
-function! ToggleNumber()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
 
 function! Preserve(command)
   " Preparation: save last search, and cursor position.
