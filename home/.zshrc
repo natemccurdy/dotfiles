@@ -30,7 +30,7 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 # Load SSH identities
-zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal gitlab_work github_personal github_work
+zstyle :omz:plugins:ssh-agent identities id_rsa
 
 # Load HomeBrew autocompletions
 fpath=(/usr/local/Homebrew/completions/zsh $fpath)
