@@ -32,9 +32,6 @@ ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 # Load SSH identities
 zstyle :omz:plugins:ssh-agent identities id_rsa
 
-# Load HomeBrew autocompletions
-fpath=(/usr/local/Homebrew/completions/zsh $fpath)
-
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
