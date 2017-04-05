@@ -25,18 +25,16 @@ brew install moreutils
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
-
-# Install `wget` with IRI support.
-brew install wget --with-iri
+# Install `wget`
+brew install wget
 
 # Install more recent versions of some OS X tools.
-brew install vim --override-system-vi
-brew install homebrew/dupes/grep
-brew install homebrew/dupes/screen
-brew install homebrew/php/php55 --with-gmp
+brew install vim --with-override-system-vi
 
 # Install other useful binaries.
 brew install ack
+brew install thesilversearcher
+brew install rgrep
 brew install git
 brew install speedtest_cli
 brew install tree
