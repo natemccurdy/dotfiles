@@ -15,7 +15,7 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 
 1. oh-my-zsh: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 1. `mkdir ~/src`
-1. `git clone https://github.com/bhilburn/powerlevel9k.git ~/src/powerlevel9k` 
+1. `git clone https://github.com/bhilburn/powerlevel9k.git ~/src/powerlevel9k`
 
 ### Homesick
 
@@ -27,6 +27,9 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 
 1. Vundle Install: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 1. Install Vim plugins: `vim +PluginInstall +qall`
+1. Setup YouCompleteMe:
+    1. `brew install cmake`
+    1. `~/.vim/bundle/YouCompleteMe/install.py`
 
 ### Fonts
 
