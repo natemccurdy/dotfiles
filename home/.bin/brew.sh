@@ -34,7 +34,7 @@ brew install vim --with-override-system-vi
 # Install other useful binaries.
 brew install ack
 brew install the_silver_searcher
-brew install rgrep
+brew install rg
 brew install git
 brew install speedtest_cli
 brew install tree
