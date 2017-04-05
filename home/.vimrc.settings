@@ -101,6 +101,10 @@ set hidden
 highlight ExtraWhitespace ctermbg=white guibg=white
 match ExtraWhitespace /\s\+$/
 
+" Highlight Literal Tabs
+highlight LiteralTabs ctermbg=darkred guibg=darkred
+match LiteralTabs /	/
+
 " Auto Complete Menu
 set completeopt=longest,menu
 
