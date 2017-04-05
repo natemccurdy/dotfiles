@@ -1,20 +1,22 @@
-# Set my default user so that the ZSH theme doesn't show the hostname.
-DEFAULT_USER=$USER
-
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 ZSH_THEME='powerlevel9k'
+
 # PowerLevel9K options
+DEFAULT_USER=$USER
 POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv background_jobs)
 POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_HOME_ICON=''
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_VCS_GIT_ICON=''
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
+POWERLEVEL9K_VCS_GIT_GITLAB_ICON=''
+POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=''
+POWERLEVEL9K_HIDE_BRANCH_ICON=true
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS=true
@@ -23,11 +25,12 @@ COMPLETION_WAITING_DOTS=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git osx ruby rbenv gem vagrant ssh-agent tmux zsh-syntax-highlighting docker docker-compose)
 
-# Load SSH identities
-zstyle :omz:plugins:ssh-agent identities id_rsa gitlab_personal gitlab_work github_personal github_work
+# Color correct paths rather than underlining them.
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
-# Load HomeBrew autocompletions
-fpath=(/usr/local/Homebrew/completions/zsh $fpath)
+# Load SSH identities
+zstyle :omz:plugins:ssh-agent identities id_rsa
 
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -46,12 +49,6 @@ if [[ -z $TMUX ]]; then
     [[ $PATH =~ 'rbenv/shims' ]] || eval "$(rbenv init -)"
   fi
 fi
-
-## Setup envpuppet
-## Disabled because I want the native package on my mac to automate my mac.
-## This should only be used for testing in vm's and such.
-#export ENVPUPPET_BASEDIR="${HOME}/src/puppetlabs"
-#eval $($ENVPUPPET_BASEDIR/puppet/ext/envpuppet)
 
 # Source my external alias config
 # NOTE about 'ls': If coreutils is installed, oh-my-zsh will alias ls to gls, but

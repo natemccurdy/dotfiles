@@ -1,5 +1,4 @@
 "  AUTOGROUPS {{{
-" =============================================================================
 
 augroup configgroup
   autocmd!
@@ -14,27 +13,22 @@ augroup end
 " Enable syntax highlighting
 syntax enable
 
-"Set colorscheme to Molokai
-colorscheme molokai
+"Set colorscheme
+set background=dark
+colorscheme gruvbox
 
 "}}}
 " PLUGIN OPTIONS {{{
-"
+
 "vim-airline options
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='molokai'
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
-"let g:airline_section_z=''
-
-" CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline_skip_empty_sections = 1
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 " vim-markdown settings
 let g:markdown_include_jekyll_support = 0
@@ -48,9 +42,24 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" Git Gutter
+let g:gitgutter_sign_column_always = 1
+highlight GitGutterAdd          ctermbg=235 ctermfg=10
+highlight GitGutterChange       ctermbg=235 ctermfg=208
+highlight GitGutterDelete       ctermbg=235 ctermfg=9
+highlight GitGutterChangeDelete ctermbg=235 ctermfg=175
+
+" ALE Options
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_save = 0
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
 " }}}
 " {{{ SPACES & TABS
-"
+
 set tabstop=2
 set expandtab
 set shiftwidth=2
@@ -60,17 +69,11 @@ set softtabstop=2
 set autoindent
 set smartindent
 
-" Tell VIM to honor two-spaces after a period
-set cpo+=J
-
  " }}}
 " UI CONFIG {{{
 
 " Enable line numbers
 set number
-
-"  Highlight current line
-set cursorline
 
 " Disable mouse
 set mouse=
@@ -78,7 +81,7 @@ set mouse=
 " Increase History
 set history=100
 
-" Give context to where the cursor is positioned in a file
+" Minimum number of lines above and below cursor
 set scrolloff=14
 
 " Visual autocomplete for command menu
@@ -87,31 +90,29 @@ set wildmenu
 " Redraw only when we ned to
 set lazyredraw
 
-
 " highlight matching brackets
 set showmatch
 
-" Highlight column 140
-if exists('+colorcolumn')
-    set colorcolumn=140
-else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>140v.\+', -1)
-endif
-
-" Hide buffers after they are abandoned
+" Hide buffers after they are abandoned. Also allows switching buffers without
+" saving them first.
 set hidden
 
 " Highlight Trailing Whitespace
-highlight ExtraWhitespace ctermbg=darkblue guibg=darkblue
+highlight ExtraWhitespace ctermbg=white guibg=white
 match ExtraWhitespace /\s\+$/
 
 " Auto Complete Menu
 set completeopt=longest,menu
 
-" netrw settings
-let g:netrw_liststyle = 3 " Tree mode
-let g:netrw_banner = 0    " Disable banner
-let g:netrw_winsize = 25  " Only use 25% of screen
+" paulrouget vim settings:
+highlight vertsplit       ctermbg=235 ctermfg=239
+highlight LineNr                      ctermfg=239
+highlight StatusLine      ctermbg=245 ctermfg=235
+highlight StatusLineNC    ctermbg=237 ctermfg=235
+highlight Search          ctermbg=235 ctermfg=166
+highlight Default                     ctermfg=1
+highlight SignColumn      ctermbg=235
+highlight EndOfBuffer     ctermbg=235 ctermfg=235
 
 " }}}
 " SEARCHING {{{
@@ -161,16 +162,6 @@ autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
     \|     exe "normal! g`\""
     \|  endif
 
-" Disable arrows for movement, make them resize instead
-"nmap <Left> :vertical resize -5<CR>
-"nmap <Up> :resize -5<CR>
-"nmap <Right> :vertical resize +5<CR>
-"nmap <Down> :resize +5<CR>
-"imap <Left> <Esc><Esc>a
-"imap <Up> <Esc><Esc>a
-"imap <Right> <Esc><Esc>a
-"imap <Down> <Esc><Esc>a
-
 " }}}
 " SHORTCUTS {{{
 
@@ -205,16 +196,6 @@ endif
 
 " }}}
 " FUNCTIONS {{{
-
-" toggle between number and relativenumber
-function! ToggleNumber()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
 
 function! Preserve(command)
   " Preparation: save last search, and cursor position.
