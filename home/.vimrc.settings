@@ -98,7 +98,7 @@ set showmatch
 set hidden
 
 " Highlight Trailing Whitespace
-highlight ExtraWhitespace ctermbg=white guibg=white
+highlight ExtraWhitespace ctermbg=darkred guibg=darkred
 match ExtraWhitespace /\s\+$/
 
 " Highlight Literal Tabs
