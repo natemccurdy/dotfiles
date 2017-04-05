@@ -19,27 +19,18 @@ brew upgrade
 brew install coreutils
 sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
-# Install some other useful utilities like `sponge`.
-brew install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
-# Install `wget`
-brew install wget
 
-# Install more recent versions of some OS X tools.
+# Install vim and replace system vi(m)
 brew install vim --with-override-system-vi
 
-# Install other useful binaries.
-brew install ack
-brew install the_silver_searcher
-brew install rg
-brew install git
-brew install speedtest_cli
-brew install tree
-brew install nmap
-brew install xz
+# Install other useful tools
+brew install git tmux thefuck ack the_silver_searcher rg tree nmap xz wget
+
+# Use homebrew's Ruby rather than system ruby.
+# This lets you install gems without needing sudo/root
+brew install ruby ruby-build
 
 # Remove outdated versions from the cellar.
 brew cleanup
