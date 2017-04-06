@@ -14,6 +14,7 @@
   update    = pull --rebase
   prune     = fetch --all --prune
   stash-all = stash save --include-untracked
+  alias     = config --get-regexp ^alias\\.
 
 [push]
   default = simple
