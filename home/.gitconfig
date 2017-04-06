@@ -4,17 +4,20 @@
   signingkey = ECE358B2
 
 [alias]
-  co = checkout
-  ec = config --global -e
-  cob = checkout -b
-  cm = !git add -A && git commit -m
-  hist = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(bold white)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order --date=relative --abbrev-commit
-  unstage = reset HEAD --
-  cp = cherry-pick
-  update = pull --rebase
+  co        = checkout
+  ec        = config --global -e
+  cob       = checkout -b
+  cm        = !git add -A && git commit -m
+  hist      = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(bold white)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order --date=relative
+  unstage   = reset HEAD --
+  cp        = cherry-pick
+  update    = pull --rebase
+  prune     = fetch --all --prune
+  stash-all = stash save --include-untracked
 
 [push]
   default = simple
+  followTags = true
 
 [color]
   ui = auto
@@ -28,3 +31,8 @@
 
 [commit]
   verbose = true
+
+[merge]
+  ff = only
+  conflictstyle = diff3
+
