@@ -35,5 +35,6 @@
 
 [merge]
   ff = only
-  conflictstyle = diff3
 
+[fetch]
+  prune = true
