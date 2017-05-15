@@ -7,8 +7,8 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 ### Homebrew
 
 1. `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-1. Bettervim: `brew install vim --with-override-system-vi`
-1. Other tools: `brew install git tmux thefuck ack the_silver_searcher rg tree nmap xz wget`
+1. Use a better vim: `brew install vim --with-override-system-vi`
+1. Other tools: `brew install git tmux thefuck the_silver_searcher ripgrep tree nmap xz wget`
 1. Use brew's Ruby: `brew install ruby ruby-build`
 
 ### Zsh
@@ -36,6 +36,6 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 Install Awesome patched fonts to make vim-airline happy:
 
 1. Download and install an Awesome patched font:
-  * <https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/Inconsolata%2BAwesome.ttf>
+    * <https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/Inconsolata%2BAwesome.ttf>
 1. Switch iTerm2 to use that font for both **Font** and **Non ASCII Font**
 
