@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Install command-line tools using Homebrew.
+# Install software.
 
 # Ask for the administrator password upfront.
 sudo -v
@@ -26,11 +26,13 @@ brew install gnu-sed --with-default-names
 brew install vim --with-override-system-vi
 
 # Install other useful tools
-brew install git tmux thefuck ack the_silver_searcher rg tree nmap xz wget
+brew install git tmux thefuck ack the_silver_searcher rg tree nmap xz wget shellcheck reattach-to-user-namespace
 
 # Use homebrew's Ruby rather than system ruby.
 # This lets you install gems without needing sudo/root
-brew install ruby ruby-build
+brew install ruby ruby-build rbenv
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+gem install puppet-lint r10k --no-doc --no-ri
