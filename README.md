@@ -32,9 +32,19 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
     1. `brew install cmake`
     1. `~/.vim/bundle/YouCompleteMe/install.py`
 
-### Fonts
+### iTerm 2
 
-Install Awesome patched fonts to make vim-airline happy:
+1. Install iterm2 nightly: `brew tap caskroom/versions && brew cask install iterm2-nightly`
+
+#### Colors
+
+I use the GruvBox color scheme for iterm2. Grab a copy of it here, double-click it, then set that as your profile's color scheme.
+
+<https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors>
+
+#### Fonts
+
+Install the Awesome patched fonts.
 
 1. Download and install an Awesome patched font:
     * <https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/Inconsolata%2BAwesome.ttf>
