@@ -38,5 +38,7 @@ Install Awesome patched fonts to make vim-airline happy:
 
 1. Download and install an Awesome patched font:
     * <https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/Inconsolata%2BAwesome.ttf>
-1. Switch iTerm2 to use that font for both **Font** and **Non ASCII Font**
+1. Switch iTerm2 to use that font for **Non ASCII Font**:
+
+![](screenshots/iterm_text_options.png)
 
