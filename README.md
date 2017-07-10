@@ -8,6 +8,7 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 
 1. `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 1. Use a better vim: `brew install vim --with-override-system-vi`
+1. Install iterm2 nightly: `brew tap caskroom/versions && brew cask install iterm2-nightly`
 1. Other tools: `brew install git tmux thefuck the_silver_searcher ripgrep tree nmap xz wget`
 1. Use brew's Ruby: `brew install ruby ruby-build`
 
