@@ -19,7 +19,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'PProvost/vim-ps1'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'voxpupuli/vim-puppet'
+Plugin 'rodjek/vim-puppet'
 Plugin 'w0rp/ale'
 
 " All of your Plugins must be added before the following line
