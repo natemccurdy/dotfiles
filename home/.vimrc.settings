@@ -64,6 +64,9 @@ inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
 inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
 let g:mucomplete#enable_auto_at_startup = 1
 
+" PolyGot Settings
+let g:polyglot_disabled = ['puppet']
+
 " }}}
 " {{{ SPACES & TABS
 
