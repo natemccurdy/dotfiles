@@ -118,6 +118,9 @@ highlight Default                     ctermfg=1
 highlight SignColumn      ctermbg=235
 highlight EndOfBuffer     ctermbg=235 ctermfg=235
 
+" New vertical splits go to the right rather than the left
+set splitright
+
 " }}}
 " SEARCHING {{{
 
