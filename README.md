@@ -26,8 +26,8 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 
 ### Vim plugins
 
-1. Vundle Install: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-1. Install Vim plugins: `vim +PluginInstall +qall`
+1. [Vim-Plug](https://github.com/junegunn/vim-plug) Install: `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
+1. Install Vim plugins: `vim +PlugInstall +qall`
 1. Setup YouCompleteMe:
     1. `brew install cmake`
     1. `~/.vim/bundle/YouCompleteMe/install.py`

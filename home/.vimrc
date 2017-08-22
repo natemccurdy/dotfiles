@@ -1,29 +1,19 @@
-" Vundle requirements
-set nocompatible
-filetype off
-
-" Setup Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Let Vundle manage Vundle
-Plugin 'gmarik/Vundle.vim'
+" Vim Plug start
+call plug#begin('~/.vim/plugged')
 
 " GitHub plugins
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
-Plugin 'dearrrfish/vim-applescript'
-Plugin 'gabrielelana/vim-markdown'
-Plugin 'godlygeek/tabular'
-Plugin 'morhetz/gruvbox'
-Plugin 'PProvost/vim-ps1'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rodjek/vim-puppet'
-Plugin 'w0rp/ale'
+Plug 'airblade/vim-gitgutter'
+Plug 'bling/vim-airline'
+Plug 'dearrrfish/vim-applescript'
+Plug 'gabrielelana/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'morhetz/gruvbox'
+Plug 'PProvost/vim-ps1'
+Plug 'tpope/vim-fugitive'
+Plug 'Valloric/YouCompleteMe'
+Plug 'rodjek/vim-puppet'
+Plug 'w0rp/ale'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 :so ~/.vimrc.settings
