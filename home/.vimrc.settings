@@ -56,6 +56,14 @@ let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
+" MuComplete Options
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c " Turn off completion messages
+inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
+inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
+inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
+let g:mucomplete#enable_auto_at_startup = 1
+
 " }}}
 " {{{ SPACES & TABS
 
@@ -103,9 +111,6 @@ match ExtraWhitespace /\s\+$/
 " Highlight Literal Tabs
 highlight LiteralTabs ctermbg=darkred guibg=darkred
 match LiteralTabs /	/
-
-" Auto Complete Menu
-set completeopt=longest,menu
 
 " paulrouget vim settings:
 highlight vertsplit       ctermbg=235 ctermfg=239

@@ -10,7 +10,7 @@ Plug 'godlygeek/tabular'
 Plug 'morhetz/gruvbox'
 Plug 'PProvost/vim-ps1'
 Plug 'tpope/vim-fugitive'
-Plug 'Valloric/YouCompleteMe'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'rodjek/vim-puppet'
 Plug 'w0rp/ale'
 
