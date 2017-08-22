@@ -43,7 +43,6 @@ else
 endif
 
 " Git Gutter
-let g:gitgutter_sign_column_always = 1
 highlight GitGutterAdd          ctermbg=235 ctermfg=10
 highlight GitGutterChange       ctermbg=235 ctermfg=208
 highlight GitGutterDelete       ctermbg=235 ctermfg=9
@@ -120,6 +119,9 @@ highlight EndOfBuffer     ctermbg=235 ctermfg=235
 
 " New vertical splits go to the right rather than the left
 set splitright
+
+" Always show the sign column
+set signcolumn=yes
 
 " }}}
 " SEARCHING {{{
