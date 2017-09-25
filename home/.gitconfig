@@ -38,3 +38,6 @@
 
 [fetch]
   prune = true
+
+[branch]
+  autosetuprebase = always
