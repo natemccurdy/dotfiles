@@ -4,32 +4,73 @@ require 'rubygems'
 require 'yaml'
 require 'json'
 
+# Cross-platform way of finding an executable in the $PATH.
+# which('ruby') #=> /usr/bin/ruby
+def which(cmd)
+  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
+  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
+    exts.each do |ext|
+      exe = File.join(path, "#{cmd}#{ext}")
+      return File.executable?(exe)
+    end
+  end
+  nil
+end
+
 def puppet_parser_validate(file)
-  system('puppet parser validate --storeconfigs ' + file)
+  if which('puppet')
+    system('puppet parser validate --storeconfigs ' + file)
+  else
+    puts 'WARNING: puppet not installed. Skipping syntax check of Puppet code.'
+  end
 end
 
 def r10k_puppetfile_check(file)
-  system('r10k puppetfile check ' + file)
+  if which('r10k')
+    system('r10k puppetfile check ' + file)
+  else
+    puts 'WARNING: r10k not installed. Skipping check of Puppetfile. Install with `gem install r10k`'
+  end
 end
 
 def bash_check(file)
-  system('bash -n ' + file)
+  if which('bash')
+    system('bash -n ' + file)
+  else
+    puts 'WARNING: bash not found. Skipping syntax check of shell script'
+  end
 end
 
 def shell_check(file)
-  system('shellcheck ' + file)
+  if which('shellcheck')
+    system('shellcheck ' + file)
+  else
+    puts 'WARNING: shellcheck not installed. Skipping check of shell script. https://github.com/koalaman/shellcheck#installing'
+  end
 end
 
 def puppet_lint(file)
-  system('puppet-lint --log-format="%{filename} - %{KIND}:%{check} - %{message} on line %{line}" ' + File.absolute_path(file))
+  if which('puppet-lint')
+    system('puppet-lint --log-format="%{filename} - %{KIND}:%{check} - %{message} on line %{line}" ' + File.absolute_path(file))
+  else
+    puts 'WARNING: puppet-lint gem not installed. Skipping style check of Puppet code. Install with `gem install puppet-lint`'
+  end
 end
 
 def puppet_epp_check(file)
-  system('puppet epp validate ' + file)
+  if which('puppet')
+    system('puppet epp validate ' + file)
+  else
+    puts 'puppet not installed. Skipping EPP template check.'
+  end
 end
 
 def puppet_erb_check(file)
-  system("erb -x -T '-' #{file} | ruby -c")
+  if which('erb')
+    system("erb -x -T '-' #{file} | ruby -c")
+  else
+    puts 'erb not installed. Skipping ERB template check.'
+  end
 end
 
 def yaml_check(file)
