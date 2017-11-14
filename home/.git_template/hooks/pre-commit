@@ -25,6 +25,10 @@ def puppet_parser_validate(file)
   end
 end
 
+# NOTE: When installing r10k, you'll probably need to install the puppet_forge gem at version 2.2.6 first.
+#       Versions later than that have a dependency on semantic_puppet ~> 1.0 while r10k has a dependency on ~> 0.1.
+#         gem install puppet_forge --version 2.2.6
+#         gem install r10k
 def r10k_puppetfile_check(file)
   if which('r10k')
     system('r10k puppetfile check ' + file)
