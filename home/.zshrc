@@ -32,6 +32,9 @@ ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 # Load SSH identities
 zstyle :omz:plugins:ssh-agent identities id_rsa
 
+# Add custom completion scripts
+fpath=(~/.zsh/completion $fpath)
+
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
