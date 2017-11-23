@@ -197,6 +197,9 @@ nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+" Fix Puppet-lint issues with :PuppetLintFix
+command! PuppetLintFix execute ':w' | execute ':silent !puppet-lint -f %' | execute ':redraw!' | execute ':edit!'
+
 " }}}
 " BACKUPS & HISTORY {{{
 
