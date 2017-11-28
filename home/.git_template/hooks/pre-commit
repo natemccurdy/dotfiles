@@ -55,7 +55,7 @@ end
 
 def puppet_lint(file)
   if which('puppet-lint')
-    system('puppet-lint --log-format="%{filename} - %{KIND}:%{check} - %{message} on line %{line}" ' + File.absolute_path(file))
+    system('puppet-lint --fail-on-warnings --log-format="%{filename} - %{KIND}:%{check} - %{message} on line %{line}" ' + File.absolute_path(file))
   else
     puts 'WARNING: puppet-lint gem not installed. Skipping style check of Puppet code. Install with `gem install puppet-lint`'
   end
