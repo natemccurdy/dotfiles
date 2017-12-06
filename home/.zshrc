@@ -58,3 +58,6 @@ fi
 #                  something about it is broken which breaks ls. not sure...
 source $HOME/.aliases
 
+# Setup thefuck
+eval $(thefuck --alias)
+
