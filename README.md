@@ -4,34 +4,29 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 
 ## Installation
 
-### Homebrew
-
-1. `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-1. Use a better vim: `brew install vim --with-override-system-vi`
-1. Install iterm2 nightly: `brew tap caskroom/versions && brew cask install iterm2-nightly`
-1. Other tools: `brew install git tmux thefuck the_silver_searcher ripgrep tree nmap xz wget`
-1. Use brew's Ruby: `brew install ruby ruby-build`
-
-### Zsh
-
-1. oh-my-zsh: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-1. `mkdir ~/src`
-1. `git clone https://github.com/bhilburn/powerlevel9k.git ~/src/powerlevel9k`
-
 ### Homesick
 
 1. Install Homesick with `gem install homesick`
 1. Clone this castle with `homesick clone natemccurdy/dotfiles`
 1. Create the symlinks with `homesick symlink dotfiles`
 
+### Homebrew
+
+I use [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) for most of my application installations
+
+1. `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+1. Get Brew Bundler: `homesick cd && brew bundle`
+
+### ZSH
+
+1. oh-my-zsh: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+1. `mkdir ~/src`
+1. `git clone https://github.com/bhilburn/powerlevel9k.git ~/src/powerlevel9k`
+
 ### Vim plugins
 
 1. [Vim-Plug](https://github.com/junegunn/vim-plug) Install: `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 1. Install Vim plugins: `vim +PlugInstall +qall`
-
-### iTerm 2
-
-1. Install iterm2 nightly: `brew tap caskroom/versions && brew cask install iterm2-nightly`
 
 #### Colors
 
