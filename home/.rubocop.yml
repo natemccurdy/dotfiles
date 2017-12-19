@@ -1,0 +1,29 @@
+---
+AllCops:
+  Include:
+    - Vagrantfile
+    - ./**/*.rb
+
+Metrics/LineLength:
+  Enabled: False
+
+Metrics/AbcSize:
+  Enabled: False
+
+Metrics/CyclomaticComplexity:
+  Enabled: False
+
+Metrics/BlockLength:
+  Enabled: False
+
+Metrics/MethodLength:
+  Enabled: False
+
+Metrics/ModuleLength:
+  Enabled: False
+
+Metrics/ClassLength:
+  Enabled: False
+
+Naming:
+  Enabled: false
