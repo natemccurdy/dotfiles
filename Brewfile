@@ -17,6 +17,7 @@ brew "thefuck"
 brew "tmux"
 brew "tree"
 brew "vim", args: ["with-override-system-vi"]
+brew "neovim"
 brew "zsh"
 
 # Ruby

@@ -1,3 +1,6 @@
+# Use neovim instead of vim
+alias vim='nvim'
+
 alias tree='tree -C'
 alias path='echo -e ${PATH//:/\\n}'
 

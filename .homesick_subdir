@@ -1,3 +1,4 @@
 .bin
 .git_template/hooks
 .oh-my-zsh/custom/themes
+.config
