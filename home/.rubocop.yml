@@ -25,5 +25,3 @@ Metrics/ModuleLength:
 Metrics/ClassLength:
   Enabled: False
 
-Naming:
-  Enabled: false
