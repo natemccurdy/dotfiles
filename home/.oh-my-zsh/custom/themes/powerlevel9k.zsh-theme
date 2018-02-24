@@ -1,1 +1,1 @@
-/Users/nate/src/powerlevel9k/powerlevel9k.zsh-theme
+../../../../../../../src/powerlevel9k/powerlevel9k.zsh-theme
