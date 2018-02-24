@@ -25,7 +25,7 @@
 
 [core]
   whitespace = trailing-space,space-before-tab
-  editor = vim
+  editor = nvim
 
 [init]
   templatedir = ~/.git_template
