@@ -8,7 +8,8 @@
   ec        = config --global -e
   cob       = checkout -b
   cm        = !git add -A && git commit -m
-  hist      = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(bold white)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
+  hist      = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
+  hista     = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order --all
   unstage   = reset HEAD --
   cp        = cherry-pick
   update    = pull --rebase
