@@ -121,3 +121,12 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # The Fuck alias
 eval "$(thefuck --alias)"
+
+# Use ripgrep instead of silver searcher if it exists
+# ...I'm so used to 'ag', but I should start using 'rg' more as it's faster.
+if [[ $(which rg) =~ ^\/ ]]; then
+  function ag() {
+    echo "Use rg instead, ya dingus!"
+  }
+fi
+

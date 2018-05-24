@@ -61,3 +61,6 @@ source $HOME/.aliases
 # Setup thefuck
 eval $(thefuck --alias)
 
+if [[ -f $HOME/.ripgreprc ]]; then
+  export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+fi
