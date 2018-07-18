@@ -63,6 +63,7 @@ brew "xz"
 # Casks
 cask "cyberduck"
 cask "evernote"
+cask "google-chrome"
 cask "iterm2"
 cask "karabiner-elements"
 cask "kodi"
