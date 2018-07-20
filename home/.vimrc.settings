@@ -108,12 +108,17 @@ set showmatch
 set hidden
 
 " Highlight Trailing Whitespace
-highlight ExtraWhitespace ctermbg=darkred guibg=darkred
-match ExtraWhitespace /\s\+$/
+highlight TrailingWhitespace ctermbg=White guibg=White
+call matchadd('TrailingWhitespace', '\s\+$')
 
 " Highlight Literal Tabs
-highlight LiteralTabs ctermbg=darkred guibg=darkred
-match LiteralTabs /	/
+highlight LiteralTab ctermbg=Yellow guibg=Yellow
+call matchadd('LiteralTab', '\t')
+
+" Highlight non-ASCII characters
+" https://stackoverflow.com/a/26209681
+highlight NonASCII ctermbg=DarkRed guibg=DarkRed
+call matchadd('NonASCII', '[^\u0000-\u007F]')
 
 " paulrouget vim settings:
 highlight vertsplit       ctermbg=235 ctermfg=239
