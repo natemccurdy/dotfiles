@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Run this on a stock Mac to bootstrap it with Nate's dotfiles
+# Run this on a stock Mac to bootstrap it with Nate's dotfiles and customizations
 #
 
 # Ask for the administrator password upfront
