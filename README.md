@@ -63,3 +63,22 @@ I use the Awesome patched fonts.
 homesick cd && COMPUTER_NAME=foo ./home/.bin/osx.sh
 ```
 
+## Other Mac Applications
+
+Here are some apps from the Apple Store that I use all the time. They're on Homebrew, but I use the App Store versions so that my registration info is automatically setup.
+
+* Amphetamine: <https://itunes.apple.com/us/app/amphetamine/id937984704?mt=12>
+* Gifox: <https://gifox.io/>
+* Moom: <https://manytricks.com/moom/>
+* Witch: <https://manytricks.com/witch/>
+
+These installs can be automated with [MAS](https://github.com/mas-cli/mas):
+
+```
+brew install mas
+mas install 937984704    # Amphetamine
+mas install 1082624744   # Gifox
+mas install 419330170    # Moom
+mas install 412485838    # Witch
+```
+
