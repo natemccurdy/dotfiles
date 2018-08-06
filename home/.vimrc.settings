@@ -133,6 +133,9 @@ highlight EndOfBuffer     ctermbg=235 ctermfg=235
 " New vertical splits go to the right rather than the left
 set splitright
 
+" New horizontal splits go below the current buffer rather than above them
+set splitbelow
+
 " Always show the sign column
 set signcolumn=yes
 
