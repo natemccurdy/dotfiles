@@ -1,0 +1,7 @@
+# vi: ft=yaml
+---
+extends: default
+
+rules:
+  colons: disable
+  line-length: disable

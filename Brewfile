@@ -59,6 +59,7 @@ brew "stunnel"
 brew "watch"
 brew "wget"
 brew "xz"
+brew "yamllint"
 
 # Casks
 cask "cyberduck"
