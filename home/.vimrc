@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'godlygeek/tabular'
+Plug 'hwartig/vim-seeing-is-believing'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'morhetz/gruvbox'
 Plug 'rodjek/vim-puppet'
