@@ -16,6 +16,7 @@
   prune     = fetch --all --prune
   stash-all = stash save --include-untracked
   alias     = config --get-regexp ^alias\\.
+  hash      = rev-parse HEAD
 
 [push]
   default = simple
