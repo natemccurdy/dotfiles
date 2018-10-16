@@ -32,6 +32,8 @@ alias h="history"
 alias cdg='cd "$(git rev-parse --show-toplevel)"'
 alias branch-rebase-production='git fetch && git rebase origin/production'
 alias branch-rebase-master='git fetch && git rebase origin/master'
+alias gclean='git clean -fd'
+alias gpristine='git reset --hard && git clean -ffdx'
 
 # k8s, docker, etc...
 alias kl="kubectl"
