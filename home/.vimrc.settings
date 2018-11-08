@@ -56,14 +56,6 @@ let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
-" MuComplete Options
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c " Turn off completion messages
-inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
-inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
-inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
-let g:mucomplete#enable_auto_at_startup = 1
-
 " PolyGot Settings
 let g:polyglot_disabled = ['puppet']
 
