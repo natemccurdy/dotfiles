@@ -1,7 +1,7 @@
 [user]
   name = Nate McCurdy
   email = mccurdy.nate@gmail.com
-  signingkey = ECE358B2
+  signingkey = CA2252343D9B2D32
 
 [alias]
   co        = checkout
