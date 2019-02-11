@@ -99,6 +99,14 @@ rescue StandardError => err
   false
 end
 
+def python_lint(file)
+  if which('flake8')
+    system("flake8 #{file}")
+  else
+    puts 'flake8 not installed (pip install flake8). Skipping Python style check.'
+  end
+end
+
 # Go through list of files, and call an appropriate checker.
 IO.popen('git diff --cached --name-only --diff-filter=ACM').readlines.each do |file|
   file.sub!(/^\w (.*)\n/, '\1')
@@ -121,5 +129,7 @@ IO.popen('git diff --cached --name-only --diff-filter=ACM').readlines.each do |f
     exit 1 unless yaml_lint file
   elsif file =~ /\.json$/
     exit 1 unless json_check file
+  elsif file =~ /\.py$/
+    exit 1 unless python_lint file
   end
 end
