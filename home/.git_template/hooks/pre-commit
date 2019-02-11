@@ -84,6 +84,14 @@ rescue StandardError => err
   false
 end
 
+def yaml_lint(file)
+  if which('yamllint') # https://github.com/adrienverge/yamllint
+    system("yamllint -s -f parsable #{file}")
+  else
+    puts 'yamllint not installed. Skipping YAML style check.'
+  end
+end
+
 def json_check(file)
   JSON.parse(IO.read(file))
 rescue StandardError => err
@@ -110,6 +118,7 @@ IO.popen('git diff --cached --name-only --diff-filter=ACM').readlines.each do |f
     exit 1 unless shell_check file
   elsif file =~ /(\.yaml$|\.yml$|\.eyaml$)/
     exit 1 unless yaml_check file
+    exit 1 unless yaml_lint file
   elsif file =~ /\.json$/
     exit 1 unless json_check file
   end
