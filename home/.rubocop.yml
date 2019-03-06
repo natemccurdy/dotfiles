@@ -4,26 +4,30 @@ AllCops:
   DisplayCopNames: true
   TargetRubyVersion: '2.1'
   Include:
-  - "./**/*.rb"
+    - "./**/*.rb"
   Exclude:
-  - bin/*
-  - ".vendor/**/*"
-  - "**/Gemfile"
-  - "**/Rakefile"
-  - pkg/**/*
-  - spec/fixtures/**/*
-  - vendor/**/*
-  - "**/Puppetfile"
-  - "**/Vagrantfile"
-  - "**/Guardfile"
+    - bin/*
+    - ".vendor/**/*"
+    - "**/Gemfile"
+    - "**/Rakefile"
+    - pkg/**/*
+    - spec/fixtures/**/*
+    - vendor/**/*
+    - "**/Puppetfile"
+    - "**/Vagrantfile"
+    - "**/Guardfile"
 Metrics/LineLength:
   Description: People have wide screens, use them.
   Max: 200
+GetText/DecorateString:
+  Description: We don't want to decorate test output.
+  Exclude:
+    - spec/*
 RSpec/BeforeAfterAll:
   Description: Beware of using after(:all) as it may cause state to leak between tests.
     A necessary evil in acceptance testing.
   Exclude:
-  - spec/acceptance/**/*.rb
+    - spec/acceptance/**/*.rb
 RSpec/HookArgument:
   Description: Prefer explicit :each argument, matching existing module's style
   EnforcedStyle: each
@@ -59,19 +63,21 @@ Style/TrailingCommaInArguments:
   Description: Prefer always trailing comma on multiline argument lists. This makes
     diffs, and re-ordering nicer.
   EnforcedStyleForMultiline: comma
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
   Description: Prefer always trailing comma on multiline literals. This makes diffs,
     and re-ordering nicer.
   EnforcedStyleForMultiline: comma
 Style/SymbolArray:
   Description: Using percent style obscures symbolic intent of array's contents.
   EnforcedStyle: brackets
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets
 RSpec/MessageSpies:
   EnforcedStyle: receive
 Style/Documentation:
   Exclude:
-  - lib/puppet/parser/functions/**/*
-  - spec/**/*
+    - lib/puppet/parser/functions/**/*
+    - spec/**/*
 Style/WordArray:
   EnforcedStyle: brackets
 Style/CollectionMethods:

@@ -217,6 +217,9 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " Fix Puppet-lint issues with :PuppetLintFix
 command! PuppetLintFix execute ':w' | execute ':silent !puppet-lint -f %' | execute ':redraw!' | execute ':edit!'
 
+" Fix Ruby/Rubocop issues with :RubocopFix
+command! RubocopFix execute ':w' | execute ':silent !rubocop -a %' | execute ':redraw!' | execute ':edit!'
+
 " Prettify YAML using Python's ruamel.yaml (requires pip install ruamel.yaml)
 command! YAMLPretty execute '%!yaml_pretty.py'
 
