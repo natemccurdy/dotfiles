@@ -9,6 +9,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias puppet-lint='puppet-lint --log-format="%{path} - %{KIND}:%{check} - %{message} on line %{line}"'
 alias izgood="puppet parser validate"
 alias izpretty='puppet-lint'
+alias ptup='pdk test unit --parallel'
 
 # Vagrant aliases
 alias v='vagrant'
@@ -35,6 +36,7 @@ alias branch-rebase-production='git fetch && git rebase origin/production'
 alias branch-rebase-master='git fetch && git rebase origin/master'
 alias gclean='git clean -fd'
 alias gpristine='git reset --hard && git clean -ffdx'
+alias guberbase='git co master && git pull && git co - && git rebase master'
 
 # k8s, docker, etc...
 alias kl="kubectl"
