@@ -71,6 +71,18 @@ nnoremap <leader>m A # => <Esc>
 " Mark the highlighted lines for annotation
 vnoremap <leader>m :norm A # => <Esc>
 
+" NetRW
+" Don't show the banner
+let g:netrw_banner = 0
+" Tree list view
+let g:netrw_liststyle = 3
+" 25% width
+let g:netrw_winsize = 25
+" Open selection in previous window
+let g:netrw_browse_split = 4
+" Open selection on the right when splitting
+let g:netrw_altv = 1
+
 " }}}
 " {{{ SPACES & TABS
 
@@ -222,6 +234,10 @@ command! RubocopFix execute ':w' | execute ':silent !rubocop -a %' | execute ':r
 
 " Prettify YAML using Python's ruamel.yaml (requires pip install ruamel.yaml)
 command! YAMLPretty execute '%!yaml_pretty.py'
+
+" Open NetRW with \` (backslash then backtick)
+noremap <silent> <Leader>` :Vexplore<CR>
+
 
 " }}}
 " BACKUPS & HISTORY {{{
