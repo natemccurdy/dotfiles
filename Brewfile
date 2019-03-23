@@ -20,6 +20,7 @@ brew "tree"
 brew "vim", args: ["with-override-system-vi"]
 brew "neovim"
 brew "zsh"
+brew "zsh-syntax-highlighting"
 
 # Ruby
 brew "ruby"
