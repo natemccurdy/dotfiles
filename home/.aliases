@@ -41,7 +41,10 @@ alias guberbase='git co master && git pull && git co - && git rebase master'
 # k8s, docker, etc...
 alias kl="kubectl"
 # Get shell access to Docker for Mac's host
-alias dockerhost="docker run -it --rm --privileged --pid=host justincormack/nsenter1"
+alias docker-host="docker run -it --rm --privileged --pid=host justincormack/nsenter1"
+alias docker-rmi-dangling="docker rmi \$(docker images -f 'dangling=true' -q)"
+alias docker-rmc-stopped="docker rm \$(docker ps -a -q)"
+alias docker-stopall="docker stop \$(docker ps -a -q)"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
