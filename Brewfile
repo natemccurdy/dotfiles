@@ -43,6 +43,7 @@ brew "gist"
 brew "gnu-sed", args: ["with-default-names"]
 brew "gnutls"
 brew "grep"
+brew "hadolint"
 brew "htop"
 brew "hub"
 brew "mpssh"
