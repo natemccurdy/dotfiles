@@ -1,10 +1,18 @@
 "  AUTOGROUPS {{{
 
-augroup configgroup
+augroup filetypes
   autocmd!
   autocmd BufEnter Rakefile set filetype=ruby
   autocmd BufEnter Vagrantfile set filetype=ruby
   autocmd BufEnter Gemfile set filetype=ruby
+augroup end
+
+" Go to previous location when opening a file again.
+augroup previous_location
+  autocmd!
+  autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
+      \|     exe "normal! g`\""
+      \|  endif
 augroup end
 
 " }}}
@@ -49,8 +57,9 @@ highlight GitGutterDelete       ctermbg=235 ctermfg=9
 highlight GitGutterChangeDelete ctermbg=235 ctermfg=175
 
 " ALE Options
-let g:ale_lint_on_text_changed = 1
+let g:airline#extensions#ale#enabled = 1  " Use the vim-airline integration
 let g:ale_lint_on_save = 0
+let g:ale_lint_on_text_changed = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
@@ -187,14 +196,6 @@ set backspace=2
 " move to beginning/end of line
 nnoremap B ^
 nnoremap E $
-
-" highlight last inserted text
-nnoremap gV `[v`]
-
-" Open file and goto previous location
-autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$")
-    \|     exe "normal! g`\""
-    \|  endif
 
 " }}}
 " SHORTCUTS {{{
