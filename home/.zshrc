@@ -71,3 +71,5 @@ if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
 if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+export EDITOR='nvim'
