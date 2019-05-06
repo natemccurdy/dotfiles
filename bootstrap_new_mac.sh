@@ -30,7 +30,6 @@ brew bundle --file=~/.homesick/repos/dotfiles/Brewfile
 brew cask cleanup
 
 # Pin Ruby versions so I don't lose all my gems on upgrade.
-brew pin ruby
 brew pin ruby-build
 brew pin rbenv
 
