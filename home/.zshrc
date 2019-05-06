@@ -23,7 +23,7 @@ COMPLETION_WAITING_DOTS=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git osx ruby rbenv gem vagrant ssh-agent docker docker-compose)
+plugins=(git osx ruby gem vagrant ssh-agent docker docker-compose)
 
 # Color correct paths rather than underlining them.
 typeset -A ZSH_HIGHLIGHT_STYLES
