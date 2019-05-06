@@ -5,6 +5,13 @@ try:
 except ImportError:
     sys.exit('Error, ruamel library not found. Try: pip3 install ruamel.yaml')
 
+
+# Check if we have any data coming in on STDIN.
+# isatty() returns false when there's something on STDIN.
+if sys.stdin.isatty():
+    sys.exit('Nothing detected on STDIN. Please pipe in some YAML.')
+
+
 yaml = ruamel.yaml.YAML()
 yaml.indent(mapping=2, sequence=4, offset=2)
 yaml.default_flow_style = False
