@@ -82,6 +82,21 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 
 " }}}
+" ALE FIXERS {{{
+
+let g:ale_fixers = {
+\     'puppet': [
+\       'puppetlint',
+\     ],
+\     'ruby': [
+\       'rubocop',
+\     ],
+\     'python': [
+\       'autopep8',
+\     ],
+\   }
+
+" }}}
 " {{{ SPACES & TABS
 
 set tabstop=2
