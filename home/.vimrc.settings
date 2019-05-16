@@ -57,6 +57,7 @@ highlight GitGutterDelete       ctermbg=235 ctermfg=9
 highlight GitGutterChangeDelete ctermbg=235 ctermfg=175
 
 " ALE Options
+let g:ale_completion_enabled = 1
 let g:airline#extensions#ale#enabled = 1  " Use the vim-airline integration
 let g:ale_lint_on_save = 0
 let g:ale_lint_on_text_changed = 1
