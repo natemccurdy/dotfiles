@@ -82,3 +82,6 @@ export EDITOR='nvim'
 
 # Used for various git aliases
 export REVIEW_BASE='master'
+
+# Setup hub aliases
+eval "$(hub alias -s)"
