@@ -79,3 +79,6 @@ if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]
 fi
 
 export EDITOR='nvim'
+
+# Used for various git aliases
+export REVIEW_BASE='master'
