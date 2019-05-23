@@ -24,10 +24,11 @@ def run(cmd)
   stdout, stderr, status = Open3.capture3(*cmd)
 
   if status.success?
+    puts stdout unless stdout.empty?
     true
   else
-    STDERR.puts stdout
-    STDERR.puts stderr
+    warn(stdout)
+    warn(stderr)
     exit 1
   end
 end
@@ -89,7 +90,7 @@ def puppet_erb_check(file)
     erb_stdout, _status = Open3.capture2('erb', '-x', '-T', '-', file)
     ruby_stdout, status = Open3.capture2('ruby -c', stdin_data: erb_stdout)
     unless status.success?
-      STDERR.puts ruby_stdout
+      warn(ruby_stdout)
       exit 1
     end
   else
@@ -98,29 +99,25 @@ def puppet_erb_check(file)
 end
 
 def yaml_check(file)
-  begin
-    YAML.load_file(file)
-  rescue StandardError => err
-    STDERR.puts "YAML invalid: #{err}"
-    exit 1
-  end
+  YAML.load_file(file)
+rescue StandardError => e
+  warn("YAML invalid: #{e}")
+  exit 1
 end
 
 def yaml_lint(file)
   if which('yamllint') # https://github.com/adrienverge/yamllint
-    run(['yamllint', '-s', '-f', 'parsable', file])
+    run(['yamllint', '-f', 'parsable', file])
   else
     puts 'yamllint not installed. Skipping YAML style check.'
   end
 end
 
 def json_check(file)
-  begin
-    JSON.parse(IO.read(file))
-  rescue StandardError => err
-    STDERR.puts "JSON invalid: #{err}"
-    exit 1
-  end
+  JSON.parse(IO.read(file))
+rescue StandardError => e
+  warn("JSON invalid: #{e}")
+  exit 1
 end
 
 def python_lint(file)
