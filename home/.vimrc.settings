@@ -243,6 +243,9 @@ command! YAMLPretty execute '%!yaml_pretty.py'
 " Open NetRW with \` (backslash then backtick)
 noremap <silent> <Leader>` :Vexplore<CR>
 
+" Close buffer without removing its window
+command! Bd bp|bd #
+
 " }}}
 " BACKUPS & HISTORY {{{
 
