@@ -187,6 +187,12 @@ set smartcase
 " Turn off search highlight with <leader><space>
 noremap <leader><space> :nohlsearch<CR>
 
+" Allow autocompletion of words with - in them
+set iskeyword+=\-
+
+" Highlight and search with * but don't move the cursor.
+noremap * *``
+
 " }}}
 " FOLDING {{{
 
