@@ -252,6 +252,11 @@ noremap <silent> <Leader>` :Vexplore<CR>
 " Close buffer without removing its window
 command! Bd bp|bd #
 
+" CDC = Change to Directory of Current file
+" Useful for syntax checkers to use dotfiles relative to that file.
+" https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+command! CDC cd %:p:h
+
 " Copy and paste to/from the system's clipboard
 noremap <Leader>y "*y
 noremap <Leader>p "*p
