@@ -10,6 +10,8 @@ alias puppet-lint='puppet-lint --log-format="%{path} - %{KIND}:%{check} - %{mess
 alias izgood="puppet parser validate"
 alias izpretty='puppet-lint'
 alias ptup='pdk test unit --parallel'
+alias pval='pdk validate'
+alias is-it-good='pdk validate && pdk test unit --parallel'
 
 # Vagrant aliases
 alias v='vagrant'
