@@ -252,6 +252,11 @@ noremap <silent> <Leader>` :Vexplore<CR>
 " Close buffer without removing its window
 command! Bd bp|bd #
 
+" Copy and paste to/from the system's clipboard
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
 " }}}
 " BACKUPS & HISTORY {{{
 
