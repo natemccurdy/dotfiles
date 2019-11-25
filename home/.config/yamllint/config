@@ -7,3 +7,5 @@ rules:
   line-length: disable
   indentation:
     level: warning
+  comments:
+    min-spaces-from-content: 1
