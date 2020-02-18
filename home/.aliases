@@ -41,7 +41,7 @@ alias branch-rebase-production='git fetch && git rebase origin/production'
 alias branch-rebase-master='git fetch && git rebase origin/master'
 alias gclean='git clean -fd'
 alias gpristine='git reset --hard && git clean -ffdx'
-alias guberbase='git sync && git rebase master'
+alias guberbase='hub sync && git rebase master'
 alias fix-merge-conflicts="git diff --name-only --diff-filter=U | xargs nvim"
 
 # k8s, docker, etc...
