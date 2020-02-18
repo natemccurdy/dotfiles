@@ -17,8 +17,8 @@ brew doctor
 # Create our code directory
 [[ -d ~/src ]] || mkdir ~/src
 
-# Grab PowerLevel9k
-git clone https://github.com/bhilburn/powerlevel9k.git ~/src/powerlevel9k
+# Grab PowerLevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
 
 # Get Homesick for dotfiles
 sudo gem install homesick --no-doc --no-ri

@@ -1,22 +1,14 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-ZSH_THEME='powerlevel9k'
-
-# PowerLevel9K options
-DEFAULT_USER=$USER
-POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv background_jobs)
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=''
-POWERLEVEL9K_VCS_GIT_GITLAB_ICON=''
-POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=''
-POWERLEVEL9K_HIDE_BRANCH_ICON=true
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS=true
@@ -87,3 +79,13 @@ if [[ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]]; then
   source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
   source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
+
+# Don't share history between zsh sessions.
+unsetopt share_history
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Customizations to the p10k prompt (this must be after source ~/.p10k.zsh)
+POWERLEVEL9K_STATUS_OK=false  # Only show return code status on failure, not success.
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=("${(@)POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS:#command_execution_time}") # Remove the 'command_execution_time' prompt segment.
