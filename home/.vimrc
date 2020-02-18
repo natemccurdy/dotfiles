@@ -9,7 +9,7 @@ Plug 'morhetz/gruvbox'
 Plug 'rodjek/vim-puppet'
 Plug 'tpope/vim-fugitive'
 Plug 'Valloric/ListToggle'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
