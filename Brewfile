@@ -31,6 +31,7 @@ brew "cmake"
 brew "gcc"
 
 # Nice to haves
+brew "autopep8"
 brew "cowsay"
 brew "ctop"
 brew "dos2unix"
