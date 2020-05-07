@@ -35,6 +35,7 @@ brew "autopep8"
 brew "cowsay"
 brew "ctop"
 brew "dos2unix"
+brew "exa"
 brew "findutils"
 brew "gist"
 brew "gnu-sed", args: ["with-default-names"]
