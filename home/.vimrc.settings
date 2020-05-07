@@ -7,6 +7,9 @@ augroup filetypes
   autocmd BufEnter Gemfile set filetype=ruby
 augroup end
 
+" Set the filetype based on the file's extension.
+au BufRead,BufNewFile *.epp set filetype=embeddedpuppet
+
 " Go to previous location when opening a file again.
 augroup previous_location
   autocmd!
