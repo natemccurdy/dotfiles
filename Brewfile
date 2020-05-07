@@ -7,15 +7,16 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 
 # Essentials
+brew "bat"
 brew "git"
 brew "jq"
+brew "neovim"
 brew "reattach-to-user-namespace"
-brew "shellcheck"
 brew "ripgrep"
+brew "shellcheck"
 brew "thefuck"
 brew "tmux"
 brew "tree"
-brew "neovim"
 brew "zsh"
 brew "zsh-syntax-highlighting"
 

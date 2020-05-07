@@ -156,3 +156,6 @@ if [[ $(which rg) =~ ^\/ ]]; then
   }
 fi
 
+if [[ $(which bat) =~ ^\/ ]]; then
+  alias cat='bat'
+fi
