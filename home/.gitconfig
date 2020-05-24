@@ -19,6 +19,7 @@
   stash-all = stash save --include-untracked
   unstage   = reset HEAD --
   update    = pull --rebase
+  fix-merge-conflicts       = !git diff --name-only --diff-filter=U | xargs nvim
 
 [push]
   default = simple
