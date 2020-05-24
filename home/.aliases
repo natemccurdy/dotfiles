@@ -53,10 +53,11 @@ alias docker-stopall="docker stop \$(docker ps -a -q)"
 
 # ls alias, or use exa if available
 if [[ $(which exa) =~ ^\/ ]]; then
-  alias ls='exa'
-  alias l='exa -l'
-  alias la='exa -la'
-  alias lsd='exa -lD'
+  alias ls='exa --group-directories-first'
+  alias ll='exa -l --group-directories-first'
+  alias l='exa -l --group-directories-first'
+  alias la='exa -l --group-directories-first -a'
+  alias lsd='exa -l --group-directories-first -D'
 else
   # Detect which 'ls' flavor is in use
   if ls --color > /dev/null 2>&1; then # GNU 'ls'
