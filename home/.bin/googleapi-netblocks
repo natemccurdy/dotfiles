@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+netblocks=$(dig TXT _spf.google.com +short | grep -E -o "include:_netblocks\d?\.google\.com" | sed 's/include://')
+
+{
+  for net in $netblocks; do
+    dig TXT "$net" +short
+  done
+} | grep -E -o "ip4:[0-9\./]+" | sed 's/ip4://' | sort -V
