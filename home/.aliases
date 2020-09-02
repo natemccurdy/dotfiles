@@ -42,6 +42,7 @@ alias branch-rebase-master='git fetch && git rebase origin/master'
 alias gclean='git clean -fd'
 alias gpristine='git reset --hard && git clean -ffdx'
 alias guberbase='hub sync && git rebase master'
+alias gpruneempty='find .git -type d -empty -delete'
 
 # k8s, docker, etc...
 alias kl="kubectl"
