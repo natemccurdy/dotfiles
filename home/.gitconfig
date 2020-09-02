@@ -15,6 +15,7 @@
   hist      = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
   hista     = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order --all
   hist-iso  = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%ci)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
+  hist-rfc  = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cD)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
   prune     = fetch --all --prune
   stash-all = stash save --include-untracked
   unstage   = reset HEAD --
@@ -22,7 +23,7 @@
   sync      = !hub sync
   fix-merge-conflicts       = !git diff --name-only --diff-filter=U | xargs nvim
   # https://gist.github.com/michaelkirk/2596181#gistcomment-2895608
-  remote-branches-by-date   = for-each-ref --sort='-authordate' --format='%(authordate:iso), %(authorname), %(refname:lstrip=3)' 'refs/remotes'
+  remote-branches-by-date   = for-each-ref --sort='-committerdate' --format='%(committerdate:local), %(authorname), %(refname:lstrip=3)' 'refs/remotes'
   delete-my-remote-branches = !git for-each-ref --format='%(refname:lstrip=3)' 'refs/remotes/origin/nmccurdy' | xargs git push origin --delete
 
 [push]
