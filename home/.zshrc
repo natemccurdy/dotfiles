@@ -15,7 +15,7 @@ COMPLETION_WAITING_DOTS=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git osx ruby gem vagrant ssh-agent docker docker-compose)
+plugins=(ssh-agent git osx vagrant docker)
 
 # Color correct paths rather than underlining them.
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -32,23 +32,21 @@ source $ZSH/oh-my-zsh.sh
 
 # PATH modifications. Don't modify if we're in TMUX because path_helper does it for us.
 if [[ -z $TMUX ]]; then
-
   # Add ~/.bin to PATH
-  export PATH="$PATH:$HOME/.bin"
+  if ! [[ $PATH =~ "$HOME/.bin" ]]; then export PATH="$PATH:$HOME/.bin"; fi
   # Add homebrew's sbin dir to PATH
-  export PATH="/usr/local/sbin:$PATH"
-
+  if ! [[ $PATH =~ '/usr/local/sbin' ]]; then export PATH="/usr/local/sbin:$PATH"; fi
 fi
 
 # Initialize rbenv
 # I modifed /etc/zprofile as shown here https://pgib.me/blog/2013/10/11/macosx-tmux-zsh-rbenv/
 # to prevent rbenv from ending up at the end of PATH.
 if type rbenv >/dev/null ; then
-  if [[ $PATH =~ 'rbenv/shims' ]]; then
-    eval "$(rbenv init - | sed '/PATH/d')" # Prevent rbenv ending up in PATH twice.
-  else
+  #if [[ $PATH =~ 'rbenv/shims' ]]; then
+    #eval "$(rbenv init - | sed '/PATH/d')" # Prevent rbenv ending up in PATH twice.
+  #else
     eval "$(rbenv init -)"
-  fi
+  #fi
 fi
 
 # Source my external alias config
@@ -73,8 +71,8 @@ fi
 export EDITOR='nvim'
 
 if [[ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]]; then
-  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
   source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+  if ! [[ $PATH =~ 'google-cloud-sdk' ]]; then source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc; fi
 fi
 
 # Don't share history between zsh sessions.
