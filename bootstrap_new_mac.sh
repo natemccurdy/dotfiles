@@ -50,6 +50,10 @@ sudo dscl . -create "/Users/$USER" UserShell /usr/local/bin/zsh
 echo "Downloading Inconsolata fonts to ~/Library/Fonts/"
 wget -P ~/Library/Fonts/ https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/Inconsolata%2BAwesome.ttf
 
+# Configure iterm to read preferences out of my dotfiles.
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.homesick/repos/dotfiles/iterm_prefs"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
 # Get iTerm gruvbox colors
 echo "Installing GruvBox colors for iTerm2"
 wget https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors
