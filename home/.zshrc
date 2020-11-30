@@ -1,9 +1,11 @@
+__source_if_exists() {
+  # sources a file if it exists
+  [[ -f "$1" ]] && source "$1"
+}
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+__source_if_exists "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 export ZSH=$HOME/.oh-my-zsh
 
@@ -64,9 +66,7 @@ fi
 # kubectl shell completion
 if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
 
-if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+__source_if_exists /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export EDITOR='nvim'
 
@@ -79,7 +79,7 @@ fi
 unsetopt share_history
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+__source_if_exists ~/.p10k.zsh
 
 # Customizations to the p10k prompt (this must be after source ~/.p10k.zsh)
 POWERLEVEL9K_STATUS_OK=false  # Only show return code status on failure, not success.

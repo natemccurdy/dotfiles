@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 #
 # Run this on a stock Mac to bootstrap it with Nate's dotfiles and customizations
 #
@@ -18,37 +18,35 @@ brew doctor
 [[ -d ~/src ]] || mkdir ~/src
 
 # Grab PowerLevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # Get Homesick for dotfiles
-sudo gem install homesick --no-doc --no-ri
+sudo gem install homesick --no-doc
 homesick clone natemccurdy/dotfiles
 homesick symlink dotfiles
 
 # Install HomeBrew apps
 brew bundle --file=~/.homesick/repos/dotfiles/Brewfile
-brew cask cleanup
 
 # Pin Ruby versions so I don't lose all my gems on upgrade.
 brew pin ruby-build
 brew pin rbenv
 
 # Install some Puppet and ruby tools
-gem install r10k puppet-lint rubocop
+# TODO: Install rbenv and use that instead.
+#gem install r10k puppet-lint rubocop
 
 # Install vim Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # Get Vim plugins
 vim +PlugInstall +qall
 
-# Install Oh My ZSH and change shell to zsh
-git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-echo "Changing ${USER}'s shell to Brew's zsh..."
-sudo dscl . -create "/Users/$USER" UserShell /usr/local/bin/zsh
-
-# Get fonts
-echo "Downloading Inconsolata fonts to ~/Library/Fonts/"
-wget -P ~/Library/Fonts/ https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/Inconsolata%2BAwesome.ttf
+# Install Oh My ZSH
+# This assumes a new MacOS that's using zsh be default, not bash.
+export CHSH=no
+export RUNZSH=no
+export KEEP_ZSHRC=yes
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Configure iterm to read preferences out of my dotfiles.
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.homesick/repos/dotfiles/iterm_prefs"
