@@ -17,7 +17,7 @@ COMPLETION_WAITING_DOTS=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(ssh-agent git osx vagrant docker)
+plugins=(ssh-agent git macos vagrant docker)
 
 # Color correct paths rather than underlining them.
 typeset -A ZSH_HIGHLIGHT_STYLES
