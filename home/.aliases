@@ -154,9 +154,6 @@ alias pumpitup="osascript -e 'set volume 7'"
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-# The Fuck alias
-eval "$(thefuck --alias)"
-
 # Use ripgrep instead of silver searcher if it exists
 # ...I'm so used to 'ag', but I should start using 'rg' more as it's faster.
 if [[ $(which rg) =~ ^\/ ]]; then
