@@ -41,14 +41,8 @@ if [[ -z $TMUX ]]; then
 fi
 
 # Initialize rbenv
-# I modifed /etc/zprofile as shown here https://pgib.me/blog/2013/10/11/macosx-tmux-zsh-rbenv/
-# to prevent rbenv from ending up at the end of PATH.
 if type rbenv >/dev/null ; then
-  if [[ $PATH =~ 'rbenv/shims' ]]; then
-    #eval "$(rbenv init - | sed '/PATH/d')" # Prevent rbenv ending up in PATH twice.
-  else
-    eval "$(rbenv init -)"
-  fi
+  eval "$(rbenv init -)"
 fi
 
 # Source my external alias config
