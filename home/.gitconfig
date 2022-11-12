@@ -20,7 +20,7 @@
   stash-all = stash save --include-untracked
   unstage   = reset HEAD --
   update    = pull --rebase
-  sync      = !hub sync
+  sync      = !gh repo sync
   fix-merge-conflicts       = !git diff --name-only --diff-filter=U | xargs nvim
   # https://gist.github.com/michaelkirk/2596181#gistcomment-2895608
   remote-branches-by-date   = for-each-ref --sort='-committerdate' --format='%(committerdate:local), %(authorname), %(refname:lstrip=3)' 'refs/remotes'
