@@ -48,7 +48,7 @@ alias gclean='git clean -fd'
 alias gpristine='git reset --hard && git clean -ffdx'
 alias gpruneempty='find .git -type d -empty -delete'
 alias gst='git status'
-alias guberbase="git sync && git rebase \$(git ls-remote --symref origin HEAD | awk -F' *|/|\t*' '/^ref:/ {print \$4}')"
+alias guberbase="hub sync && git rebase \$(git ls-remote --symref origin HEAD | awk -F' *|/|\t*' '/^ref:/ {print \$4}')"
 
 # k8s, docker, etc...
 alias kl="kubectl"
