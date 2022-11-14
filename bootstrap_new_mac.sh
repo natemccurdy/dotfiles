@@ -20,6 +20,10 @@ brew doctor
 # Grab PowerLevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
+# Grab Tmux Plugin Manager
+mkdir -p ~/.tmux/plugins/
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Get Homesick for dotfiles
 sudo gem install homesick --no-doc
 homesick clone natemccurdy/dotfiles
@@ -34,7 +38,7 @@ brew pin rbenv
 
 # Install some Puppet and ruby tools
 # TODO: Install rbenv and use that instead.
-#gem install r10k puppet-lint rubocop
+#gem install r10k puppet-lint rubocop tmuxinator
 
 # Install vim Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

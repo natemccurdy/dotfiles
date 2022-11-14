@@ -24,6 +24,9 @@ alias vhl='vagrant hosts list'
 # Tmux aliases
 alias tma='tmux attach -d -t'
 
+# Task aliases
+alias t='task'
+
 # Bundler aliases
 alias b='bundle'
 alias be='bundle exec'
@@ -39,11 +42,13 @@ alias h="history"
 alias branch-rebase-master='git fetch && git rebase origin/master'
 alias branch-rebase-production='git fetch && git rebase origin/production'
 alias cdg='cd "$(git rev-parse --show-toplevel)"'
-alias edit-changed-files='git diff master HEAD --diff-filter=ad --name-only | xargs nvim'
+alias edit-changed-files-prod="git diff production HEAD --name-only --diff-filter=d | xargs nvim"
+alias edit-changed-files="git diff master HEAD --name-only --diff-filter=d | xargs nvim"
 alias gclean='git clean -fd'
 alias gpristine='git reset --hard && git clean -ffdx'
-alias gpruneempty='find .git -type d -empty -delete -print'
-alias guberbase='git sync && git rebase master'
+alias gpruneempty='find .git -type d -empty -delete'
+alias gst='git status'
+alias guberbase="git sync && git rebase \$(git ls-remote --symref origin HEAD | awk -F' *|/|\t*' '/^ref:/ {print \$4}')"
 
 # k8s, docker, etc...
 alias kl="kubectl"
@@ -168,7 +173,7 @@ if [[ $(which bat) =~ ^\/ ]]; then
 fi
 
 #https://stackoverflow.com/a/30029855
-listening() {
+function listening {
   if [ $# -eq 0 ]; then
     sudo lsof -iTCP -sTCP:LISTEN -n -P
   elif [ $# -eq 1 ]; then
@@ -176,4 +181,17 @@ listening() {
   else
     echo "Usage: listening [pattern]"
   fi
+}
+
+function urlencode {
+  python -c 'import urllib, sys; print urllib.quote(sys.argv[1], sys.argv[2])' "$1" "$urlencode_safe"
+}
+
+alias kill_pulse_secure="ps aux | grep -i '[p]ulse' | awk '{print \$2}' | xargs sudo kill"
+
+# systemd-notify is the usual tool for notifying Systemd about service updates, but it can't be run by non-root users until Systemd 246.
+# So in the meantime, we'll use Python to do it which for some unknown reason does work for non-root users.
+function systemd_notify {
+  [[ -n $NOTIFY_SOCKET ]] || { echo "NOTIFY_SOCKET not set in the environment, so can't update Systemd"; exit 3; }
+  python3 -c "import socket; socket.socket(family=socket.AF_UNIX, type=socket.SOCK_DGRAM).sendto('${1}'.encode('utf-8'), '${NOTIFY_SOCKET}')"
 }

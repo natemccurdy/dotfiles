@@ -69,9 +69,6 @@ let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
-" PolyGot Settings
-let g:polyglot_disabled = ['puppet']
-
 " NetRW
 " Don't show the banner
 let g:netrw_banner = 0
@@ -83,6 +80,15 @@ let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 " Open selection on the right when splitting
 let g:netrw_altv = 1
+
+
+" Semshi python
+" https://github.com/numirias/semshi
+let g:semshi#error_sign = v:false
+"let g:semshi#simplify_markup = v:false
+
+" vim-python
+let g:python_highlight_all = 1
 
 " }}}
 " ALE FIXERS {{{
@@ -249,11 +255,17 @@ command! RubocopFix execute ':w' | execute ':silent !rubocop -a %' | execute ':r
 " Prettify YAML using Python's ruamel.yaml (requires pip install ruamel.yaml)
 command! YAMLPretty execute '%!yaml_pretty.py'
 
-" Fix Python issues using autopep8 (requires brew install autopep8)
-command! PythonFix execute ':w' | execute ':silent !autopep8 -i -a -a %' | execute ':redraw!' | execute ':edit!'
+" Fix Python issues using cblack (requires 'pip3 install cblack': https://github.com/pausan/cblack)
+command! PythonFix execute ':w' | execute ':silent !cblack -l 100 %' | execute ':redraw!' | execute ':edit!'
 
 " Open NetRW with \` (backslash then backtick)
 noremap <silent> <Leader>` :Vexplore<CR>
+
+" Open fzf's Files search with \f (backslash then f)
+noremap <silent> <Leader>f :Files<CR>
+
+" Open fzf's RipGrep search with \r (backslash then r)
+noremap <silent> <Leader>r :Rg<CR>
 
 " Close buffer without removing its window
 command! Bd bp|bd #

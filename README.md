@@ -18,9 +18,9 @@ COMPUTER_NAME=foo ./bootstrap_new_mac.sh
 1. oh-my-zsh: `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 1. `mkdir ~/src`
 
-I use the [PowerLevel9k](https://github.com/bhilburn/powerlevel9k.git) ZSH theme
+I use the [PowerLevel10k](https://github.com/romkatv/powerlevel10k.git) ZSH theme
 
-1. `git clone https://github.com/bhilburn/powerlevel9k.git ~/src/powerlevel9k`
+1. `git clone --depth 1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10kL
 
 ### Homesick
 
