@@ -7,6 +7,9 @@ __source_if_exists() {
 # confirmations, etc.) must go above this block, everything else may go below.
 __source_if_exists "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
+# Prevent slow copy/paste of long commands: https://github.com/ohmyzsh/ohmyzsh/issues/6338
+DISABLE_MAGIC_FUNCTIONS=true
+
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -17,7 +20,7 @@ COMPLETION_WAITING_DOTS=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(ssh-agent git macos vagrant docker)
+plugins=(gitfast macos vagrant docker)
 
 # Color correct paths rather than underlining them.
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -75,3 +78,18 @@ __source_if_exists ~/.p10k.zsh
 # Customizations to the p10k prompt (this must be after source ~/.p10k.zsh)
 POWERLEVEL9K_STATUS_OK=false  # Only show return code status on failure, not success.
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=("${(@)POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS:#command_execution_time}") # Remove the 'command_execution_time' prompt segment.
+
+__source_if_exists ~/.fzf.zsh
+
+# fd is faster when searching with fzf (useful in vim with the fzf plugin and :Files command)
+export FZF_DEFAULT_COMMAND='fd --type f'
+
+# Prevent duplicate entries from beting added to PATH. Must be at the end of zshrc.
+typeset -U path
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+
+export GOPATH=$HOME/src/go
+
