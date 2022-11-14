@@ -195,3 +195,7 @@ function systemd_notify {
   [[ -n $NOTIFY_SOCKET ]] || { echo "NOTIFY_SOCKET not set in the environment, so can't update Systemd"; exit 3; }
   python3 -c "import socket; socket.socket(family=socket.AF_UNIX, type=socket.SOCK_DGRAM).sendto('${1}'.encode('utf-8'), '${NOTIFY_SOCKET}')"
 }
+
+# Allow for running 'watch' with alias'ed commands
+alias watch='watch '
+
