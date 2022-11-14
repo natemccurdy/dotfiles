@@ -40,6 +40,7 @@ let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#buffer_min_count = 1
 let g:airline_skip_empty_sections = 1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#branch#vcs_checks = [] " Prevent unnecessary 'git status' calls.
 
 " vim-markdown settings
 let g:markdown_include_jekyll_support = 0
