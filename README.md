@@ -20,7 +20,7 @@ COMPUTER_NAME=foo ./bootstrap_new_mac.sh
 
 I use the [PowerLevel10k](https://github.com/romkatv/powerlevel10k.git) ZSH theme
 
-1. `git clone --depth 1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10kL
+1. `git clone --depth 1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
 
 ### Homesick
 
