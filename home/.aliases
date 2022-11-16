@@ -54,8 +54,8 @@ alias guberbase="git sync && git rebase \$(git ls-remote --symref origin HEAD | 
 alias kl="kubectl"
 # Get shell access to Docker for Mac's host
 alias docker-host="docker run -it --rm --privileged --pid=host justincormack/nsenter1"
-alias docker-rmi-dangling="docker rmi \$(docker images -f 'dangling=true' -q)"
-alias docker-rmc-stopped="docker rm \$(docker ps -a -q)"
+alias docker-rmi-dangling="docker images -f 'dangling=true' -q | xargs -L1 docker rmi"
+alias docker-rmc-stopped="docker ps -a -q | xargs -L1  docker rm"
 alias docker-stopall="docker stop \$(docker ps -a -q)"
 
 # ls alias, or use exa if available
