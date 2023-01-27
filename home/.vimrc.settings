@@ -67,6 +67,7 @@ let g:ale_lint_on_save = 0
 let g:ale_lint_on_text_changed = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
+let g:ale_python_flake8_options = '--append-config $HOME/.config/flake8'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
@@ -100,9 +101,6 @@ let g:ale_fixers = {
 \     ],
 \     'ruby': [
 \       'rubocop',
-\     ],
-\     'python': [
-\       'autopep8',
 \     ],
 \   }
 
@@ -257,7 +255,7 @@ command! RubocopFix execute ':w' | execute ':silent !rubocop -a %' | execute ':r
 command! YAMLPretty execute '%!yaml_pretty.py'
 
 " Fix Python issues using cblack (requires 'pip3 install cblack': https://github.com/pausan/cblack)
-command! PythonFix execute ':w' | execute ':silent !cblack -l 100 %' | execute ':redraw!' | execute ':edit!'
+command! PythonFix execute ':w' | execute ':silent !black -l 100 %' | execute ':redraw!' | execute ':edit!'
 
 " Open NetRW with \` (backslash then backtick)
 noremap <silent> <Leader>` :Vexplore<CR>

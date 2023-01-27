@@ -1,7 +1,7 @@
 " PolyGot Settings
 " For some reason polyglot requires this before loading the plugin :'(
 "let g:polyglot_disabled = ['puppet', 'python', 'python-indent', 'python-compiler']
-let g:polyglot_disabled = ['puppet', 'python-indent']
+let g:polyglot_disabled = ['puppet']
 
 " Vim Plug start
 call plug#begin('~/.vim/plugged')

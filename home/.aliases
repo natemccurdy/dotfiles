@@ -199,3 +199,5 @@ function systemd_notify {
 # Allow for running 'watch' with alias'ed commands
 alias watch='watch '
 
+# Python things
+alias flake8='flake8 --append-config ~/.config/flake8'
