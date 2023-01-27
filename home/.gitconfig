@@ -5,6 +5,7 @@
 
 [alias]
   aliases   = config --get-regexp ^alias\\.
+  br        = branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]'
   cm        = !git add -A && git commit -m
   co        = checkout
   co-latest-tag = !git checkout $(git tag --list | tail -n 1)
