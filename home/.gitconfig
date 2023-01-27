@@ -1,7 +1,7 @@
 [user]
   name = Nate McCurdy
   email = mccurdy.nate@gmail.com
-  signingkey = 3D9B2D32
+  signingkey = 998B474DC612FE37
 
 [alias]
   aliases   = config --get-regexp ^alias\\.
