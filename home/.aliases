@@ -44,6 +44,7 @@ alias branch-rebase-production='git fetch && git rebase origin/production'
 alias cdg='cd "$(git rev-parse --show-toplevel)"'
 alias edit-changed-files-prod="git diff production HEAD --name-only --diff-filter=d | xargs nvim"
 alias edit-changed-files="git diff master HEAD --name-only --diff-filter=d | xargs nvim"
+alias edit-changed-files-main="git diff main HEAD --name-only --diff-filter=d | xargs nvim"
 alias gclean='git clean -fd'
 alias gpristine='git reset --hard && git clean -ffdx'
 alias gpruneempty='find .git -type d -empty -delete'
