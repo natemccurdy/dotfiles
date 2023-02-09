@@ -72,6 +72,14 @@ let g:ale_python_flake8_options = '--append-config $HOME/.config/flake8'
 let g:ale_virtualtext_cursor = 0
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_fixers = {
+\     'puppet': [
+\       'puppetlint',
+\     ],
+\     'ruby': [
+\       'rubocop',
+\     ],
+\   }
 
 " NetRW
 " Don't show the banner
@@ -93,18 +101,6 @@ let g:semshi#error_sign = v:false
 
 " vim-python
 let g:python_highlight_all = 1
-
-" }}}
-" ALE FIXERS {{{
-
-let g:ale_fixers = {
-\     'puppet': [
-\       'puppetlint',
-\     ],
-\     'ruby': [
-\       'rubocop',
-\     ],
-\   }
 
 " }}}
 " {{{ SPACES & TABS
