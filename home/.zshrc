@@ -93,3 +93,5 @@ fpath+=~/.zfunc
 
 export GOPATH=$HOME/src/go
 
+# Don't cd to a directory automatically
+unsetopt autocd
