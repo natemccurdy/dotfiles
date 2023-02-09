@@ -27,4 +27,10 @@ def custom_null(self, data):
 
 ruamel.yaml.RoundTripRepresenter.add_representer(type(None), custom_null)
 
-yaml.dump(yaml.load(sys.stdin), sys.stdout)
+# Load a single document from STDIN, then pretty print it.
+# This does NOT support multiple documents at a time.
+#yaml.dump(yaml.load(sys.stdin), sys.stdout)
+
+# Load one or more documents from STDIN, then pretty print it.
+for data in yaml.load_all(sys.stdin):
+    yaml.dump(data, sys.stdout)
