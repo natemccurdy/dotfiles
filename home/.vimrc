@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Valloric/ListToggle'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
-Plug 'chr4/nginx.vim'
 Plug 'dense-analysis/ale'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
