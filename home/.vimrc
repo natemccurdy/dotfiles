@@ -19,6 +19,7 @@ Plug 'morhetz/gruvbox'
 Plug 'rodjek/vim-puppet'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
+Plug 'vitalk/vim-shebang'
 
 call plug#end()
 
