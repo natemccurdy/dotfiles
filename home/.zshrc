@@ -95,3 +95,5 @@ export GOPATH=$HOME/src/go
 
 # Don't cd to a directory automatically
 unsetopt autocd
+
+export HOMEBREW_NO_ANALYTICS=true
