@@ -18,6 +18,14 @@ augroup previous_location
       \|  endif
 augroup end
 
+" Prevent autoindenting comments in YAML files
+" https://unix.stackexchange.com/a/686258
+augroup filetype_yaml
+  autocmd!
+  autocmd BufEnter *.yaml,*.yml
+  \ setlocal indentkeys-=0#
+augroup END
+
 " }}}
 " COLORS {{{
 
