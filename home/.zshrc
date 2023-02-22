@@ -97,3 +97,14 @@ export GOPATH=$HOME/src/go
 unsetopt autocd
 
 export HOMEBREW_NO_ANALYTICS=true
+
+# Create a Powerlevel10k prompt segment that shows that value of $VAULT_ADDR if set.
+function prompt_my_vault_addr() {
+  if [[ -n $VAULT_ADDR ]]; then
+    p10k segment -i '🔐' -f brightwhite -b blue -t "$VAULT_ADDR"
+  fi
+}
+# Add it to the right prompt.
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=my_vault_addr
+# Only show it when running 'vault'.
+typeset -g POWERLEVEL9K_MY_VAULT_ADDR_SHOW_ON_COMMAND='vault'
