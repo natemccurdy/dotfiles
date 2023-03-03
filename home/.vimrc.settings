@@ -150,18 +150,22 @@ set showmatch
 " saving them first.
 set hidden
 
-" Highlight Trailing Whitespace
+" Highlights for various problems.
+" Add to the autogroup below when creating more highlights.
 highlight TrailingWhitespace ctermbg=White guibg=White
-call matchadd('TrailingWhitespace', '\s\+$')
-
-" Highlight Literal Tabs
 highlight LiteralTab ctermbg=Yellow guibg=Yellow
-call matchadd('LiteralTab', '\t')
-
-" Highlight non-ASCII characters
 " https://stackoverflow.com/a/26209681
 highlight NonASCII ctermbg=DarkRed guibg=DarkRed
-call matchadd('NonASCII', '[^\u0000-\u007F]')
+" I can't add this to the autogroup because FZF's file window is drawn with
+" special characters, so it's all red and looks terrible.
+"          \ call matchadd('NonASCII', '[^\u0000-\u007F]')
+
+augroup HighlightProblems
+    autocmd!
+    autocmd winEnter,BufEnter * call clearmatches() |
+          \ call matchadd('TrailingWhitespace', '\s\+$') |
+          \ call matchadd('LiteralTab', '\t')
+augroup END
 
 " Highlight Colors
 highlight Default                     ctermfg=1

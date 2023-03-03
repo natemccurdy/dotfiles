@@ -2,6 +2,7 @@
 #
 # Run this on a stock Mac to bootstrap it with Nate's dotfiles and customizations
 #
+set -euo pipefail
 
 # Ask for the administrator password upfront
 echo "Asking for your sudo password upfront..."
@@ -11,14 +12,11 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install homebrew and git (xcode tools)
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew doctor
 
 # Create our code directory
 [[ -d ~/src ]] || mkdir ~/src
-
-# Grab PowerLevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # Grab Tmux Plugin Manager
 mkdir -p ~/.tmux/plugins/
@@ -33,12 +31,11 @@ homesick symlink dotfiles
 brew bundle --file=~/.homesick/repos/dotfiles/Brewfile
 
 # Pin Ruby versions so I don't lose all my gems on upgrade.
-brew pin ruby-build
 brew pin rbenv
+rbenv install $(cat ~/.rbenv/version)
 
 # Install some Puppet and ruby tools
-# TODO: Install rbenv and use that instead.
-#gem install r10k puppet-lint rubocop tmuxinator
+~/.rbenv/versions/$(cat ~/.rbenv/version)/bin/gem install r10k puppet-lint rubocop tmuxinator
 
 # Install vim Plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -50,7 +47,11 @@ vim +PlugInstall +qall
 export CHSH=no
 export RUNZSH=no
 export KEEP_ZSHRC=yes
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+CHSH=no RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Grab PowerLevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 
 # Configure iterm to read preferences out of my dotfiles.
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.homesick/repos/dotfiles/iterm_prefs"

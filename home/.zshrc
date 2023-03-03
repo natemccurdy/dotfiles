@@ -64,8 +64,8 @@ __source_if_exists /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlight
 
 export EDITOR='nvim'
 
-if [[ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]]; then
-  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+__source_if_exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+if [[ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]]; then
   if ! [[ $PATH =~ 'google-cloud-sdk' ]]; then source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc; fi
 fi
 
@@ -98,10 +98,13 @@ unsetopt autocd
 
 export HOMEBREW_NO_ANALYTICS=true
 
+# https://github.com/sp-ricard-valverde/github-act-cache-server
+export ACT_CACHE_AUTH_KEY=helloworld
+
 # Create a Powerlevel10k prompt segment that shows that value of $VAULT_ADDR if set.
 function prompt_my_vault_addr() {
   if [[ -n $VAULT_ADDR ]]; then
-    p10k segment -i '🔐' -f brightwhite -b blue -t "$VAULT_ADDR"
+    p10k segment -i 'LOCK_ICON' -r -f black -b cyan -t "$VAULT_ADDR"
   fi
 }
 # Add it to the right prompt.
