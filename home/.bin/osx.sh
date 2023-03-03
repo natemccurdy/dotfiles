@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 #
-# - Last tested on High Sierra
+# - Last tested on Ventura
 # - A lot of this is borrowed from https://github.com/mathiasbynens/dotfiles/
+#
+# Use https://www.defaults-write.com/ for a good list of 'defaults' examples.
+#
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we're about to change
 osascript -e 'tell application "System Preferences" to quit'
+# Ventura+ changes the name
+osascript -e 'tell application "System Settings" to quit'
 
 # Ask for the administrator password upfront
 sudo -v
@@ -34,7 +39,7 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
 # When to show scroll bars
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
-defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -78,14 +83,14 @@ sudo pmset -a hibernatemode 0
 sudo pmset -a sms 0
 
 # Remove the sleep image file to save disk space
-sudo rm /private/var/vm/sleepimage
+sudo rm /private/var/vm/sleepimage || true
 # Create a zero-byte file instead…
 sudo touch /private/var/vm/sleepimage
 # …and make sure it can’t be rewritten
 sudo chflags uchg /private/var/vm/sleepimage
 
 ###############################################################################
-# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+# Trackpad, mouse, keyboard, TouchBar, Bluetooth accessories, and input       #
 ###############################################################################
 
 # Trackpad: enable tap to click for this user and for the login screen
@@ -123,6 +128,11 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 25
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Show expanded control strip in TouchBar. The default is "appWithControlStrip"
+defaults write com.apple.touchbar.agent PresentationModeGlobal fullControlStrip
+# restart the control strip
+pkill "Touch Bar agent"; killall "ControlStrip"
+
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
@@ -130,6 +140,9 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# Set screensaver to Flurry
+defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName Flurry path "/System/Library/Screen Savers/Flurry.saver" type 0
 
 # Save screenshots to the desktop
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
@@ -196,11 +209,6 @@ defaults write com.apple.dock mouse-over-hilite-stack -bool true
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
 
-# Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
-# the Dock to launch apps.
-defaults write com.apple.dock persistent-apps -array
-
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
 
@@ -226,6 +234,9 @@ defaults write com.apple.dock autohide-time-modifier -float 0
 # Disable the Launchpad gesture (pinch with thumb and three fingers)
 defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
 
+# Reduce the size of the Dock tiles for larger screens
+defaults write com.apple.dock tilesize -int 40
+
 # Reset Launchpad, but keep the desktop wallpaper intact
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
@@ -244,6 +255,41 @@ find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -dele
 # Bottom right screen corner → Start screen saver
 defaults write com.apple.dock wvous-br-corner -int 5
 defaults write com.apple.dock wvous-br-modifier -int 0
+
+# Don't show recent apps in the Dock
+defaults write com.apple.dock show-recents -bool false
+
+# Wipe all app icons from the Dock
+defaults write com.apple.dock persistent-apps -array
+defaults write com.apple.dock persistent-others -array
+
+# Popuplate the Dock with apps
+dock_apps=(
+  "/Applications/Google Chrome.app"
+  "/Applications/Slack.app"
+  "/Applications/iTerm.app"
+  "/System/Applications/System Settings.app"
+)
+
+for app in "${dock_apps[@]}"; do
+  defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file://${app}/</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+done
+
+# Populate the Dock with locations
+dock_others=(
+  "/Applications/"
+  "/Users/${USER}/Downloads/"
+)
+
+for other in "${dock_others[@]}"; do
+defaults write com.apple.dock persistent-others -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file://${other}/</string><key>_CFURLStringType</key><integer>15</integer></dict><key>file-type</key><integer>2</integer><key>displayas</key><integer>1</integer></dict><key>tile-type</key><string>directory-tile</string></dict>"
+done
+
+killall Dock
+# It takes a few seconds for the app's properties to be parsed, then the Dock
+# needs to be reloaded.
+sleep 3
+killall Dock
 
 ###############################################################################
 # Terminal & iTerm 2                                                          #
