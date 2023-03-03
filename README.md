@@ -49,11 +49,9 @@ I use [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) for most of
 GruvBox iTerm2 color scheme. Download it, open it, then set it as your profile's color scheme: <https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors>
 
 
-I use the Meslo Nerd fonts:
+I use the MesloLG Nerd fonts:
 
-1. Follows docs from powerlevel10k: https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
-  * Or just `p10k configure` to install these fonts automatically.
-1. Copy the settings from this screenshot (todo... import these settings somehow)
+1. https://www.nerdfonts.com/font-downloads -- https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Meslo.zip
 
 ![](screenshots/iterm_text_options.png)
 
