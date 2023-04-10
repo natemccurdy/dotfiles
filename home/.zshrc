@@ -48,6 +48,15 @@ if type rbenv >/dev/null ; then
   eval "$(rbenv init -)"
 fi
 
+# Set a global gem cache location for 'bundle install'.
+# https://github.com/rubygems/rubygems/issues/4031
+# https://bugzilla.redhat.com/show_bug.cgi?id=1574594
+if command -v ruby > /dev/null ; then
+  # This resolves to ~/.gem/ruby/<ruby_version>/
+  GEM_HOME="$(ruby -e 'print Gem.user_dir')"
+  export GEM_HOME
+fi
+
 # Source my external alias config
 # NOTE about 'ls': If coreutils is installed, oh-my-zsh will alias ls to gls, but
 #                  something about it is broken which breaks ls. not sure...
