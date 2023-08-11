@@ -45,6 +45,7 @@
 
 [commit]
   verbose = true
+  gpgsign = true
 
 [merge]
   ff = only
