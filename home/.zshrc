@@ -35,13 +35,10 @@ fpath=(~/.zsh/completion $fpath)
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# PATH modifications. Don't modify if we're in TMUX because path_helper does it for us.
-if [[ -z $TMUX ]]; then
-  # Add ~/.bin to PATH
-  if ! [[ $PATH =~ "$HOME/.bin" ]]; then export PATH="$PATH:$HOME/.bin"; fi
-  # Add homebrew's sbin dir to PATH
-  if ! [[ $PATH =~ '/usr/local/sbin' ]]; then export PATH="/usr/local/sbin:$PATH"; fi
-fi
+# Add ~/.bin to PATH
+if ! [[ $PATH =~ "$HOME/.bin" ]]; then export PATH="$PATH:$HOME/.bin"; fi
+# Add homebrew's sbin dir to PATH
+if ! [[ $PATH =~ '/usr/local/sbin' ]]; then export PATH="/usr/local/sbin:$PATH"; fi
 
 # Initialize rbenv
 if type rbenv >/dev/null ; then
@@ -65,9 +62,7 @@ __source_if_exists /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlight
 export EDITOR='nvim'
 
 __source_if_exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-if [[ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]]; then
-  if ! [[ $PATH =~ 'google-cloud-sdk' ]]; then source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc; fi
-fi
+__source_if_exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 
 # Don't share history between zsh sessions.
 unsetopt share_history
@@ -84,14 +79,13 @@ __source_if_exists ~/.fzf.zsh
 # fd is faster when searching with fzf (useful in vim with the fzf plugin and :Files command)
 export FZF_DEFAULT_COMMAND='fd --type f'
 
-# Prevent duplicate entries from beting added to PATH. Must be at the end of zshrc.
-typeset -U path
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
-export GOPATH=$HOME/src/go
+export GOPATH="${HOME}/src/go"
+export PATH="${PATH}:${GOPATH}/bin"
 
 # Don't cd to a directory automatically
 unsetopt autocd
@@ -111,3 +105,6 @@ function prompt_my_vault_addr() {
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=my_vault_addr
 # Only show it when running 'vault'.
 typeset -g POWERLEVEL9K_MY_VAULT_ADDR_SHOW_ON_COMMAND='vault'
+
+# Prevent duplicate entries from beting added to PATH. Must be at the end of zshrc.
+typeset -U path
