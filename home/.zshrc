@@ -83,8 +83,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=("${(@)POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS:#co
 __source_if_exists ~/.fzf.zsh
 
 # fd is faster when searching with fzf (useful in vim with the fzf plugin and :Files command)
-export FZF_DEFAULT_COMMAND='fd --type f'
-
+export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
