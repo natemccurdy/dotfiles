@@ -22,6 +22,12 @@ COMPLETION_WAITING_DOTS=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(gitfast macos vagrant docker)
 
+# Modern docker completion is missing things like image names and container
+# names. Revert to the legacy omz-provided completion for now.
+# This must be before: source $ZSH/oh-my-zsh.sh
+# https://github.com/ohmyzsh/ohmyzsh/issues/11817
+zstyle ':omz:plugins:docker' legacy-completion yes
+
 # Color correct paths rather than underlining them.
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
