@@ -5,7 +5,7 @@ __source_if_exists() {
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
-__source_if_exists "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#__source_if_exists "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # Prevent slow copy/paste of long commands: https://github.com/ohmyzsh/ohmyzsh/issues/6338
 DISABLE_MAGIC_FUNCTIONS=true
@@ -20,7 +20,7 @@ COMPLETION_WAITING_DOTS=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(gitfast macos vagrant docker)
+plugins=(gitfast macos vagrant docker ssh-agent)
 
 # Modern docker completion is missing things like image names and container
 # names. Revert to the legacy omz-provided completion for now.
