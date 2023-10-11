@@ -33,6 +33,14 @@ def run(cmd)
   end
 end
 
+def terraform_fmt(file)
+  if which('terraform')
+    run(['terraform', 'fmt', '-check', file])
+  else
+    puts 'WARNING: terraform not installed. Skipping syntax check of Terraform code.'
+  end
+end
+
 def puppet_parser_validate(file)
   if which('puppet')
     run(['puppet', 'parser', 'validate', '--storeconfigs', file])
@@ -133,6 +141,8 @@ Open3.capture2('git diff --cached --name-only --diff-filter=ACM')[0].each_line d
   file.chomp!
   puts "Processing #{file}"
   case file
+  when /(\.tf$|\.tfvars$)/
+    terraform_fmt file
   when /\.pp$/
     puppet_parser_validate file
     puppet_lint file
