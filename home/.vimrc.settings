@@ -88,6 +88,8 @@ let g:ale_fixers = {
 \       'rubocop',
 \     ],
 \   }
+" revive isn't enabled by default, so add it.
+let g:ale_linters = { 'go': ['gofmt', 'golangci-lint', 'gopls', 'govet', 'revive'] }
 
 " NetRW
 " Don't show the banner
@@ -160,11 +162,19 @@ highlight NonASCII ctermbg=DarkRed guibg=DarkRed
 " special characters, so it's all red and looks terrible.
 "          \ call matchadd('NonASCII', '[^\u0000-\u007F]')
 
+fun! AddLiteralTabMatch()
+    " Don't add it on these filetypes.
+    if &ft =~ 'go\|cue'
+        return
+    endif
+    call matchadd('LiteralTab', '\t')
+endfun
+
 augroup HighlightProblems
     autocmd!
     autocmd winEnter,BufEnter * call clearmatches() |
           \ call matchadd('TrailingWhitespace', '\s\+$') |
-          \ call matchadd('LiteralTab', '\t')
+          \ call AddLiteralTabMatch()
 augroup END
 
 " Highlight Colors

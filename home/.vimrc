@@ -11,8 +11,11 @@ Plug 'Valloric/ListToggle'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'dense-analysis/ale'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'github/copilot.vim'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
+Plug 'jjo/vim-cue'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
