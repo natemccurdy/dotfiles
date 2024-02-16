@@ -68,14 +68,18 @@ highlight GitGutterChange       ctermbg=235 ctermfg=208
 highlight GitGutterDelete       ctermbg=235 ctermfg=9
 highlight GitGutterChangeDelete ctermbg=235 ctermfg=175
 
+" vim-go
+let g:go_template_autocreate = 0 " Disable auto-creation of template files
+
 " ALE Options
-let g:ale_completion_enabled = 1
 let g:airline#extensions#ale#enabled = 1  " Use the vim-airline integration
+let g:ale_completion_enabled = 1
+let g:ale_go_golangci_lint_package = 1  " Run golangci-lint on the entire Go package
 let g:ale_lint_on_save = 0
 let g:ale_lint_on_text_changed = 1
+let g:ale_python_flake8_options = '--append-config $HOME/.config/flake8'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-let g:ale_python_flake8_options = '--append-config $HOME/.config/flake8'
 " Disable inline diagnostics messages: https://github.com/dense-analysis/ale/issues/4439
 let g:ale_virtualtext_cursor = 0
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
@@ -88,16 +92,14 @@ let g:ale_fixers = {
 \       'rubocop',
 \     ],
 \   }
-" revive isn't enabled by default, so add it.
-let g:ale_linters = { 'go': ['gofmt', 'golangci-lint', 'gopls', 'govet', 'revive'] }
 
 " NetRW
 " Don't show the banner
 let g:netrw_banner = 0
 " Tree list view
 let g:netrw_liststyle = 3
-" 25% width
-let g:netrw_winsize = 25
+" 15% width
+let g:netrw_winsize = 15
 " Open selection in previous window
 let g:netrw_browse_split = 4
 " Open selection on the right when splitting
@@ -115,7 +117,7 @@ let g:python_highlight_all = 1
 " }}}
 " {{{ SPACES & TABS
 
-set tabstop=2
+set tabstop=4
 set expandtab
 set shiftwidth=2
 set softtabstop=2
@@ -277,8 +279,9 @@ command! YAMLPretty execute '%!yaml_pretty.py'
 " Fix Python issues using cblack (requires 'pip3 install cblack': https://github.com/pausan/cblack)
 command! PythonFix execute ':w' | execute ':silent !black %' | execute ':redraw!' | execute ':edit!'
 
-" Open NetRW with \` (backslash then backtick)
-noremap <silent> <Leader>` :Vexplore<CR>
+" Open file explorer with \` (backslash then backtick)
+"noremap <silent> <Leader>` :Lexplore<CR>
+noremap <silent> <Leader>` :NERDTreeToggle <CR>
 
 " Open fzf's Files search with \f (backslash then f)
 noremap <silent> <Leader>f :Files<CR>
