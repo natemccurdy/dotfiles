@@ -66,13 +66,13 @@ alias docker-rmi-dangling="docker images -f 'dangling=true' -q | xargs -L1 docke
 alias docker-rmc-stopped="docker ps -a -q | xargs -L1  docker rm"
 alias docker-stopall="docker stop \$(docker ps -a -q)"
 
-# ls alias, or use exa if available
-if [[ $(which exa) =~ ^\/ ]]; then
-  alias ls='exa --group-directories-first'
-  alias ll='exa -l --group-directories-first'
-  alias l='exa -l --group-directories-first'
-  alias la='exa -l --group-directories-first -a'
-  alias lsd='exa -l --group-directories-first -D'
+# ls alias, or use eza if available
+if [[ $(which eza) =~ ^\/ ]]; then
+  alias ls='eza --group-directories-first'
+  alias ll='eza -l --group-directories-first'
+  alias l='eza -l --group-directories-first'
+  alias la='eza -l --group-directories-first -a'
+  alias lsd='eza -l --group-directories-first -D'
 else
   # Detect which 'ls' flavor is in use
   if ls --color > /dev/null 2>&1; then # GNU 'ls'
