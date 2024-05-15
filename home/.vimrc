@@ -14,6 +14,7 @@ let g:polyglot_disabled = ['puppet']
 call plug#begin(data_dir.'/plugged')
 
 " GitHub plugins
+Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
 Plug 'Valloric/ListToggle'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
@@ -26,6 +27,7 @@ Plug 'jjo/vim-cue'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'preservim/nerdtree'
 Plug 'rodjek/vim-puppet'
 Plug 'ryanoasis/vim-devicons'

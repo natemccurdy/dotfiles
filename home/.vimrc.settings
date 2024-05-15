@@ -114,6 +114,14 @@ let g:semshi#error_sign = v:false
 " vim-python
 let g:python_highlight_all = 1
 
+" https://github.com/CopilotC-Nvim/CopilotChat.nvim
+lua << EOF
+require("CopilotChat").setup {
+  debug = true, -- Enable debugging
+  -- See Configuration section for rest
+}
+EOF
+
 " }}}
 " {{{ SPACES & TABS
 
