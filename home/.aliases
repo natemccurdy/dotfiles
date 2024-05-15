@@ -56,7 +56,7 @@ alias gclean='git clean -fd'
 alias gpristine='git reset --hard && git clean -ffdx'
 alias gpruneempty='find .git -type d -empty -delete'
 alias gst='git status'
-alias guberbase="crumb=\$RANDOM && git stash -q -m \$crumb && git sync && git rebase \$(default-branch); if git stash list | tail -n1 | grep -q \$crumb; then git stash pop -q; fi"
+alias guberbase="git sync && git rebase --autostash \$(default-branch)"
 
 # k8s, docker, etc...
 alias k="kubectl"
