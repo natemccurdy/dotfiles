@@ -38,13 +38,18 @@ zstyle :omz:plugins:ssh-agent identities id_rsa
 # Add custom completion scripts
 fpath=(~/.zsh/completion $fpath)
 
+# Explicitly set the history file location. This is the default, but explicitly
+# setting it helps with tools like Kubie to preserve history between subshells.
+# This must be before 'source $ZSH/oh-my-zsh.sh'
+HISTFILE="$HOME/.zsh_history"
+
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Add ~/.bin to PATH
-if ! [[ $PATH =~ "$HOME/.bin" ]]; then export PATH="$PATH:$HOME/.bin"; fi
+export PATH="$PATH:$HOME/.bin"
 # Add homebrew's sbin dir to PATH
-if ! [[ $PATH =~ '/usr/local/sbin' ]]; then export PATH="/usr/local/sbin:$PATH"; fi
+export PATH="/usr/local/sbin:$PATH"
 
 # Initialize rbenv
 if type rbenv >/dev/null ; then
@@ -62,6 +67,9 @@ fi
 
 # kubectl shell completion
 if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+compdef kubecolor=kubectl # fix tab completetion for 'k'
+# Add Krew plugins to PATH.
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 __source_if_exists /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -70,15 +78,12 @@ export EDITOR='nvim'
 __source_if_exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 __source_if_exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 
-# Don't share history between zsh sessions.
-unsetopt share_history
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 __source_if_exists ~/.p10k.zsh
 
 # Customizations to the p10k prompt (this must be after source ~/.p10k.zsh)
 POWERLEVEL9K_STATUS_OK=false  # Only show return code status on failure, not success.
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=("${(@)POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS:#command_execution_time}") # Remove the 'command_execution_time' prompt segment.
 
 __source_if_exists ~/.fzf.zsh
 
