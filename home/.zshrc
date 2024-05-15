@@ -20,13 +20,7 @@ COMPLETION_WAITING_DOTS=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(gitfast macos vagrant docker ssh-agent)
-
-# Modern docker completion is missing things like image names and container
-# names. Revert to the legacy omz-provided completion for now.
-# This must be before: source $ZSH/oh-my-zsh.sh
-# https://github.com/ohmyzsh/ohmyzsh/issues/11817
-zstyle ':omz:plugins:docker' legacy-completion yes
+plugins=(gitfast macos docker ssh-agent aws)
 
 # Color correct paths rather than underlining them.
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -115,6 +109,8 @@ function prompt_my_vault_addr() {
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=my_vault_addr
 # Only show it when running 'vault'.
 typeset -g POWERLEVEL9K_MY_VAULT_ADDR_SHOW_ON_COMMAND='vault'
+
+eval "$(direnv hook zsh)"
 
 # Prevent duplicate entries from beting added to PATH. Must be at the end of zshrc.
 typeset -U path
