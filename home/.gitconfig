@@ -27,34 +27,57 @@
   remote-branches-by-date   = for-each-ref --sort='-committerdate' --format='%(committerdate:local), %(authorname), %(refname:lstrip=3)' 'refs/remotes'
   delete-my-remote-branches = !git for-each-ref --format='%(refname:lstrip=3)' 'refs/remotes/origin/nmccurdy' | xargs git push origin --delete
 
-[push]
-  default = simple
-  followTags = true
+[branch]
+  autosetuprebase = always
 
 [color]
   ui = auto
 
+[commit]
+  gpgsign = true
+  verbose = true
+
 [core]
-  whitespace = trailing-space,space-before-tab
   editor = nvim
   excludesfile = ~/.gitignore
+  #pager = delta
+  whitespace = trailing-space,space-before-tab
 
-[init]
-  templatedir = ~/.git_template
-  defaultBranch = main
+[delta]
+  light = false
+  line-numbers = true
+  navigate = true    # use n and N to move between diff sections
+  #side-by-side = true
+  syntax-theme = gruvbox-dark
 
-[commit]
-  verbose = true
-  gpgsign = true
-
-[merge]
-  ff = only
+[diff]
+  algorithm = histogram
+  #colorMoved = default
 
 [fetch]
   prune = true
 
-[branch]
-  autosetuprebase = always
+[help]
+  autocorrect = 10
+
+[init]
+  defaultBranch = main
+  templatedir = ~/.git_template
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  ff = only
+  conflictstyle = diff3
+
+[push]
+  autoSetupRemote = true
+  default = simple
+  followTags = true
+
+[rerere]
+  enabled = true
 
 [tag]
   gpgsign = true
