@@ -18,14 +18,6 @@ augroup previous_location
       \|  endif
 augroup end
 
-" Prevent autoindenting comments in YAML files
-" https://unix.stackexchange.com/a/686258
-augroup filetype_yaml
-  autocmd!
-  autocmd BufEnter *.yaml,*.yml
-  \ setlocal indentkeys-=0#
-augroup END
-
 " }}}
 " COLORS {{{
 
@@ -39,19 +31,57 @@ colorscheme gruvbox
 "}}}
 " PLUGIN OPTIONS {{{
 
-"vim-airline options
-set laststatus=2
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#buffer_min_count = 1
-let g:airline_skip_empty_sections = 1
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline#extensions#branch#vcs_checks = [] " Prevent unnecessary 'git status' calls.
+" NOTE: inline lua heredocs break syntax highlighting for vimscript. Fix it by
+" running the following from within vim:
+"   !curl -sS https://raw.githubusercontent.com/neovim/neovim/v0.7.2/runtime/syntax/lua.vim > $VIMRUNTIME/syntax/lua.vim
+" See: https://github.com/neovim/neovim/issues/20456
 
-" vim-markdown settings
-let g:markdown_include_jekyll_support = 0
+" https://github.com/nvim-lualine/lualine.nvim
+lua << EOF
+require('lualine').setup {
+  options = {
+    theme = 'gruvbox',
+  },
+  sections = {
+    lualine_c = {
+      -- https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
+      { 'filename', path = 1 }
+    },
+  },
+  extensions = {
+    'fugitive',
+    'quickfix',
+    'nerdtree'
+  }
+}
+EOF
+
+" https://github.com/akinsho/bufferline.nvim
+" :h bufferline-configuration
+lua << EOF
+require("bufferline").setup{
+  options = {
+    show_buffer_close_icons = false,
+    separator_style = "slant",
+  }
+}
+EOF
+
+" https://github.com/nvim-treesitter/nvim-treesitter
+lua << EOF
+require('nvim-treesitter.configs').setup {
+  -- Automatically install missing parsers when entering buffer.
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+  -- Use treesitter highlighting.
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  },
+}
+EOF
 
 " allows cursor change in tmux mode
 if exists('$TMUX')
@@ -62,17 +92,10 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-" Git Gutter
-highlight GitGutterAdd          ctermbg=235 ctermfg=10
-highlight GitGutterChange       ctermbg=235 ctermfg=208
-highlight GitGutterDelete       ctermbg=235 ctermfg=9
-highlight GitGutterChangeDelete ctermbg=235 ctermfg=175
-
 " vim-go
 let g:go_template_autocreate = 0 " Disable auto-creation of template files
 
 " ALE Options
-let g:airline#extensions#ale#enabled = 1  " Use the vim-airline integration
 let g:ale_completion_enabled = 1
 let g:ale_go_golangci_lint_package = 1  " Run golangci-lint on the entire Go package
 let g:ale_lint_on_save = 0
@@ -117,8 +140,7 @@ let g:python_highlight_all = 1
 " https://github.com/CopilotC-Nvim/CopilotChat.nvim
 lua << EOF
 require("CopilotChat").setup {
-  debug = true, -- Enable debugging
-  -- See Configuration section for rest
+  debug = true,
 }
 EOF
 
@@ -129,10 +151,6 @@ set tabstop=4
 set expandtab
 set shiftwidth=2
 set softtabstop=2
-
-" Auto indent
-set autoindent
-set smartindent
 
  " }}}
 " UI CONFIG {{{
@@ -187,20 +205,8 @@ augroup HighlightProblems
           \ call AddLiteralTabMatch()
 augroup END
 
-" Highlight Colors
-highlight Default                     ctermfg=1
-" Darker vertical line between splits.
-highlight vertsplit       ctermbg=235 ctermfg=239
-" Darker line numbers.
-highlight LineNr                      ctermfg=239
 " Highlight search terms with orange.
-highlight Search          ctermbg=235 ctermfg=166
-" Hide the sign column.
-highlight SignColumn      ctermbg=235
-" Hide the rows of '~' at the end of a document.
-highlight EndOfBuffer     ctermbg=235 ctermfg=235
-"highlight StatusLine      ctermbg=245 ctermfg=235
-"highlight StatusLineNC    ctermbg=237 ctermfg=235
+highlight Search  ctermbg=235 ctermfg=166
 
 " New vertical splits go to the right rather than the left
 set splitright
@@ -354,4 +360,4 @@ endfunction
 
 " }}}
 
-" vim:foldmethod=marker:foldlevel=0
+" vim: ft=vim foldmethod=marker foldlevel=0

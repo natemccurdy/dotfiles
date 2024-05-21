@@ -2,10 +2,6 @@ __source_if_exists() {
   # sources a file if it exists
   [[ -f "$1" ]] && source "$1"
 }
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-#__source_if_exists "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # Prevent slow copy/paste of long commands: https://github.com/ohmyzsh/ohmyzsh/issues/6338
 DISABLE_MAGIC_FUNCTIONS=true
@@ -79,6 +75,17 @@ __source_if_exists ~/.p10k.zsh
 # Customizations to the p10k prompt (this must be after source ~/.p10k.zsh)
 POWERLEVEL9K_STATUS_OK=false  # Only show return code status on failure, not success.
 
+# Create a Powerlevel10k prompt segment that shows the value of $VAULT_ADDR if set.
+function prompt_my_vault_addr() {
+  if [[ -n $VAULT_ADDR ]]; then
+    p10k segment -i 'LOCK_ICON' -r -f black -b cyan -t "$VAULT_ADDR"
+  fi
+}
+# Add it to the right prompt.
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=my_vault_addr
+# Only show it when running 'vault'.
+typeset -g POWERLEVEL9K_MY_VAULT_ADDR_SHOW_ON_COMMAND='vault'
+
 __source_if_exists ~/.fzf.zsh
 
 # fd is faster when searching with fzf (useful in vim with the fzf plugin and :Files command)
@@ -98,17 +105,6 @@ export HOMEBREW_NO_ANALYTICS=true
 
 # https://github.com/sp-ricard-valverde/github-act-cache-server
 export ACT_CACHE_AUTH_KEY=helloworld
-
-# Create a Powerlevel10k prompt segment that shows that value of $VAULT_ADDR if set.
-function prompt_my_vault_addr() {
-  if [[ -n $VAULT_ADDR ]]; then
-    p10k segment -i 'LOCK_ICON' -r -f black -b cyan -t "$VAULT_ADDR"
-  fi
-}
-# Add it to the right prompt.
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=my_vault_addr
-# Only show it when running 'vault'.
-typeset -g POWERLEVEL9K_MY_VAULT_ADDR_SHOW_ON_COMMAND='vault'
 
 eval "$(direnv hook zsh)"
 
