@@ -11,7 +11,6 @@ call plug#begin(data_dir.'/plugged')
 " GitHub plugins
 Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
 Plug 'Valloric/ListToggle'
-Plug 'airblade/vim-gitgutter'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'dense-analysis/ale'
 Plug 'ellisonleao/gruvbox.nvim'
@@ -21,6 +20,7 @@ Plug 'godlygeek/tabular'
 Plug 'jjo/vim-cue'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'

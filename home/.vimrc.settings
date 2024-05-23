@@ -83,6 +83,15 @@ require('nvim-treesitter.configs').setup {
 }
 EOF
 
+" https://github.com/lewis6991/gitsigns.nvim
+lua << EOF
+require('gitsigns').setup{
+  signs = {
+    add = { text = '+' },
+  },
+}
+EOF
+
 " allows cursor change in tmux mode
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -216,6 +225,9 @@ set splitbelow
 
 " Always show the sign column
 set signcolumn=yes
+
+" Make the sign column transparent
+highlight clear SignColumn
 
 " }}}
 " SEARCHING {{{
