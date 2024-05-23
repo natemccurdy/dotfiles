@@ -1,12 +1,5 @@
 "  AUTOGROUPS {{{
 
-augroup filetypes
-  autocmd!
-  autocmd BufEnter Rakefile set filetype=ruby
-  autocmd BufEnter Vagrantfile set filetype=ruby
-  autocmd BufEnter Gemfile set filetype=ruby
-augroup end
-
 " Set the filetype based on the file's extension.
 au BufRead,BufNewFile *.epp set filetype=embeddedpuppet
 
