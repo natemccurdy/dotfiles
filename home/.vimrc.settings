@@ -44,7 +44,6 @@ require('lualine').setup {
   extensions = {
     'fugitive',
     'quickfix',
-    'nerdtree'
   }
 }
 EOF
@@ -78,10 +77,27 @@ EOF
 
 " https://github.com/lewis6991/gitsigns.nvim
 lua << EOF
-require('gitsigns').setup{
+require('gitsigns').setup {
   signs = {
     add = { text = '+' },
   },
+}
+EOF
+
+" https://github.com/nvim-tree/nvim-tree.lua
+" disable netrw to avoid conflicts
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+lua << EOF
+require("nvim-tree").setup {
+ view = {
+   width = {}, -- Setting width to a table makes the size dynamic. :h nvim-tree.view.width
+ },
+ renderer = {
+   icons = {
+     git_placement = 'signcolumn', -- Default is 'before'
+   },
+ },
 }
 EOF
 
@@ -117,19 +133,6 @@ let g:ale_fixers = {
 \       'rubocop',
 \     ],
 \   }
-
-" NetRW
-" Don't show the banner
-let g:netrw_banner = 0
-" Tree list view
-let g:netrw_liststyle = 3
-" 15% width
-let g:netrw_winsize = 15
-" Open selection in previous window
-let g:netrw_browse_split = 4
-" Open selection on the right when splitting
-let g:netrw_altv = 1
-
 
 " Semshi python
 " https://github.com/numirias/semshi
@@ -300,7 +303,7 @@ command! PythonFix execute ':w' | execute ':silent !black %' | execute ':redraw!
 
 " Open file explorer with \` (backslash then backtick)
 "noremap <silent> <Leader>` :Lexplore<CR>
-noremap <silent> <Leader>` :NERDTreeToggle <CR>
+noremap <silent> <Leader>` :NvimTreeToggle <CR>
 
 " Open fzf's Files search with \f (backslash then f)
 noremap <silent> <Leader>f :Files<CR>
