@@ -54,7 +54,7 @@ lua << EOF
 require("bufferline").setup{
   options = {
     show_buffer_close_icons = false,
-    separator_style = "slant",
+    separator_style = 'slant',
   }
 }
 EOF
@@ -197,7 +197,7 @@ highlight NonASCII ctermbg=DarkRed guibg=DarkRed
 
 fun! AddLiteralTabMatch()
     " Don't add it on these filetypes.
-    if &ft =~ 'go\|cue'
+    if &ft =~ 'gitcommit\|make\|go\|cue'
         return
     endif
     call matchadd('LiteralTab', '\t')
