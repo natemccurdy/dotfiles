@@ -1,0 +1,25 @@
+---
+base: lua52
+
+globals:
+  vim:
+    any: true # Gets rid of the "vim is not defined" error thrown by Selene.
+  assert:
+    args:
+      - type: bool
+      - type: string
+        required: false
+  after_each:
+    args:
+      - type: function
+  before_each:
+    args:
+      - type: function
+  describe:
+    args:
+      - type: string
+      - type: function
+  it:
+    args:
+      - type: string
+      - type: function

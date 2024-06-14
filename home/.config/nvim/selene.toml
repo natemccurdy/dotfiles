@@ -1,0 +1,9 @@
+# Configures Selene to parse neovim Lua files correctly via a custom standard
+# library called "neovim", defined in neovim.yaml.
+std = "neovim"
+
+[rules]
+global_usage = "allow"
+multiple_statements = "allow"
+incorrect_standard_library_use = "allow"
+mixed_table = "allow" # lazy.nvim plugins use mixed tables.
