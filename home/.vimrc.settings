@@ -1,4 +1,4 @@
-"  AUTOGROUPS {{{
+" AUTOGROUPS {{{
 
 " Set the filetype based on the file's extension.
 au BufRead,BufNewFile *.epp set filetype=embeddedpuppet
@@ -23,11 +23,6 @@ colorscheme gruvbox
 
 "}}}
 " PLUGIN OPTIONS {{{
-
-" NOTE: inline lua heredocs break syntax highlighting for vimscript. Fix it by
-" running the following from within vim:
-"   !curl -sS https://raw.githubusercontent.com/neovim/neovim/v0.7.2/runtime/syntax/lua.vim > $VIMRUNTIME/syntax/lua.vim
-" See: https://github.com/neovim/neovim/issues/20456
 
 " https://github.com/nvim-lualine/lualine.nvim
 lua << EOF
@@ -368,4 +363,4 @@ endfunction
 
 " }}}
 
-" vim: ft=vim foldmethod=marker foldlevel=0
+" vim: ft=vim

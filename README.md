@@ -4,10 +4,12 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 
 ## (Mostly) Auto bootstrap of a new mac
 
-Change the `COMPUTER_NAME` environment variable to be whatever you want. Or leave it out to not change the default computer name.
+Change the `COMPUTER_NAME` environment variable to be whatever you want. Or
+leave it out to not change the default computer name.
 
 ```bash
-curl -O https://raw.githubusercontent.com/natemccurdy/dotfiles/master/bootstrap_new_mac.sh && chmod u+x bootstrap_new_mac.sh
+curl -O https://raw.githubusercontent.com/natemccurdy/dotfiles/master/bootstrap_new_mac.sh \
+  && chmod u+x bootstrap_new_mac.sh
 COMPUTER_NAME=foo ./bootstrap_new_mac.sh
 ```
 
@@ -30,19 +32,22 @@ I use the [PowerLevel10k](https://github.com/romkatv/powerlevel10k.git) ZSH them
 
 ### Homebrew
 
-I use [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) for most of my application installations
+I use [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) for most
+of my application installations
 
 1. Install HomeBrew: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 1. Install all the brews: `homesick cd && brew bundle`
 
-### Vim plugins
+### NeoVim plugins
 
-1. [Vim-Plug](https://github.com/junegunn/vim-plug) Install: `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
-1. Install Vim plugins: `vim +PlugInstall +qall`
+1. Open `nvim`
+1. lazy.nvim will install all plugins, Mason will install tools.
 
 ### Colors and Fonts
 
-GruvBox iTerm2 color scheme. Download it, open it, then set it as your profile's color scheme: <https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors>
+GruvBox iTerm2 color scheme. Download it, open it, then set it as your
+profile's color scheme:
+<https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors>
 
 ```bash
 wget https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors
@@ -67,16 +72,17 @@ rm -rf ~/fonts/
 
 ### MacOS Settings and Tweaks
 
-```
+```bash
 homesick cd && COMPUTER_NAME=foo ./home/.bin/osx.sh
 ```
 
 ## Other Mac Applications
 
-Here are some apps from the Apple Store that I use all the time. They're on Homebrew, but I use the App Store versions so that my registration info is automatically setup.
+Here are some apps from the Apple Store that I use all the time. They're on
+Homebrew, but I use the App Store versions so that my registration info is
+automatically setup.
 
 * Amphetamine: <https://itunes.apple.com/us/app/amphetamine/id937984704?mt=12> or `brew install mas && mas install 937984704`
 * Gifox: <https://gifox.io/>
 * Moom: <https://manytricks.com/moom/>
 * Witch: <https://manytricks.com/witch/>
-
