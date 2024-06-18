@@ -180,7 +180,7 @@ if [[ $(which rg) =~ ^\/ ]]; then
 fi
 
 if [[ $(which bat) =~ ^\/ ]]; then
-  alias cat='bat'
+  alias cat='bat --theme=gruvbox-dark'
 fi
 
 #https://stackoverflow.com/a/30029855
