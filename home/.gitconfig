@@ -1,7 +1,6 @@
 [user]
   name = Nate McCurdy
   email = mccurdy.nate@gmail.com
-  signingkey = 998B474DC612FE37
 
 [alias]
   aliases   = config --get-regexp ^alias\\.
@@ -81,3 +80,6 @@
 
 [tag]
   gpgsign = true
+
+[gpg]
+  format = ssh

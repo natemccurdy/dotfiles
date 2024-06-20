@@ -23,7 +23,7 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 # Load SSH identities
-zstyle :omz:plugins:ssh-agent identities id_rsa
+zstyle :omz:plugins:ssh-agent identities id_rsa id_ed25519
 
 # Add custom completion scripts
 fpath=(~/.zsh/completion $fpath)
