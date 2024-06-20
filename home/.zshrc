@@ -57,7 +57,9 @@ fi
 
 # kubectl shell completion
 if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
-compdef kubecolor=kubectl # fix tab completetion for 'k'
+if type compdef >/dev/null ; then
+  compdef kubecolor=kubectl # fix tab completetion for 'k'
+fi
 # Add Krew plugins to PATH.
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
@@ -106,7 +108,9 @@ export HOMEBREW_NO_ANALYTICS=true
 # https://github.com/sp-ricard-valverde/github-act-cache-server
 export ACT_CACHE_AUTH_KEY=helloworld
 
-eval "$(direnv hook zsh)"
+if type direnv >/dev/null ; then
+  eval "$(direnv hook zsh)"
+fi
 
 # Prevent duplicate entries from beting added to PATH. Must be at the end of zshrc.
 typeset -U path
