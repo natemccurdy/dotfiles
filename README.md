@@ -6,7 +6,7 @@ I use [Homesick](https://github.com/technicalpickles/homesick) to manage my dotf
 
 Change the `COMPUTER_NAME` environment variable to be whatever you want. Or leave it out to not change the default computer name.
 
-```
+```bash
 curl -O https://raw.githubusercontent.com/natemccurdy/dotfiles/master/bootstrap_new_mac.sh && chmod u+x bootstrap_new_mac.sh
 COMPUTER_NAME=foo ./bootstrap_new_mac.sh
 ```
@@ -35,10 +35,6 @@ I use [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) for most of
 1. Install HomeBrew: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 1. Install all the brews: `homesick cd && brew bundle`
 
-### Gems
-
-1. `gem install r10k puppet-lint rubocop`
-
 ### Vim plugins
 
 1. [Vim-Plug](https://github.com/junegunn/vim-plug) Install: `curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
@@ -48,9 +44,24 @@ I use [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) for most of
 
 GruvBox iTerm2 color scheme. Download it, open it, then set it as your profile's color scheme: <https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors>
 
-I use the "MesoLGS Nerd Font" in iTerm2 which is in the `/Meslo/MesloLGSNerdFont-Regular.ttf` file from the `Meslo.tar.xz` release archive.
+```bash
+wget https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors
+open gruvbox-dark.itermcolors
+rm gruvbox-dark.itermcolors
+```
 
-1. https://www.nerdfonts.com/font-downloads -- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz
+I use "MesoLGS Nerd Font" from <https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz>
+
+```bash
+# Install Meslo Nerd Fonts
+mkdir ~/fonts
+cd  ~/fonts
+curl -LsS https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz -o ./Meslo.tar.xz
+tar xf  Meslo.tar.xz
+cp -v MesloLGSNerdFont-*.ttf ~/Library/Fonts/
+cd -
+rm -rf ~/fonts/
+```
 
 ![](screenshots/iterm_text_options.png)
 
@@ -64,18 +75,8 @@ homesick cd && COMPUTER_NAME=foo ./home/.bin/osx.sh
 
 Here are some apps from the Apple Store that I use all the time. They're on Homebrew, but I use the App Store versions so that my registration info is automatically setup.
 
-* Amphetamine: <https://itunes.apple.com/us/app/amphetamine/id937984704?mt=12>
+* Amphetamine: <https://itunes.apple.com/us/app/amphetamine/id937984704?mt=12> or `brew install mas && mas install 937984704`
 * Gifox: <https://gifox.io/>
 * Moom: <https://manytricks.com/moom/>
 * Witch: <https://manytricks.com/witch/>
-
-These installs can be automated with [MAS](https://github.com/mas-cli/mas):
-
-```
-brew install mas
-mas install 937984704    # Amphetamine
-mas install 1082624744   # Gifox
-mas install 419330170    # Moom
-mas install 412485838    # Witch
-```
 
