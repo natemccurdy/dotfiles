@@ -5,8 +5,10 @@
 local keymap = vim.keymap
 
 -- Copy and paste
-keymap.set("v", "p", '"_dp', { desc = "Paste over selection without yanking" })
-keymap.set("v", "P", '"_dP', { desc = "Paste over selection without yanking" })
+keymap.set("v", "p", '"_dp', { desc = "Paste without yanking (after cursor)" })
+keymap.set("v", "P", '"_dP', { desc = "Paste without yanking (before cursor)" })
+keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
+keymap.set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 
 -- Buffers
 keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
