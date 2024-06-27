@@ -7,3 +7,5 @@ vim.opt.cursorlineopt = "number" -- Highlight only the numer, rather than the fu
 vim.opt.mouse = "" -- Disable the mouse (I want tmux's mouse).
 vim.opt.relativenumber = false -- I prefer to start with absolute numbers.
 vim.opt.swapfile = false -- No swap files.
+
+vim.g.trouble_lualine = false -- Don't show Trouble symbols in lualine; I use aeriel.
