@@ -14,6 +14,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      inlay_hints = { enabled = false }, -- Hide inlay hints by default (can be toggled on with <leader>uh).
       servers = {
         -- Add servers from https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
         bashls = {
