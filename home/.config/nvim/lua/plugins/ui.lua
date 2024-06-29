@@ -150,7 +150,10 @@ return {
     "nvimdev/dashboard-nvim",
     opts = {
       config = {
-        header = { "neovim " .. tostring(vim.version()) },
+        -- The Doom theme that LazyVim uses doesn't automatically vertically
+        -- center itself, so add some newlines for vertical padding. See
+        -- https://github.com/nvimdev/dashboard-nvim/issues/354
+        header = vim.split("\n\n\nneovim " .. tostring(vim.version()) .. "\n\n", "\n"),
       },
     },
   },
