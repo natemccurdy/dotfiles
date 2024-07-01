@@ -24,6 +24,7 @@ return {
       puppet = { "puppet-lint" },
       python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
       ruby = { "rubocop" },
+      sh = {}, -- Fall back to the bash-language-server's use of shfmt.
       terraform = { "terraform_fmt" },
       yaml = { "yamlfmt" },
       -- "_" filetypes are any without a configured formatter.

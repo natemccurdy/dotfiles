@@ -6,6 +6,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "bash-language-server",
         "selene", -- Lua
+        "shellcheck",
         "solargraph", -- Ruby LSP
       })
     end,
