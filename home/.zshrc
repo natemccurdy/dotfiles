@@ -23,7 +23,7 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 # Load SSH identities
-zstyle :omz:plugins:ssh-agent identities id_rsa id_ed25519
+zstyle :omz:plugins:ssh-agent identities id_ed25519 id_rsa
 
 # Add custom completion scripts
 fpath=(~/.zsh/completion $fpath)
@@ -42,7 +42,7 @@ export PATH="$PATH:$HOME/.bin"
 export PATH="/usr/local/sbin:$PATH"
 
 # Initialize rbenv
-if type rbenv >/dev/null ; then
+if type rbenv >/dev/null; then
   eval "$(rbenv init -)"
 fi
 
@@ -57,7 +57,7 @@ fi
 
 # kubectl shell completion
 if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
-if type compdef >/dev/null ; then
+if type compdef >/dev/null; then
   compdef kubecolor=kubectl # fix tab completetion for 'k'
 fi
 # Add Krew plugins to PATH.
@@ -70,12 +70,11 @@ export EDITOR='nvim'
 __source_if_exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 __source_if_exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 __source_if_exists ~/.p10k.zsh
 
 # Customizations to the p10k prompt (this must be after source ~/.p10k.zsh)
-POWERLEVEL9K_STATUS_OK=false  # Only show return code status on failure, not success.
+POWERLEVEL9K_STATUS_OK=false # Only show return code status on failure, not success.
 
 # Create a Powerlevel10k prompt segment that shows the value of $VAULT_ADDR if set.
 function prompt_my_vault_addr() {
@@ -108,7 +107,7 @@ export HOMEBREW_NO_ANALYTICS=true
 # https://github.com/sp-ricard-valverde/github-act-cache-server
 export ACT_CACHE_AUTH_KEY=helloworld
 
-if type direnv >/dev/null ; then
+if type direnv >/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
