@@ -93,8 +93,10 @@ return {
         })
       end
 
-      -- Show LSPs and formatters in lualine_z instead of the date/time.
+      -- Show LSPs, linters, and formatters in lualine_z instead of the date/time.
       opts.sections.lualine_z = {
+
+        -- Show running LSPs.
         {
           function()
             local lsps = vim.lsp.get_clients({ bufnr = vim.fn.bufnr() })
@@ -103,40 +105,58 @@ return {
               for _, lsp in ipairs(lsps) do
                 table.insert(names, lsp.name)
               end
-              return string.format("%s", table.concat(names, " "))
+              return " " .. table.concat(names, " ")
             else
               return ""
             end
           end,
         },
+
+        -- Show nvim-lint linters
+        {
+          function()
+            local status, nvim_lint = pcall(require, "lint")
+            if not status then
+              return ""
+            end
+            -- Get linters for the current buffer.
+            local linters = nvim_lint.linters_by_ft[vim.bo.filetype] or {}
+            if linters and #linters > 0 then
+              local names = {}
+              for _, linter in ipairs(linters) do
+                table.insert(names, linter)
+              end
+              return "󱪙 " .. table.concat(names, " ")
+            end
+
+            return ""
+          end,
+        },
+
+        -- Show nvim-conform formatters.
         {
           function()
             -- Check if 'conform' is available
             local status, conform = pcall(require, "conform")
             if not status then
-              return "Conform not installed"
+              return ""
             end
-
-            local lsp_format = require("conform.lsp_format")
 
             -- Get formatters for the current buffer
             local formatters = conform.list_formatters_for_buffer()
             if formatters and #formatters > 0 then
-              local formatterNames = {}
-
+              local names = {}
               for _, formatter in ipairs(formatters) do
-                table.insert(formatterNames, formatter)
+                table.insert(names, formatter)
               end
-
-              return "󰷈 " .. table.concat(formatterNames, " ")
+              return "󰷈 " .. table.concat(names, " ")
             end
 
             -- Check if there's an LSP formatter
             local bufnr = vim.api.nvim_get_current_buf()
-            local lsp_clients = lsp_format.get_format_clients({ bufnr = bufnr })
-
+            local lsp_clients = require("conform.lsp_format").get_format_clients({ bufnr = bufnr })
             if not vim.tbl_isempty(lsp_clients) then
-              return "󰷈 LSP Formatter"
+              return "󰷈 LSP"
             end
 
             return ""
