@@ -9,7 +9,11 @@ echo "Asking for your sudo password upfront..."
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until this has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done 2>/dev/null &
 
 # Install homebrew and git (xcode tools)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -63,9 +67,9 @@ rm gruvbox-dark.itermcolors
 
 # Install Nerd Fonts
 mkdir ~/fonts
-cd  ~/fonts
+cd ~/fonts
 curl -LsS https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz -o ./Meslo.tar.xz
-tar xf  Meslo.tar.xz
+tar xf Meslo.tar.xz
 cp -v MesloLGSNerdFont-*.ttf ~/Library/Fonts/
 cd -
 rm -rf ~/fonts/
@@ -83,4 +87,3 @@ read -r -p "Also, you should reboot. Do that now? [Y/n]: " answer
 if [[ $answer =~ ^[Yy]$ ]]; then
   sudo reboot
 fi
-
