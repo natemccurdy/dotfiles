@@ -63,12 +63,12 @@ fi
 # Add Krew plugins to PATH.
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-__source_if_exists /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+__source_if_exists /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export EDITOR='nvim'
 
-__source_if_exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-__source_if_exists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+__source_if_exists /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+__source_if_exists /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 __source_if_exists ~/.p10k.zsh
