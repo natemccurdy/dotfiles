@@ -45,3 +45,24 @@ local function toggle_list()
   end
 end
 vim.keymap.set("n", "<leader>uL", toggle_list, { desc = "Toggle listchars" })
+
+-- Toggle virtual_text
+LazyVim.toggle.map("<leader>uv", {
+  name = "Virtual Text",
+  get = function()
+    return vim.diagnostic.config().virtual_text ~= false
+  end,
+  set = function(enabled)
+    if enabled then
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = "●",
+          source = "if_many",
+          spacing = 4,
+        },
+      })
+    else
+      vim.diagnostic.config({ virtual_text = false })
+    end
+  end,
+})
