@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 #
 # Run this on a stock Mac to bootstrap it with Nate's dotfiles and customizations
 #
@@ -22,13 +22,14 @@ brew doctor
 
 # Setup rbenv and install Homesick
 brew install rbenv
-export RBENV_VERSION=$(curl -sS https://raw.githubusercontent.com/natemccurdy/dotfiles/main/home/.rbenv/version)
-if ! rbenv versions --bare | grep $RBENV_VERSION; then
-  rbenv install $RBENV_VERSION
+RBENV_VERSION=$(curl -sS https://raw.githubusercontent.com/natemccurdy/dotfiles/main/home/.rbenv/version)
+export RBENV_VERSION
+if ! rbenv versions --bare | grep "$RBENV_VERSION"; then
+  rbenv install "$RBENV_VERSION"
 else
   echo "Ruby $RBENV_VERSION already installed"
 fi
-rbenv global $RBENV_VERSION
+rbenv global "$RBENV_VERSION"
 eval "$(rbenv init -)"
 
 # Get Homesick for dotfiles
@@ -43,17 +44,17 @@ brew bundle --file=~/.homesick/repos/dotfiles/Brewfile
 [[ -d ~/src ]] || mkdir ~/src
 
 # Create a .ssh directory (required for oh-my-zsh to load after install
-mkdir -p $HOME/.ssh
+mkdir -p "$HOME"/.ssh
 
 # Install Oh My ZSH
-# This assumes a new MacOS that's using zsh be default, not bash.
+# This assumes a new MacOS that's using zsh by default, not bash.
 export RUNZSH=no
 export CHSH=no
 export KEEP_ZSHRC=yes
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Grab PowerLevel10k, put it in the oh-my-zsh custom theme folder.
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
 
 # Configure iterm to read preferences out of my dotfiles.
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.homesick/repos/dotfiles/iterm_prefs"
