@@ -33,6 +33,12 @@ fpath=(~/.zsh/completion $fpath)
 # This must be before 'source $ZSH/oh-my-zsh.sh'
 HISTFILE="$HOME/.zsh_history"
 
+# Use homebrew's zsh completions. Must be before oh-my-zsh:
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+if type brew >/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 # Start oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
@@ -47,8 +53,6 @@ if type rbenv >/dev/null; then
 fi
 
 # Source my external alias config
-# NOTE about 'ls': If coreutils is installed, oh-my-zsh will alias ls to gls, but
-#                  something about it is broken which breaks ls. not sure...
 source $HOME/.aliases
 
 if [[ -f $HOME/.ripgreprc ]]; then
