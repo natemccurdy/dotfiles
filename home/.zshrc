@@ -39,7 +39,7 @@ source $ZSH/oh-my-zsh.sh
 # Add ~/.bin to PATH
 export PATH="$PATH:$HOME/.bin"
 # Add homebrew's sbin dir to PATH
-export PATH="/usr/local/sbin:$PATH"
+[[ -d /opt/homebrew/bin ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Initialize rbenv
 if type rbenv >/dev/null; then

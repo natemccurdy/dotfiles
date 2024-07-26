@@ -16,43 +16,43 @@ while true; do
 done 2>/dev/null &
 
 # Install homebrew and git (xcode tools)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 brew doctor
 
 # Setup rbenv and install Homesick
 brew install rbenv
 export RBENV_VERSION=$(curl -sS https://raw.githubusercontent.com/natemccurdy/dotfiles/main/home/.rbenv/version)
-rbenv install $RBENV_VERSION
+if ! rbenv versions --bare | grep $RBENV_VERSION; then
+  rbenv install $RBENV_VERSION
+else
+  echo "Ruby $RBENV_VERSION already installed"
+fi
 rbenv global $RBENV_VERSION
+eval "$(rbenv init -)"
 
 # Get Homesick for dotfiles
 gem install homesick --no-doc
 homesick clone natemccurdy/dotfiles
-homesick symlink dotfiles
+homesick symlink --force dotfiles
 
 # Install HomeBrew apps
 brew bundle --file=~/.homesick/repos/dotfiles/Brewfile
 
-# Install some Puppet and ruby tools
-gem install r10k puppet-lint rubocop tmuxinator
-
-# Create our code directory
+# Create the src directory (where I put all my code and git repos)
 [[ -d ~/src ]] || mkdir ~/src
 
-# Grab Tmux Plugin Manager
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# Install vim Plug
-curl -sSfLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# Get Vim plugins
-vim --headless +PlugInstall +qall
+# Create a .ssh directory (required for oh-my-zsh to load after install
+mkdir -p $HOME/.ssh
 
 # Install Oh My ZSH
 # This assumes a new MacOS that's using zsh be default, not bash.
+export RUNZSH=no
+export CHSH=no
 export KEEP_ZSHRC=yes
-KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Grab PowerLevel10k
+# Grab PowerLevel10k, put it in the oh-my-zsh custom theme folder.
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # Configure iterm to read preferences out of my dotfiles.
@@ -76,14 +76,12 @@ rm -rf ~/fonts/
 
 # Run OSX config script
 echo "Configuring a bunch of OSX things"
-sh ~/.homesick/repos/dotfiles/home/.bin/osx.sh
+bash ~/.homesick/repos/dotfiles/home/.bin/osx.sh
 
 echo
 echo "Finished!"
 echo
-echo "All that's left is to configure iTerm2: https://github.com/natemccurdy/dotfiles#colors-and-fonts"
-echo
-read -r -p "Also, you should reboot. Do that now? [Y/n]: " answer
+read -r -p "You should reboot. Do that now? [Y/n]: " answer
 if [[ $answer =~ ^[Yy]$ ]]; then
   sudo reboot
 fi
