@@ -59,13 +59,7 @@ I use "MesoLGS Nerd Font" from <https://github.com/ryanoasis/nerd-fonts/releases
 
 ```bash
 # Install Meslo Nerd Fonts
-mkdir ~/fonts
-cd  ~/fonts
-curl -LsS https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz -o ./Meslo.tar.xz
-tar xf  Meslo.tar.xz
-cp -v MesloLGSNerdFont-*.ttf ~/Library/Fonts/
-cd -
-rm -rf ~/fonts/
+brew install --cask font-meslo-lg-nerd-font
 ```
 
 ![](screenshots/iterm_text_options.png)

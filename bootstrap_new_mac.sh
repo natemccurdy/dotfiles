@@ -66,15 +66,6 @@ wget https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.i
 open gruvbox-dark.itermcolors
 rm gruvbox-dark.itermcolors
 
-# Install Nerd Fonts
-mkdir ~/fonts
-cd ~/fonts
-curl -LsS https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.tar.xz -o ./Meslo.tar.xz
-tar xf Meslo.tar.xz
-cp -v MesloLGSNerdFont-*.ttf ~/Library/Fonts/
-cd -
-rm -rf ~/fonts/
-
 # Run OSX config script
 echo "Configuring a bunch of OSX things"
 bash ~/.homesick/repos/dotfiles/home/.bin/osx.sh
