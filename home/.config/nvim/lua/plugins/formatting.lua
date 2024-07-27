@@ -17,6 +17,7 @@ return {
   },
   opts = {
     formatters_by_ft = {
+      cue = { "cue_fmt" },
       go = { "goimports", "gofmt" },
       json = { "jq" },
       lua = { "stylua" },
@@ -28,6 +29,12 @@ return {
       yaml = { "yamlfmt" },
       -- "_" filetypes are any without a configured formatter.
       -- ["_"] = { "trim_whitespace", "trim_newlines" }, -- Commented out because this could be dangerous.
+    },
+    formatters = {
+      cue_fmt = {
+        -- Without --files, cue throws "no language version declared in module.cue".
+        args = { "fmt", "--files", "-" },
+      },
     },
   },
 }
