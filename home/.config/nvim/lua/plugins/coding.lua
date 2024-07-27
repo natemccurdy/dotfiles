@@ -5,7 +5,19 @@ return {
       "hrsh7th/cmp-emoji",
     },
     opts = function(_, opts)
+      -- Add emoji completion
       table.insert(opts.sources, { name = "emoji" })
+
+      -- Autocomplete buffer keywords from all open buffers and when other
+      -- completion sources (like LSP and copilot) are active.
+      table.insert(opts.sources, 1, {
+        name = "buffer",
+        option = {
+          get_bufnrs = function()
+            return vim.api.nvim_list_bufs()
+          end,
+        },
+      })
 
       local cmp = require("cmp")
 
