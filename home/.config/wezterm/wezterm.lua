@@ -18,9 +18,13 @@ config.initial_rows = 26 -- height, in cells
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
 
 -- Font
-config.font = wezterm.font("MesloLGS Nerd Font", { weight = "Regular" })
+config.font = wezterm.font({
+	family = "MesloLGS Nerd Font",
+	weight = "Regular",
+	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+})
 config.font_size = 14
-config.harfbuzz_features = { "calt=0", "clig=1", "liga=1" }
+config.adjust_window_size_when_changing_font_size = false
 config.freetype_load_flags = "NO_HINTING"
 config.freetype_load_target = "Light"
 config.freetype_render_target = "HorizontalLcd"
@@ -31,10 +35,10 @@ config.color_scheme = "GruvboxDark"
 config.default_cursor_style = "BlinkingUnderline"
 config.window_decorations = "RESIZE"
 config.window_padding = {
-	-- left = "0.2cell",
-	-- right = "0.2cell",
-	top = "0.8cell",
-	bottom = "0.8cell",
+	left = "0.2cell",
+	right = "0.2cell",
+	top = "0.2cell",
+	bottom = "0.2cell",
 }
 config.inactive_pane_hsb = {
 	saturation = 0.9,
@@ -86,6 +90,7 @@ config.keys = {
 	{ key = "J", mods = "LEADER", action = act.AdjustPaneSize({ "Down", 5 }) },
 	{ key = "K", mods = "LEADER", action = act.AdjustPaneSize({ "Up", 5 }) },
 	{ key = "L", mods = "LEADER", action = act.AdjustPaneSize({ "Right", 5 }) },
+	{ key = "p", mods = "LEADER", action = act.ActivateCommandPalette },
 	{ key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
 	{ key = "1", mods = "LEADER", action = act.ActivateTab(0) },
 	{ key = "2", mods = "LEADER", action = act.ActivateTab(1) },
@@ -126,7 +131,9 @@ config.key_tables = {
 	},
 }
 
+-- Status updates (left and right)
 wezterm.on("update-status", function(window, pane)
+	-- Show if a pane is zoomed in.
 	local our_tab = pane:tab()
 	local is_zoomed = false
 	if pane:tab() ~= nil then
@@ -143,12 +150,12 @@ wezterm.on("update-status", function(window, pane)
 		window:set_left_status("")
 	end
 
-	-- Show which key table is active in the right status area
-	local name = window:active_key_table()
-	if name then
-		name = "TABLE: " .. name
-		window:set_right_status(name or "")
+	-- Show any active key tables.
+	local table_name = window:active_key_table()
+	if table_name then
+		table_name = "key_table: " .. table_name
 	end
+	window:set_right_status(table_name or "")
 end)
 
 return config
