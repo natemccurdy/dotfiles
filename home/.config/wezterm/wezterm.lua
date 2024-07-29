@@ -1,8 +1,13 @@
 local wezterm = require("wezterm")
-local config = wezterm.config_builder()
-local act = wezterm.action
+
+-- Allow working with both the current release and the nightly
+local config = {}
+if wezterm.config_builder then
+	config = wezterm.config_builder()
+end
 
 -- General
+config.front_end = "WebGpu"
 config.automatically_reload_config = true
 config.native_macos_fullscreen_mode = true
 config.initial_cols = 95 -- width, in cells
@@ -12,17 +17,28 @@ config.initial_rows = 26 -- height, in cells
 -- I use capslock which is mapped to ctrl in the OS.
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
 
+-- Font
+config.font = wezterm.font("MesloLGS Nerd Font", { weight = "Regular" })
+config.font_size = 14
+config.harfbuzz_features = { "calt=0", "clig=1", "liga=1" }
+config.freetype_load_flags = "NO_HINTING"
+config.freetype_load_target = "Light"
+config.freetype_render_target = "HorizontalLcd"
+config.cell_width = 0.9
+
 -- Style
 config.color_scheme = "GruvboxDark"
 config.default_cursor_style = "BlinkingUnderline"
-config.font = wezterm.font("MesloLGS Nerd Font")
-config.font_size = 13.5
 config.window_decorations = "RESIZE"
 config.window_padding = {
 	-- left = "0.2cell",
 	-- right = "0.2cell",
 	top = "0.8cell",
 	bottom = "0.8cell",
+}
+config.inactive_pane_hsb = {
+	saturation = 0.9,
+	brightness = 0.7,
 }
 
 -- Tabs
@@ -35,7 +51,7 @@ config.use_fancy_tab_bar = true
 -- With the fancy tab bar, font and background are set in config.window_frame.
 config.window_frame = {
 	-- The font used in the tab bar.
-	font = wezterm.font("MesloLGS Nerd Font", { weight = "Bold" }),
+	font = wezterm.font("MesloLGS Nerd Font", { weight = "Medium" }),
 	-- The size of the font in the tab bar.
 	font_size = 12.0,
 	active_titlebar_bg = "rgba(0,0,0,0)",
@@ -54,16 +70,8 @@ config.colors = {
 	},
 }
 
--- Show which key table is active in the status area
-wezterm.on("update-right-status", function(window, _)
-	local name = window:active_key_table()
-	if name then
-		name = "TABLE: " .. name
-	end
-	window:set_right_status(name or "")
-end)
-
 -- Keybindings (very tmux-like)
+local act = wezterm.action
 config.keys = {
 	-- Make ctrl+a move cursor to start of line. Use "<leader>+a a".
 	{ key = "a", mods = "LEADER", action = act.SendKey({ key = "a", mods = "CTRL" }) },
@@ -117,5 +125,30 @@ config.key_tables = {
 		{ key = "Escape", action = "PopKeyTable" },
 	},
 }
+
+wezterm.on("update-status", function(window, pane)
+	local our_tab = pane:tab()
+	local is_zoomed = false
+	if pane:tab() ~= nil then
+		for _, pane_attributes in pairs(our_tab:panes_with_info()) do
+			is_zoomed = pane_attributes["is_zoomed"] or is_zoomed
+		end
+	end
+	if is_zoomed then
+		window:set_left_status(wezterm.format({
+			{ Background = { Color = "rgba(0,0,0,0)" } },
+			{ Text = " 🔍" },
+		}))
+	else
+		window:set_left_status("")
+	end
+
+	-- Show which key table is active in the right status area
+	local name = window:active_key_table()
+	if name then
+		name = "TABLE: " .. name
+		window:set_right_status(name or "")
+	end
+end)
 
 return config
