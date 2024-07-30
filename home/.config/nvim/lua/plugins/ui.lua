@@ -30,69 +30,6 @@ return {
       -- Match my theme.
       opts.options.theme = "gruvbox-material"
 
-      -- Overrides for lualine_c. I'm just copying the default and modifying
-      -- the entire table because modifying sub-tables reliably is beyond me.
-      -- Default: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/ui.lua
-      local icons = LazyVim.config.icons
-      opts.sections.lualine_c = {
-        LazyVim.lualine.root_dir(),
-        {
-          "diagnostics",
-          symbols = {
-            error = icons.diagnostics.Error,
-            warn = icons.diagnostics.Warn,
-            info = icons.diagnostics.Info,
-            hint = icons.diagnostics.Hint,
-          },
-        },
-        -- Show file type's text and icon.
-        { "filetype", icon_only = false, separator = "", padding = { left = 1, right = 0 } },
-        -- Don't truncate file paths.
-        { LazyVim.lualine.pretty_path({ length = 0 }) },
-      }
-      -- do not add trouble symbols if aerial is enabled
-      if vim.g.trouble_lualine then
-        local trouble = require("trouble")
-        local symbols = trouble.statusline
-          and trouble.statusline({
-            mode = "symbols",
-            groups = {},
-            title = false,
-            filter = { range = true },
-            format = "{kind_icon}{symbol.name:Normal}",
-            hl_group = "lualine_c_normal",
-          })
-        table.insert(opts.sections.lualine_c, {
-          symbols and symbols.get,
-          cond = symbols and symbols.has,
-        })
-      end
-
-      -- Add aerial symbols to lualine.
-      if not vim.g.trouble_lualine then
-        table.insert(opts.sections.lualine_c, {
-          "aerial",
-          sep = " ", -- separator between symbols
-          sep_icon = "", -- separator between icon and symbol
-
-          -- The number of symbols to render top-down. In order to render only 'N' last
-          -- symbols, negative numbers may be supplied. For instance, 'depth = -1' can
-          -- be used in order to render only current symbol.
-          depth = 5,
-
-          -- When 'dense' mode is on, icons are not rendered near their symbols. Only
-          -- a single icon that represents the kind of current symbol is rendered at
-          -- the beginning of status line.
-          dense = false,
-
-          -- The separator to be used to separate symbols in dense mode.
-          dense_sep = ".",
-
-          -- Color the symbol icons.
-          colored = true,
-        })
-      end
-
       -- Show LSPs, linters, and formatters in lualine_z instead of the date/time.
       opts.sections.lualine_z = {
 
@@ -176,8 +113,8 @@ return {
     end,
   },
 
-  -- Temp fix to vertically center the dashboard.
-  -- TODO: Redo this when https://github.com/LazyVim/LazyVim/pull/3780 is merged.
+  -- Vertically center the dashboard.
+  -- Adapted from: https://github.com/LazyVim/LazyVim/pull/ 3780
   {
     "nvimdev/dashboard-nvim",
     config = function(_, opts)
