@@ -35,8 +35,8 @@ config.color_scheme = "GruvboxDark"
 config.default_cursor_style = "BlinkingUnderline"
 config.window_decorations = "RESIZE"
 config.window_padding = {
-	left = "0.2cell",
-	right = "0.2cell",
+	left = 0,
+	right = 0,
 	top = "0.2cell",
 	bottom = "0.2cell",
 }
@@ -117,6 +117,33 @@ config.keys = {
 		key = "r",
 		mods = "LEADER",
 		action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false, timeout_milliseconds = 1000 }),
+	},
+	{
+		-- Super Enter: Send the command from one pane to all visible panes.
+		-- https://github.com/wez/wezterm/issues/ 2968
+		-- TODO: Update this to use Semantic Zones with Wezterm shell integration.
+		key = "Enter",
+		mods = "CMD",
+		action = wezterm.action_callback(function(_, pane)
+			-- This regex assumes a powerlevel10k prompt with angled separators,
+			-- sharp heads, and 1 line. Everything between  and  is the command to
+			-- send. This breaks if the command is too long and  isn't at the end of
+			-- the prompt.
+			local prompt_regex = ".*(.-).*"
+			local tab = pane:tab()
+			local txt = pane:get_logical_lines_as_text()
+			local cmd = txt:match(prompt_regex):gsub("^%s+", ""):gsub("%s+$", "")
+			wezterm.log_info("Command:", cmd)
+			for _, p in ipairs(tab:panes()) do
+				if p:pane_id() == pane:pane_id() then
+					wezterm.log_info("Sending \\n to own pane", p)
+					p:send_text("\n")
+				else
+					wezterm.log_info("Sending command\\n to pane", p)
+					p:send_text(cmd .. "\n")
+				end
+			end
+		end),
 	},
 }
 

@@ -66,6 +66,7 @@ fi
 __source_if_exists $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 __source_if_exists $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 __source_if_exists $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+__source_if_exists ~/.config/wezterm/wezterm.sh # Wezterm shell-integration
 
 # FZF key bindings and settings
 source <(fzf --zsh)
