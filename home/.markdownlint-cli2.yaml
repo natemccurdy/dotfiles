@@ -1,0 +1,5 @@
+---
+# https://github.com/markdownlint/markdownlint/blob/main/docs/RULES.md
+config:
+  MD013:
+    line_length: 200
