@@ -41,8 +41,8 @@ config.window_padding = {
 	bottom = "0.2cell",
 }
 config.inactive_pane_hsb = {
-	saturation = 0.9,
-	brightness = 0.7,
+	saturation = 1.0,
+	brightness = 0.9,
 }
 
 -- Tabs
