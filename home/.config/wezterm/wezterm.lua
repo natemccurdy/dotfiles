@@ -10,8 +10,8 @@ end
 config.front_end = "WebGpu"
 config.automatically_reload_config = true
 config.native_macos_fullscreen_mode = true
-config.initial_cols = 95 -- width, in cells
-config.initial_rows = 26 -- height, in cells
+config.initial_cols = 128 -- width, in cells
+config.initial_rows = 32 -- height, in cells
 
 -- TMUX-like leader: ctrl+a
 -- I use capslock which is mapped to ctrl in the OS.
@@ -21,7 +21,7 @@ config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
 config.font = wezterm.font({
 	family = "MesloLGS Nerd Font",
 	weight = "Regular",
-	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	-- harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 })
 config.font_size = 14
 config.adjust_window_size_when_changing_font_size = false
@@ -33,12 +33,12 @@ config.cell_width = 0.9
 -- Style
 config.color_scheme = "GruvboxDark"
 config.default_cursor_style = "BlinkingUnderline"
-config.window_decorations = "RESIZE"
+config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 config.window_padding = {
-	left = 0,
-	right = 0,
-	top = "0.2cell",
-	bottom = "0.2cell",
+	left = "0.2cell",
+	right = "0.1cell",
+	top = "1.6cell",
+	bottom = "0.1cell",
 }
 config.inactive_pane_hsb = {
 	saturation = 1.0,
