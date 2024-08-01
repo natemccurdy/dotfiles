@@ -38,11 +38,12 @@ return {
           function()
             local lsps = vim.lsp.get_clients({ bufnr = vim.fn.bufnr() })
             if lsps and #lsps > 0 then
-              local names = {}
-              for _, lsp in ipairs(lsps) do
-                table.insert(names, lsp.name)
-              end
-              return " " .. table.concat(names, " ")
+              -- local names = {}
+              -- for _, lsp in ipairs(lsps) do
+              --   table.insert(names, lsp.name)
+              -- end
+              -- return " " .. table.concat(names, " ")
+              return " " .. tostring(#lsps)
             else
               return ""
             end
@@ -59,11 +60,12 @@ return {
             -- Get linters for the current buffer.
             local linters = nvim_lint.linters_by_ft[vim.bo.filetype] or {}
             if linters and #linters > 0 then
-              local names = {}
-              for _, linter in ipairs(linters) do
-                table.insert(names, linter)
-              end
-              return "󱪙 " .. table.concat(names, " ")
+              -- local names = {}
+              -- for _, linter in ipairs(linters) do
+              --   table.insert(names, linter)
+              -- end
+              -- return "󱪙 " .. table.concat(names, " ")
+              return "󱪙 " .. tostring(#linters)
             end
 
             return ""
@@ -103,7 +105,8 @@ return {
             end
 
             if #names > 0 then
-              return "󰷈 " .. table.concat(names, " ")
+              -- return "󰷈 " .. table.concat(names, " ")
+              return "󰷈 " .. tostring(#names)
             else
               return ""
             end
