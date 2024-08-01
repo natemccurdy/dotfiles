@@ -13,10 +13,10 @@
   cp        = cherry-pick
   ec        = config --global -e
   hash      = rev-parse HEAD
-  hist      = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
-  hista     = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order --all
-  hist-iso  = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%ci)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
-  hist-rfc  = log --pretty=format:'%C(dim cyan)%G?%C(reset) %C(yellow)%h%C(reset) - %C(green)(%cD)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
+  hist      = log --pretty=format:'%C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
+  hista     = log --pretty=format:'%C(yellow)%h%C(reset) - %C(green)(%cr)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order --all
+  hist-iso  = log --pretty=format:'%C(yellow)%h%C(reset) - %C(green)(%ci)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
+  hist-rfc  = log --pretty=format:'%C(yellow)%h%C(reset) - %C(green)(%cD)%C(reset) %C(cyan)%an%C(reset) %s %C(bold blue)%d%C(reset)' --graph --date-order
   prune     = fetch --all --prune
   stash-all = stash save --include-untracked
   unstage   = reset HEAD --
