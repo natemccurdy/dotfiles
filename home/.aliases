@@ -63,6 +63,9 @@ alias k="kubecolor" # https://github.com/kubecolor/kubecolor
 alias kubectl="kubecolor"
 alias kctx='kubie ctx'
 alias kns='kubie ns'
+alias kompleted-pods="kubectl get pod --field-selector=status.phase==Succeeded -A"
+alias kompleted-pods-delete="kubectl delete pod --field-selector=status.phase==Succeeded -A"
+
 # Get shell access to Docker for Mac's host
 alias docker-host="docker run -it --rm --privileged --pid=host justincormack/nsenter1"
 alias docker-rmi-dangling="docker images -f 'dangling=true' -q | xargs -L1 docker rmi"
@@ -78,7 +81,7 @@ if [[ $(which eza) =~ ^\/ ]]; then
   alias lsd='eza -l --group-directories-first -D'
 else
   # Detect which 'ls' flavor is in use
-  if ls --color > /dev/null 2>&1; then # GNU 'ls'
+  if ls --color >/dev/null 2>&1; then # GNU 'ls'
     colorflag="--color"
   else # OS X 'ls'
     colorflag="-G"
@@ -115,8 +118,8 @@ alias publicip="dig +short myip.opendns.com @resolver1.opendns.com 2>/dev/null"
 alias localip="ipconfig getifaddr en0"
 #alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 function ips {
-  /opt/puppetlabs/bin/facter networking --json | \
-  jq -r '.networking.interfaces | keys[] as $int | "\($int) \(.[$int].ip) \(.[$int].ip6)"' | grep -v -E "null\s+null" | sort | column -t
+  /opt/puppetlabs/bin/facter networking --json |
+    jq -r '.networking.interfaces | keys[] as $int | "\($int) \(.[$int].ip) \(.[$int].ip6)"' | grep -v -E "null\s+null" | sort | column -t
 }
 
 # Routes
@@ -133,13 +136,13 @@ alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Canonical hex dump; some systems have this symlinked
-command -v hd > /dev/null || alias hd="hexdump -C"
+command -v hd >/dev/null || alias hd="hexdump -C"
 
 # OS X has no `md5sum`, so use `md5` as a fallback
-command -v md5sum > /dev/null || alias md5sum="md5"
+command -v md5sum >/dev/null || alias md5sum="md5"
 
 # OS X has no `sha1sum`, so use `shasum` as a fallback
-command -v sha1sum > /dev/null || alias sha1sum="shasum"
+command -v sha1sum >/dev/null || alias sha1sum="shasum"
 
 # Recursively delete `.DS_Store` files
 alias cleanupds="find . -type f -name '*.DS_Store' -ls -delete"
@@ -188,7 +191,7 @@ function listening {
   if [ $# -eq 0 ]; then
     sudo lsof -iTCP -sTCP:LISTEN -n -P
   elif [ $# -eq 1 ]; then
-    sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
+    sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color "$1"
   else
     echo "Usage: listening [pattern]"
   fi
@@ -203,7 +206,10 @@ alias kill_pulse_secure="ps aux | grep -i '[p]ulse' | awk '{print \$2}' | xargs 
 # systemd-notify is the usual tool for notifying Systemd about service updates, but it can't be run by non-root users until Systemd 246.
 # So in the meantime, we'll use Python to do it which for some unknown reason does work for non-root users.
 function systemd_notify {
-  [[ -n $NOTIFY_SOCKET ]] || { echo "NOTIFY_SOCKET not set in the environment, so can't update Systemd"; exit 3; }
+  [[ -n $NOTIFY_SOCKET ]] || {
+    echo "NOTIFY_SOCKET not set in the environment, so can't update Systemd"
+    exit 3
+  }
   python3 -c "import socket; socket.socket(family=socket.AF_UNIX, type=socket.SOCK_DGRAM).sendto('${1}'.encode('utf-8'), '${NOTIFY_SOCKET}')"
 }
 
