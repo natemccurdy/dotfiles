@@ -30,6 +30,12 @@ return {
       -- Match my theme.
       opts.options.theme = "gruvbox-material"
 
+      -- Override LazyVim's default of no options being passed to pretty_path().
+      --   * Don't truncate paths
+      -- NOTE: This assumes pretty_path() is the 4th item in the lualine_c table.
+      -- opts.sections.lualine_c[4] = { LazyVim.lualine.pretty_path({ length = 0 }) }
+      opts.sections.lualine_c[4] = { "filename", path = 3 }
+
       -- Show LSPs, linters, and formatters in lualine_z instead of the date/time.
       opts.sections.lualine_z = {
 
