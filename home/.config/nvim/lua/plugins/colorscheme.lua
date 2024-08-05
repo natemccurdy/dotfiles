@@ -44,4 +44,11 @@ return {
       colorscheme = "gruvbox-material",
     },
   },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      opts.options.theme = "gruvbox-material"
+    end,
+  },
 }

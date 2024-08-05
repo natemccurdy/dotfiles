@@ -27,9 +27,6 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      -- Match my theme.
-      opts.options.theme = "gruvbox-material"
-
       -- Override LazyVim's default of no options being passed to pretty_path().
       --   * Don't truncate paths
       -- NOTE: This assumes pretty_path() is the 4th item in the lualine_c table.
