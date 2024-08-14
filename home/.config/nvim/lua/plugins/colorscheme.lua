@@ -32,7 +32,7 @@ return {
       vim.g.gruvbox_material_enable_italic = true -- Default: false
       vim.g.gruvbox_material_enable_bold = true -- Default: false
       vim.g.gruvbox_material_transparent_background = 0 -- 0 (default), 1, 2
-      vim.g.gruvbox_material_float_style = "dim" -- bright (default), dim
+      vim.g.gruvbox_material_float_style = "bright" -- bright (default), dim
       vim.g.gruvbox_material_diagnostic_virtual_text = "colored" -- grey (default), colored, highlighted
     end,
   },
