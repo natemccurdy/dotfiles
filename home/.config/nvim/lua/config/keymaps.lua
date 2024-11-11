@@ -47,7 +47,7 @@ end
 vim.keymap.set("n", "<leader>uL", toggle_list, { desc = "Toggle listchars" })
 
 -- Toggle virtual_text
-LazyVim.toggle.map("<leader>uv", {
+Snacks.toggle({
   name = "Virtual Text",
   get = function()
     return vim.diagnostic.config().virtual_text ~= false
@@ -65,7 +65,7 @@ LazyVim.toggle.map("<leader>uv", {
       vim.diagnostic.config({ virtual_text = false })
     end
   end,
-})
+}):map("<leader>uv")
 
 -- Show linters for the current file type
 vim.api.nvim_create_user_command("LintInfo", function()
