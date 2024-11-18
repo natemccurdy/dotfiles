@@ -15,12 +15,9 @@ export GOPATH="${HOME}/src/go"
 export PATH="${PATH}:${GOPATH}/bin"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-# Add homebrew's bin dir to PATH
-[[ -f /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# Add homebrew's completions to zsh. Must be before sourcing oh-my-zsh.sh
-# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+# Add homebrew's bin dir to PATH and setup completions.
+# Must be before sourcing oh-my-zsh.sh
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Oh-my-zsh setup
 # Prevent slow copy/paste of long commands with oh-my-zsh. Must be before
