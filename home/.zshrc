@@ -79,6 +79,11 @@ if type direnv >/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+# thefuck initialization
+if type thefuck >/dev/null; then
+  eval "$(thefuck --alias)"
+fi
+
 # Highlight command paths with color instead of underlines.
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
