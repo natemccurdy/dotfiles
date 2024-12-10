@@ -20,3 +20,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.go.backupext = backup
   end,
 })
+
+-- Treat "foo.<ext>.tpl" files as ft=<ext> rather than ft=tpl.
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.*.tpl",
+  callback = function()
+    local filename = vim.fn.expand("<afile>")
+    local ext = filename:match("%.([^.]+)%.tpl$")
+    if ext then
+      vim.bo.filetype = ext
+    end
+  end,
+})
