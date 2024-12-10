@@ -19,6 +19,7 @@ return {
         bashls = {
           filetypes = { "sh", "zsh" },
         },
+        powershell_es = {},
       },
     },
   },
