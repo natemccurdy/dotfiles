@@ -25,7 +25,6 @@ return {
       python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
       ruby = {}, -- Use ruby-lsp's built-in Rubocop formatter, not LazyVim's extra-supplied rubocop conform formatter.
       sh = { "shellharden", lsp_format = "first" }, -- Format with the bash-language-server's shfmt first.
-      terraform = { "terraform_fmt" },
       yaml = { "yamlfmt" },
       -- "_" filetypes are any without a configured formatter.
       -- ["_"] = { "trim_whitespace", "trim_newlines" }, -- Commented out because this could be dangerous.
