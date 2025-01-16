@@ -18,3 +18,4 @@ vim.g.lazyvim_python_lsp = "basedpyright" -- basedpyright instead of pyright.
 vim.g.lazyvim_ruby_formatter = "rubocop"
 vim.g.lazyvim_ruby_lsp = "ruby_lsp"
 vim.g.trouble_lualine = false -- Don't show Trouble symbols in lualine; I use navic.
+vim.g.snacks_animate = false -- Disable UI animations.
