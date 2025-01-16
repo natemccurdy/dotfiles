@@ -119,10 +119,11 @@ return {
     end,
   },
 
+  -- https://www.lazyvim.org/plugins/ui#snacksnvim
   {
-    "lukas-reineke/indent-blankline.nvim",
+    "snacks.nvim",
     opts = {
-      enabled = false, -- Start disabled. Toggle with <leader>uL
+      indent = { enabled = false }, -- Disable indent guide lines. Toggle with <leader>ug
     },
   },
 }
