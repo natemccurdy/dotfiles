@@ -19,6 +19,9 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # Must be before sourcing oh-my-zsh.sh
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# Load custom zsh completions. Must be before oh-my-zsh.
+fpath=(~/.zsh/completions $fpath)
+
 # Oh-my-zsh setup
 # Prevent slow copy/paste of long commands with oh-my-zsh. Must be before
 # sourcing oh-my-zsh.sh https://github.com/ohmyzsh/ohmyzsh/issues/6338
