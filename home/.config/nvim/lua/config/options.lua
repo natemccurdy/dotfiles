@@ -2,6 +2,10 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Temporary fix for "Inspect" erroring out in NeoVIm 0.10.3. Fixed in 0.10.4.
+-- https://github.com/neovim/neovim/issues/ 31675
+vim.hl = vim.highlight
+
 -- General neovim options. Assumes defaults from NeoVim 0.10.0 and LazyVim are set.
 vim.opt.clipboard = "" -- LazyVim defaults to "unnamedplus". I want more control of what goes into the clipboard.
 vim.opt.conceallevel = 0 -- Don't conceal text (e.g. quotes in json, backticks in markdown).
