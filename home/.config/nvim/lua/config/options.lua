@@ -23,3 +23,6 @@ vim.g.lazyvim_ruby_formatter = "rubocop"
 vim.g.lazyvim_ruby_lsp = "ruby_lsp"
 vim.g.trouble_lualine = false -- Don't show Trouble symbols in lualine; I use navic.
 vim.g.snacks_animate = false -- Disable UI animations.
+
+-- Prefer Treesitter's highlights rather than LSP Semantic highlights.
+vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
