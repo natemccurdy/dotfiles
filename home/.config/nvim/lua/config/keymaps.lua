@@ -15,7 +15,7 @@ keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 keymap.set("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 
 -- Copilot
-local copilot_on = false -- I start with Copilot OFF
+local copilot_on = true -- I start with Copilot ON
 vim.api.nvim_create_user_command("CopilotToggle", function()
   if copilot_on then
     vim.cmd("Copilot disable")
