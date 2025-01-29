@@ -30,8 +30,16 @@ config.freetype_load_target = "Light"
 config.freetype_render_target = "HorizontalLcd"
 config.cell_width = 0.9
 
+-- Color
+-- https://wezfurlong.org/wezterm/colorschemes/index.html
+-- config.color_scheme = "rose-pine-moon"
+-- config.color_scheme = "Rosé Pine Moon (base16)"
+-- config.color_scheme = "oldworld"
+config.color_scheme = "Gruvbox Dark (Gogh)"
+-- config.color_scheme = "Gruvbox dark, medium (base16)"
+-- config.color_scheme = "Gruvbox Material (Gogh)"
+
 -- Style
-config.color_scheme = "GruvboxDark"
 config.default_cursor_style = "BlinkingUnderline"
 config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 config.window_padding = {

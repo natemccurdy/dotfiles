@@ -1,31 +1,31 @@
 return {
-  -- {
-  --   "ellisonleao/gruvbox.nvim",
-  --   version = false,
-  --   config = function()
-  --     require("gruvbox").setup({
-  --       -- https://github.com/ellisonleao/gruvbox.nvim/issues/230
-  --       --
-  --       -- Also see this issue with more specific highlight overrides that
-  --       -- might be useful:
-  --       -- https://github.com/ellisonleao/gruvbox.nvim/issues/305#issuecomment-1853057993
-  --       overrides = {
-  --         CursorLineNr = { bg = "" }, -- https://github.com/ellisonleao/gruvbox.nvim/discussions/344
-  --         GruvboxAquaSign = { bg = "" },
-  --         GruvboxBlueSign = { bg = "" },
-  --         GruvboxGreenSign = { bg = "" },
-  --         GruvboxOrangeSign = { bg = "" },
-  --         GruvboxPurpleSign = { bg = "" },
-  --         GruvboxRedSign = { bg = "" },
-  --         GruvboxYellowSign = { bg = "" },
-  --         SignColumn = { link = "LineNr" }, -- https://github.com/ellisonleao/gruvbox.nvim/issues/304#issuecomment-1915875057
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      -- colorscheme = "rose-pine-moon",
+      -- colorscheme = "oldworld",
+      -- colorscheme = "gruvbox",
+      colorscheme = "gruvbox-material",
+    },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      options = {
+        -- theme = "rose-pine"
+        -- theme = "oldworld"
+        -- theme = "gruvbox",
+        theme = "gruvbox-material",
+      },
+    },
+  },
+
+  {
+    "ellisonleao/gruvbox.nvim",
+  },
+
   {
     "sainnhe/gruvbox-material",
-    version = false,
     config = function()
       vim.g.gruvbox_material_foreground = "mix" -- material (default), mix, original
       vim.g.gruvbox_material_background = "medium" -- hard, medium (default), soft
@@ -37,18 +37,12 @@ return {
     end,
   },
 
-  -- Configure LazyVim to load gruvbox
   {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "gruvbox-material",
-    },
+    "rose-pine/neovim",
+    name = "rose-pine",
   },
 
   {
-    "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      opts.options.theme = "gruvbox-material"
-    end,
+    "dgox16/oldworld.nvim",
   },
 }
