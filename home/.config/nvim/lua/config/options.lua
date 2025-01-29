@@ -11,7 +11,6 @@ vim.opt.clipboard = "" -- LazyVim defaults to "unnamedplus". I want more control
 vim.opt.conceallevel = 0 -- Don't conceal text (e.g. quotes in json, backticks in markdown).
 vim.opt.cursorlineopt = "number" -- Highlight only the numer, rather than the full line, of the cursor.
 vim.opt.iskeyword:append("-") -- consider string-string as whole word
-vim.opt.list = false -- Start with listchars disabled (toggle with <leader>uL).
 vim.opt.listchars = "tab:  ,trail:-,nbsp:+" -- Use space instead of > for tabs in listchars.
 vim.opt.mouse = "" -- Disable the mouse (I want tmux's mouse).
 vim.opt.relativenumber = false -- I prefer to start with absolute numbers.
