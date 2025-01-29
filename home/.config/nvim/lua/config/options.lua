@@ -15,6 +15,7 @@ vim.opt.listchars = "tab:  ,trail:-,nbsp:+" -- Use space instead of > for tabs i
 vim.opt.mouse = "" -- Disable the mouse (I want tmux's mouse).
 vim.opt.relativenumber = false -- I prefer to start with absolute numbers.
 vim.opt.swapfile = false -- No swap files.
+vim.lsp.set_log_level("off") -- Disable the LSP log. Enable with vim.lsp.set_log_level("debug").
 
 -- Options specific to toggling behavior in LazyVim plugins.
 vim.g.lazyvim_python_lsp = "basedpyright" -- basedpyright instead of pyright.
