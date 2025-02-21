@@ -18,8 +18,11 @@ return {
     "akinsho/bufferline.nvim",
     opts = {
       options = {
+        indicator = { style = "none" },
+        separator_style = "thin", -- :h bufferline-styling
         show_buffer_close_icons = false,
         show_close_icon = false,
+        style_preset = "minimal", -- :h bufferline-style-presets
       },
     },
   },
