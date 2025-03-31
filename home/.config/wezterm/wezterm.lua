@@ -45,7 +45,7 @@ config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 config.window_padding = {
 	left = "0.2cell",
 	right = "0.1cell",
-	top = "1.6cell",
+	top = "1.5cell",
 	bottom = "0.1cell",
 }
 config.inactive_pane_hsb = {
