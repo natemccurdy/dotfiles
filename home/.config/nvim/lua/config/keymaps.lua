@@ -60,3 +60,19 @@ vim.api.nvim_create_user_command("LintInfo", function()
     print("No linters configured for filetype: " .. filetype)
   end
 end, {})
+
+-- Toggle colorcolumn at 80
+Snacks.toggle({
+  name = "highlight column [e]ighty",
+  get = function()
+    return vim.opt.colorcolumn:get()[1] == "80"
+  end,
+  set = function(enabled)
+    if enabled then
+      vim.opt.colorcolumn = "80"
+      vim.cmd([[highlight ColorColumn guibg=#2a2a2a ctermbg=235]])
+    else
+      vim.opt.colorcolumn = ""
+    end
+  end,
+}):map("<leader>ue")
