@@ -18,6 +18,7 @@ vim.g.lazyvim_python_lsp = "basedpyright" -- basedpyright instead of pyright.
 vim.g.lazyvim_ruby_formatter = "rubocop"
 vim.g.lazyvim_ruby_lsp = "ruby_lsp"
 vim.g.snacks_animate = false -- Disable UI animations.
+vim.g.ai_cmp = false -- Use Copilot's inline completion (with tab complete) instead of blink's Copilot completion.
 
 -- Prefer Treesitter's highlights rather than LSP Semantic highlights.
 vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
