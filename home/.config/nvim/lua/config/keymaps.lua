@@ -61,6 +61,9 @@ vim.api.nvim_create_user_command("LintInfo", function()
   end
 end, {})
 
+-- Duplicate current line and comment it.
+vim.keymap.set("n", "ycc", "yygccp", { remap = true })
+
 -- Toggle colorcolumn at 80
 Snacks.toggle({
   name = "highlight column [e]ighty",
