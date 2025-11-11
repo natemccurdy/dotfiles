@@ -85,8 +85,7 @@ config.colors = {
 -- Keybindings (very tmux-like)
 local act = wezterm.action
 config.keys = {
-	-- Make ctrl+a move cursor to start of line. Use "<leader>+a a".
-	{ key = "a", mods = "LEADER", action = act.SendKey({ key = "a", mods = "CTRL" }) },
+	{ key = "a", mods = "LEADER|CTRL", action = act.SendKey({ key = "a", mods = "CTRL" }) }, -- ctrl+a twice for start of line.
 	{ key = "c", mods = "LEADER", action = act.SpawnCommandInNewTab({ cwd = wezterm.home_dir }) },
 	{ key = "|", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
@@ -109,6 +108,7 @@ config.keys = {
 	{ key = "7", mods = "LEADER", action = act.ActivateTab(6) },
 	{ key = "8", mods = "LEADER", action = act.ActivateTab(7) },
 	{ key = "9", mods = "LEADER", action = act.ActivateTab(8) },
+	{ key = "r", mods = "LEADER", action = act.RotatePanes("Clockwise") },
 	{
 		key = ",",
 		mods = "LEADER",
