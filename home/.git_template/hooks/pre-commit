@@ -41,6 +41,14 @@ def terraform_fmt(file)
   end
 end
 
+def tflint(file)
+  if which('tflint')
+    run(['tflint', '--chdir', File.dirname(file), "--filter=#{File.basename(file)}"])
+  else
+    puts 'WARNING: tflint not installed. Skipping lint check of Terraform code. https://github.com/terraform-linters/tflint'
+  end
+end
+
 def puppet_parser_validate(file)
   if which('puppet')
     run(['puppet', 'parser', 'validate', '--storeconfigs', file])
@@ -79,7 +87,8 @@ end
 
 def puppet_lint(file)
   if which('puppet-lint')
-    run(['puppet-lint', '--fail-on-warnings', '--log-format=%{filename} - %{KIND}:%{check} - %{message} on line %{line}', file])
+    run(['puppet-lint', '--fail-on-warnings',
+         '--log-format=%<filename>s - %<KIND>s:%<check>s - %<message>s on line %<line>s', file])
   else
     puts 'WARNING: puppet-lint gem not installed. Skipping style check of Puppet code. Install with `gem install puppet-lint`'
   end
@@ -143,6 +152,7 @@ Open3.capture2('git diff --cached --name-only --diff-filter=ACM')[0].each_line d
   case file
   when /(\.tf$|\.tfvars$)/
     terraform_fmt file
+    tflint file if file.end_with?('.tf')
   when /\.pp$/
     puppet_parser_validate file
     puppet_lint file
