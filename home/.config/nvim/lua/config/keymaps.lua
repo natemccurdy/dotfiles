@@ -14,6 +14,13 @@ keymap.set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system clipboa
 keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 keymap.set("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 
+-- Search word under cursor with *, but without jumping to the next occurrence.
+keymap.set("n", "*", function()
+  local word = vim.fn.expand("<cword>")
+  vim.fn.setreg("/", "\\<" .. word .. "\\>")
+  vim.cmd("set hls")
+end, { desc = "Search word under cursor" })
+
 -- Copilot
 local copilot_on = true -- I start with Copilot ON
 vim.api.nvim_create_user_command("CopilotToggle", function()

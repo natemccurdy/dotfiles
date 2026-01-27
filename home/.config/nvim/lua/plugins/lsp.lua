@@ -1,6 +1,6 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       -- Other tools and LSPs come from lazyvim.json's extras.
       vim.list_extend(opts.ensure_installed, {
