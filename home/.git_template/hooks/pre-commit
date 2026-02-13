@@ -33,11 +33,11 @@ def run(cmd)
   end
 end
 
-def terraform_fmt(file)
-  if which('terraform')
-    run(['terraform', 'fmt', '-check', file])
+def tofu_fmt(file)
+  if which('tofu')
+    run(['tofu', 'fmt', '-check', file])
   else
-    puts 'WARNING: terraform not installed. Skipping syntax check of Terraform code.'
+    puts 'WARNING: tofu not installed. Skipping syntax check of Terraform code.'
   end
 end
 
@@ -151,8 +151,8 @@ Open3.capture2('git diff --cached --name-only --diff-filter=ACM')[0].each_line d
   puts "Processing #{file}"
   case file
   when /(\.tf$|\.tfvars$)/
-    terraform_fmt file
-    tflint file if file.end_with?('.tf')
+    tflint file
+    tofu_fmt file
   when /\.pp$/
     puppet_parser_validate file
     puppet_lint file
