@@ -1,7 +1,7 @@
 [user]
   name = Nate McCurdy
   email = mccurdy.nate@gmail.com
-  signingkey = 998B474DC612FE37
+	signingkey = /Users/nate/.ssh/id_ed25519.pub
 
 [alias]
   aliases   = config --get-regexp ^alias\\.
@@ -56,6 +56,7 @@
 
 [fetch]
   prune = true
+  pruneTags = true
 
 [help]
   autocorrect = 10
@@ -83,5 +84,7 @@
   gpgsign = true
 
 # Work-specific overrides
-[includeIf "gitdir:~/work/"]
+[includeIf "gitdir:~/Work/**"]
     path = ~/.work.gitconfig
+[gpg]
+	format = ssh
