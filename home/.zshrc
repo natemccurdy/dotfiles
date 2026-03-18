@@ -34,6 +34,9 @@ source $ZSH/oh-my-zsh.sh
 # Theme and prompt customization
 __source_if_exists ~/.p10k.zsh
 POWERLEVEL9K_STATUS_OK=false
+# POWERLEVEL9K_DIR_BACKGROUND=14
+# POWERLEVEL9K_DIR_FOREGROUND=7
+# POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=7
 
 # Custom Powerlevel10k prompt segment for $VAULT_ADDR
 function prompt_my_vault_addr() {
@@ -90,6 +93,9 @@ fi
 # Highlight command paths with color instead of underlines.
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+
+# Disable AWS CLI pager
+export AWS_PAGER=""
 
 # Prevent duplicate entries in PATH. Must be after any PATH modifications.
 typeset -U path

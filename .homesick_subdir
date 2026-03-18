@@ -2,4 +2,4 @@
 .git_template/hooks
 .config
 .rbenv
-.claude
+.claude/hooks

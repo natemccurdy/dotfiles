@@ -28,7 +28,15 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        tofu_ls = {},
+        tofu_ls = {
+          -- Disable semantic tokens: tofu-ls sends a token per identifier across
+          -- the whole file. On files with long lines (e.g. CloudWatch SEARCH
+          -- expressions), neovim's UTF-16→byte conversion becomes O(lines²) and
+          -- pins the CPU at 99% until the response is fully processed.
+          on_attach = function(client)
+            client.server_capabilities.semanticTokensProvider = nil
+          end,
+        },
       },
     },
   },
