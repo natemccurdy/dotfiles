@@ -20,30 +20,16 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew doctor
 
-# Setup rbenv and install Homesick
-brew install rbenv
-RBENV_VERSION=$(curl -sS https://raw.githubusercontent.com/natemccurdy/dotfiles/main/home/.rbenv/version)
-export RBENV_VERSION
-if ! rbenv versions --bare | grep "$RBENV_VERSION"; then
-  rbenv install "$RBENV_VERSION"
-else
-  echo "Ruby $RBENV_VERSION already installed"
-fi
-rbenv global "$RBENV_VERSION"
-eval "$(rbenv init -)"
-
-# Get Homesick for dotfiles
-gem install homesick --no-doc
-homesick clone natemccurdy/dotfiles
-homesick symlink --force dotfiles
+# Install chezmoi and apply dotfiles in one shot
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply github.com/natemccurdy/dotfiles
 
 # Install HomeBrew apps
-brew bundle --file=~/.homesick/repos/dotfiles/Brewfile
+brew bundle --file=~/.local/share/chezmoi/Brewfile
 
 # Create the src directory (where I put all my code and git repos)
 [[ -d ~/src ]] || mkdir ~/src
 
-# Create a .ssh directory (required for oh-my-zsh to load after install
+# Create a .ssh directory (required for oh-my-zsh to load after install)
 mkdir -p "$HOME"/.ssh
 
 # Install Oh My ZSH
@@ -57,7 +43,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
 
 # Configure iterm to read preferences out of my dotfiles.
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.homesick/repos/dotfiles/iterm_prefs"
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.local/share/chezmoi/iterm_prefs"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 # Get iTerm gruvbox colors
@@ -68,7 +54,7 @@ rm gruvbox-dark.itermcolors
 
 # Run OSX config script
 echo "Configuring a bunch of OSX things"
-bash ~/.homesick/repos/dotfiles/home/.bin/osx.sh
+bash ~/.bin/osx.sh
 
 echo
 echo "Finished!"

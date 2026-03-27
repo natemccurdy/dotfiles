@@ -1,5 +1,2 @@
-home/.antigen/repos
-home/.bundle/cache
-home/.grip/
 Brewfile.lock.json
-home/.config/nvim/lazy-lock.json
+home/dot_config/nvim/lazy-lock.json

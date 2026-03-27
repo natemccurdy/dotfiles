@@ -102,3 +102,14 @@ typeset -U path
 
 # Disable auto-cd
 unsetopt autocd
+. "{{ .chezmoi.homeDir }}/.acme.sh/acme.sh.env"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C {{ .chezmoi.homeDir }}/.bin/terraform terraform
+
+export PATH="${HOMEBREW_PREFIX}/opt/mysql-client/bin:$PATH"
+export PATH="${HOMEBREW_PREFIX}/opt/libpq/bin:$PATH"
+
+fpath+=~/.zfunc
+autoload -Uz compinit
+compinit

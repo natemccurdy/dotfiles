@@ -50,3 +50,12 @@ tags
 ## Vagrant ##
 .vagrant/
 .pe_build/
+
+.cursor/
+.omc/
+
+backend_override.tf
+backups/
+
+# APS (Agentic Prompt Sync)
+.aps-backups/
