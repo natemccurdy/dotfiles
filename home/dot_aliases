@@ -9,30 +9,11 @@ alias tree='tree -C -F'
 
 alias path='echo -e ${PATH//:/\\n}'
 
-# Puppet aliases
-alias puppet-lint='puppet-lint --log-format="%{path} - %{KIND}:%{check} - %{message} on line %{line}"'
-alias izgood="puppet parser validate"
-alias izpretty='puppet-lint'
-alias ptup='pdk test unit --parallel'
-alias ptut='pdk test unit --tests'
-alias pval='pdk validate'
-alias is-it-good='pdk validate && pdk test unit --parallel'
-
-# Vagrant aliases
-alias v='vagrant'
-alias vs='vagrant status'
-alias vhl='vagrant hosts list'
-
 # Tmux aliases
 alias tma='tmux attach -d -t'
 
 # Task aliases
 alias t='task'
-
-# Bundler aliases
-alias b='bundle'
-alias be='bundle exec'
-alias bi='bundle install'
 
 # Shortcuts
 alias d="cd ~/Documents/Dropbox"
@@ -41,13 +22,11 @@ alias dt="cd ~/Desktop"
 alias h="history"
 
 # Git and Github aliases
-set -a
 function default-branch {
   git ls-remote --symref origin HEAD | awk -F' *|/|\t*' '/^ref:/ {print $4}'
 }
-set +a
 
-alias branch-rebase-master='git fetch && git rebase origin/master'
+alias branch-rebase-master='git fetch && git rebase origin/$(default-branch)'
 alias branch-rebase-production='git fetch && git rebase origin/production'
 alias cdg='cd "$(git rev-parse --show-toplevel)"'
 alias edit-changed-files-prod="git diff production HEAD --name-only --diff-filter=d -z | xargs -0 nvim"
@@ -116,10 +95,11 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 # IP addresses
 alias publicip="dig +short myip.opendns.com @resolver1.opendns.com 2>/dev/null"
 alias localip="ipconfig getifaddr en0"
-#alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 function ips {
-  /opt/puppetlabs/bin/facter networking --json |
-    jq -r '.networking.interfaces | keys[] as $int | "\($int) \(.[$int].ip) \(.[$int].ip6)"' | grep -v -E "null\s+null" | sort | column -t
+  ifconfig | awk '
+    /^[a-z0-9]/ { gsub(/:$/, "", $1); iface = $1 }
+    /inet / { print iface "\t" $2 }
+  ' | grep -v "127.0.0.1" | sort | column -t
 }
 
 # Routes
@@ -131,9 +111,15 @@ alias flushdns="sudo killall -HUP mDNSResponder; sudo killall mDNSResponderHelpe
 # Clean up LaunchServices to remove duplicates in the 'Open With' menu
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
-# View HTTP traffic
-alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+# View HTTP traffic (auto-detects default interface; pass interface name as arg to override)
+function sniff {
+  local iface=${1:-$(route get default 2>/dev/null | awk '/interface:/{print $2}')}
+  sudo ngrep -d "$iface" -t '^(GET|POST) ' 'tcp and port 80'
+}
+function httpdump {
+  local iface=${1:-$(route get default 2>/dev/null | awk '/interface:/{print $2}')}
+  sudo tcpdump -i "$iface" -n -s 0 -w - | grep -a -o -E "Host: .*|GET /.*"
+}
 
 # Canonical hex dump; some systems have this symlinked
 command -v hd >/dev/null || alias hd="hexdump -C"
@@ -160,12 +146,9 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # URL-encode strings
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-
-# One of @janmoesen's ProTips
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-  alias "$method"="lwp-request -m '$method'"
-done
+function urlencode {
+  python3 -c "import sys, urllib.parse; print(urllib.parse.quote_plus(sys.argv[1]))" "$1"
+}
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
@@ -195,10 +178,6 @@ function listening {
   else
     echo "Usage: listening [pattern]"
   fi
-}
-
-function urlencode {
-  python -c 'import urllib, sys; print urllib.quote(sys.argv[1], sys.argv[2])' "$1" "$urlencode_safe"
 }
 
 alias kill_pulse_secure="ps aux | grep -i '[p]ulse' | awk '{print \$2}' | xargs sudo kill"

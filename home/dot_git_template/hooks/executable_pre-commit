@@ -49,26 +49,6 @@ def tflint(file)
   end
 end
 
-def puppet_parser_validate(file)
-  if which('puppet')
-    run(['puppet', 'parser', 'validate', '--storeconfigs', file])
-  else
-    puts 'WARNING: puppet not installed. Skipping syntax check of Puppet code.'
-  end
-end
-
-# NOTE: When installing r10k, you'll probably need to install the puppet_forge gem at version 2.2.6 first.
-#       Versions later than that have a dependency on semantic_puppet ~> 1.0 while r10k has a dependency on ~> 0.1.
-#         gem install puppet_forge --version 2.2.6
-#         gem install r10k
-def r10k_puppetfile_check(file)
-  if which('r10k')
-    run(['r10k', 'puppetfile', 'check', file])
-  else
-    puts 'WARNING: r10k not installed. Skipping check of Puppetfile. Install with `gem install r10k`'
-  end
-end
-
 def bash_check(file)
   if which('bash')
     run(['bash', '-n', file])
@@ -85,38 +65,8 @@ def shell_check(file)
   end
 end
 
-def puppet_lint(file)
-  if which('puppet-lint')
-    run(['puppet-lint', '--fail-on-warnings',
-         '--log-format=%<filename>s - %<KIND>s:%<check>s - %<message>s on line %<line>s', file])
-  else
-    puts 'WARNING: puppet-lint gem not installed. Skipping style check of Puppet code. Install with `gem install puppet-lint`'
-  end
-end
-
-def puppet_epp_check(file)
-  if which('puppet')
-    run(['puppet', 'epp', 'validate', file])
-  else
-    puts 'puppet not installed. Skipping EPP template check.'
-  end
-end
-
-def puppet_erb_check(file)
-  if which('erb')
-    erb_stdout, _status = Open3.capture2('erb', '-x', '-T', '-', file)
-    ruby_stdout, status = Open3.capture2('ruby -c', stdin_data: erb_stdout)
-    unless status.success?
-      warn(ruby_stdout)
-      exit 1
-    end
-  else
-    puts 'erb not installed. Skipping ERB template check.'
-  end
-end
-
 def yaml_check(file)
-  YAML.load_file(file)
+  YAML.safe_load_file(file)
 rescue StandardError => e
   warn("YAML invalid: #{e}")
   exit 1
@@ -153,15 +103,6 @@ Open3.capture2('git diff --cached --name-only --diff-filter=ACM')[0].each_line d
   when /(\.tf$|\.tfvars$)/
     tflint file
     tofu_fmt file
-  when /\.pp$/
-    puppet_parser_validate file
-    puppet_lint file
-  when /\.epp$/
-    puppet_epp_check file
-  when /\.erb$/
-    puppet_erb_check file
-  when 'Puppetfile'
-    r10k_puppetfile_check file
   when /\.sh$/
     bash_check file
     shell_check file

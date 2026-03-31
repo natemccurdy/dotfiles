@@ -48,7 +48,7 @@ defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 # Get iTerm gruvbox colors
 echo "Installing GruvBox colors for iTerm2"
-wget https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors
+curl -LO https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors
 open gruvbox-dark.itermcolors
 rm gruvbox-dark.itermcolors
 

@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+#
+# git-sync: fetch from the main remote and update local branches.
+# Invoked as `git sync` because git finds git-<subcommand> scripts in PATH.
+#
+# Replicates hub's `hub sync` behavior:
+#   - Fast-forwards local branches that are behind their upstream
+#   - Warns about branches that have diverged (unpushed commits)
+#   - Deletes local branches whose upstream was removed, if they're merged into default
+#   - Warns about gone-but-unmerged branches instead of deleting them
+#
+set -uo pipefail
+
+# Prefer upstream > github > origin, then fall back to first available remote.
+remote=""
+for preferred in upstream github origin; do
+  if git remote | grep -qx "$preferred" 2>/dev/null; then
+    remote="$preferred"
+    break
+  fi
+done
+if [[ -z "$remote" ]]; then
+  remote=$(git remote | head -1)
+fi
+if [[ -z "$remote" ]]; then
+  echo "error: no remote configured" >&2
+  exit 1
+fi
+
+git fetch --prune --quiet --progress "$remote"
+
+# Resolve the default branch from the remote's HEAD symref.
+default_branch=$(git symbolic-ref --short "refs/remotes/${remote}/HEAD" 2>/dev/null \
+  | sed "s|^${remote}/||" || true)
+if [[ -z "$default_branch" ]]; then
+  default_branch=$(git remote show "$remote" 2>/dev/null | awk '/HEAD branch:/{print $NF}') || true
+fi
+if [[ -z "$default_branch" ]]; then
+  default_branch="main"
+fi
+
+current_branch=$(git symbolic-ref --short HEAD 2>/dev/null || true)
+
+# Build a map of branch -> configured remote from git config.
+declare -A branch_remote=()
+while IFS= read -r line; do
+  key="${line%% *}"
+  value="${line#* }"
+  branch="${key#branch.}"
+  branch="${branch%.remote}"
+  branch_remote["$branch"]="$value"
+done < <(git config --get-regexp 'branch\..*\.remote' 2>/dev/null || true)
+
+while IFS= read -r branch; do
+  full_branch="refs/heads/${branch}"
+  remote_ref=""
+  gone=false
+
+  if [[ "${branch_remote[$branch]:-}" == "$remote" ]]; then
+    # Branch has an upstream config pointing to our remote.
+    # Resolve to its full remote ref (e.g. refs/remotes/origin/main).
+    upstream_ref=$(git rev-parse --symbolic-full-name "${branch}@{upstream}" 2>/dev/null || true)
+    if [[ -n "$upstream_ref" ]]; then
+      remote_ref="$upstream_ref"
+    else
+      # Config pointed here but the upstream ref is gone.
+      gone=true
+    fi
+  elif git rev-parse --verify --quiet "refs/remotes/${remote}/${branch}" >/dev/null 2>&1; then
+    # No upstream config, but a same-named remote branch exists — use it.
+    remote_ref="refs/remotes/${remote}/${branch}"
+  fi
+
+  if [[ -n "$remote_ref" ]]; then
+    local_sha=$(git rev-parse "$full_branch" 2>/dev/null) || continue
+    remote_sha=$(git rev-parse "$remote_ref" 2>/dev/null) || continue
+
+    if [[ "$local_sha" == "$remote_sha" ]]; then
+      continue  # already up to date
+    elif git merge-base --is-ancestor "$full_branch" "$remote_ref" 2>/dev/null; then
+      short_sha="${local_sha:0:7}"
+      if [[ "$branch" == "$current_branch" ]]; then
+        git merge --ff-only --quiet "$remote_ref" \
+          || { echo "warning: could not fast-forward '${branch}'" >&2; continue; }
+      else
+        git update-ref "$full_branch" "$remote_ref"
+      fi
+      echo "Updated branch ${branch} (was ${short_sha})."
+    else
+      echo "warning: '${branch}' seems to contain unpushed commits" >&2
+    fi
+
+  elif [[ "$gone" == true ]]; then
+    local_sha=$(git rev-parse "$full_branch" 2>/dev/null) || continue
+    full_default="refs/remotes/${remote}/${default_branch}"
+
+    if git merge-base --is-ancestor "$full_branch" "$full_default" 2>/dev/null; then
+      short_sha="${local_sha:0:7}"
+      if [[ "$branch" == "$current_branch" ]]; then
+        git checkout --quiet "$default_branch"
+        current_branch="$default_branch"
+      fi
+      git branch -D "$branch"
+      echo "Deleted branch ${branch} (was ${short_sha})."
+    else
+      echo "warning: '${branch}' was deleted on ${remote}, but appears not merged into '${default_branch}'" >&2
+    fi
+  fi
+
+done < <(git branch --format='%(refname:short)')

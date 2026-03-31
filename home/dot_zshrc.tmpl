@@ -75,11 +75,6 @@ __source_if_exists ~/.config/wezterm/wezterm.sh # Wezterm shell-integration
 source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
-# rbenv initialization
-if type rbenv >/dev/null; then
-  eval "$(rbenv init -)"
-fi
-
 # direnv initialization
 if type direnv >/dev/null; then
   eval "$(direnv hook zsh)"
@@ -102,7 +97,7 @@ typeset -U path
 
 # Disable auto-cd
 unsetopt autocd
-. "{{ .chezmoi.homeDir }}/.acme.sh/acme.sh.env"
+__source_if_exists "{{ .chezmoi.homeDir }}/.acme.sh/acme.sh.env"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C {{ .chezmoi.homeDir }}/.bin/terraform terraform

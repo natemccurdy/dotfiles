@@ -62,7 +62,7 @@ brew bundle --file=~/.local/share/chezmoi/Brewfile
 GruvBox iTerm2 color scheme:
 
 ```bash
-wget https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors
+curl -LO https://github.com/morhetz/gruvbox-contrib/raw/master/iterm2/gruvbox-dark.itermcolors
 open gruvbox-dark.itermcolors
 rm gruvbox-dark.itermcolors
 ```
