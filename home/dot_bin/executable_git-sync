@@ -11,6 +11,42 @@
 #
 set -uo pipefail
 
+# --- color support -----------------------------------------------------------
+# Mirrors hub's --color[=<WHEN>] flag: always | never | auto (default).
+color_when="auto"
+args=()
+for arg in "$@"; do
+  case "$arg" in
+    --color)        color_when="always" ;;
+    --color=always) color_when="always" ;;
+    --color=never)  color_when="never"  ;;
+    --color=auto)   color_when="auto"   ;;
+    *)              args+=("$arg")      ;;
+  esac
+done
+set -- "${args[@]+"${args[@]}"}"
+
+colorize=false
+if [[ "$color_when" == "always" ]]; then
+  colorize=true
+elif [[ "$color_when" == "auto" ]] && [[ -t 1 ]]; then
+  colorize=true
+fi
+
+green=""
+light_green=""
+red=""
+light_red=""
+reset=""
+if [[ "$colorize" == true ]]; then
+  green=$'\033[32m'
+  light_green=$'\033[32;1m'
+  red=$'\033[31m'
+  light_red=$'\033[31;1m'
+  reset=$'\033[0m'
+fi
+# -----------------------------------------------------------------------------
+
 # Prefer upstream > github > origin, then fall back to first available remote.
 remote=""
 for preferred in upstream github origin; do
@@ -85,7 +121,7 @@ while IFS= read -r branch; do
       else
         git update-ref "$full_branch" "$remote_ref"
       fi
-      echo "Updated branch ${branch} (was ${short_sha})."
+      echo "${green}Updated branch ${light_green}${branch}${reset} (was ${short_sha})."
     else
       echo "warning: '${branch}' seems to contain unpushed commits" >&2
     fi
@@ -101,7 +137,7 @@ while IFS= read -r branch; do
         current_branch="$default_branch"
       fi
       git branch -D "$branch"
-      echo "Deleted branch ${branch} (was ${short_sha})."
+      echo "${red}Deleted branch ${light_red}${branch}${reset} (was ${short_sha})."
     else
       echo "warning: '${branch}' was deleted on ${remote}, but appears not merged into '${default_branch}'" >&2
     fi
